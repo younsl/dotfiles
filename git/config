@@ -1,0 +1,5 @@
+[includeIf "gitdir:~/github/younsl/"]
+  	path = ~/.config/git/config-younsl
+
+[includeIf "gitdir:~/github/coinone/"]
+  	path = ~/.config/git/config-coinone
