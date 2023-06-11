@@ -6,9 +6,20 @@
 	<array>
 		<dict>
 			<key>action</key>
+			<integer>25</integer>
+			<key>parameter</key>
+			<string>Settings…
+Preferences...</string>
+			<key>title</key>
+			<string>Settings</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>action</key>
 			<integer>35</integer>
 			<key>parameter</key>
-			<string>command -v open &amp;&amp; open "https://chat.openai.com/"</string>
+			<string>open "https://chat.openai.com/"</string>
 			<key>title</key>
 			<string>☁️ Open AWS</string>
 			<key>version</key>
@@ -18,7 +29,7 @@
 			<key>action</key>
 			<integer>35</integer>
 			<key>parameter</key>
-			<string>command -v open &amp;&amp; open "https://chat.openai.com/"</string>
+			<string>open "https://chat.openai.com/"</string>
 			<key>title</key>
 			<string>🤖 Open ChatGPT</string>
 			<key>version</key>
@@ -28,7 +39,7 @@
 			<key>action</key>
 			<integer>35</integer>
 			<key>parameter</key>
-			<string>command -v open &amp;&amp; open "https://github.com/younsl"</string>
+			<string>open "https://github.com/younsl"</string>
 			<key>title</key>
 			<string>🔩 Open Github</string>
 			<key>version</key>
@@ -38,7 +49,7 @@
 			<key>action</key>
 			<integer>35</integer>
 			<key>parameter</key>
-			<string>command -v open &amp;&amp; open "https://younsl.github.io/"</string>
+			<string>open "https://younsl.github.io/"</string>
 			<key>title</key>
 			<string>🐚 Open Blog</string>
 			<key>version</key>
@@ -48,7 +59,7 @@
 			<key>action</key>
 			<integer>35</integer>
 			<key>parameter</key>
-			<string>command -v open &amp;&amp; open "https://youtube.com"</string>
+			<string>open "https://youtube.com"</string>
 			<key>title</key>
 			<string>🍿 Open Youtube</string>
 			<key>version</key>
@@ -57,10 +68,7 @@
 	</array>
 	<key>Coprocess MRU</key>
 	<array>
-		<string>command -v open &amp;&amp; open "https://chat.openai.com/"</string>
-		<string>command -v open &amp;&amp; open "https://youtube.com"</string>
-		<string>command -v open &amp;&amp; open "https://github.com/younsl"</string>
-		<string>command -v open &amp;&amp; open "https://younsl.github.io/"</string>
+		<string>open "https://github.com/younsl"</string>
 	</array>
 	<key>Default Bookmark Guid</key>
 	<string>E2AEE21F-0CE6-4733-B217-0B5648109AA7</string>
@@ -70,6 +78,8 @@
 	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
+	<key>MinimalTabStyleOutlineStrength</key>
+	<real>0.0</real>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -234,6 +244,19 @@
 			</dict>
 			<key>Background Image Location</key>
 			<string></string>
+			<key>Badge Color</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>0.5</real>
+				<key>Blue Component</key>
+				<real>0.0</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.14910030364990234</real>
+				<key>Red Component</key>
+				<real>1</real>
+			</dict>
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
@@ -252,7 +275,7 @@
 			<key>Close Sessions On End</key>
 			<true/>
 			<key>Columns</key>
-			<integer>80</integer>
+			<integer>120</integer>
 			<key>Command</key>
 			<string></string>
 			<key>Cursor Color</key>
@@ -264,6 +287,19 @@
 				<key>Red Component</key>
 				<real>0.73333334922790527</real>
 			</dict>
+			<key>Cursor Guide Color</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>0.25</real>
+				<key>Blue Component</key>
+				<real>1</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.92681378126144409</real>
+				<key>Red Component</key>
+				<real>0.70214027166366577</real>
+			</dict>
 			<key>Cursor Text Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -273,6 +309,8 @@
 				<key>Red Component</key>
 				<real>1</real>
 			</dict>
+			<key>Cursor Type</key>
+			<integer>2</integer>
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
@@ -590,6 +628,19 @@
 					<string>[1;5F</string>
 				</dict>
 			</dict>
+			<key>Link Color</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
+				<key>Blue Component</key>
+				<real>0.73422706127166748</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.35915294289588928</real>
+				<key>Red Component</key>
+				<real>0.0</real>
+			</dict>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
@@ -607,11 +658,11 @@
 			<key>Right Option Key Sends</key>
 			<integer>0</integer>
 			<key>Rows</key>
-			<integer>25</integer>
+			<integer>32</integer>
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
-			<integer>1000</integer>
+			<integer>100000</integer>
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -643,7 +694,7 @@
 				<key>advanced configuration</key>
 				<dict>
 					<key>algorithm</key>
-					<integer>0</integer>
+					<integer>1</integer>
 					<key>auto-rainbow style</key>
 					<integer>1</integer>
 					<key>font</key>
@@ -687,7 +738,7 @@
 							<key>layout advanced configuration dictionary value</key>
 							<dict>
 								<key>algorithm</key>
-								<integer>0</integer>
+								<integer>1</integer>
 								<key>auto-rainbow style</key>
 								<integer>1</integer>
 								<key>font</key>
@@ -725,7 +776,7 @@
 							<key>layout advanced configuration dictionary value</key>
 							<dict>
 								<key>algorithm</key>
-								<integer>0</integer>
+								<integer>1</integer>
 								<key>auto-rainbow style</key>
 								<integer>1</integer>
 								<key>font</key>
@@ -761,7 +812,7 @@
 							<key>layout advanced configuration dictionary value</key>
 							<dict>
 								<key>algorithm</key>
-								<integer>0</integer>
+								<integer>1</integer>
 								<key>auto-rainbow style</key>
 								<integer>1</integer>
 								<key>font</key>
@@ -797,7 +848,7 @@
 							<key>layout advanced configuration dictionary value</key>
 							<dict>
 								<key>algorithm</key>
-								<integer>0</integer>
+								<integer>1</integer>
 								<key>auto-rainbow style</key>
 								<integer>1</integer>
 								<key>font</key>
@@ -843,7 +894,7 @@
 							<key>layout advanced configuration dictionary value</key>
 							<dict>
 								<key>algorithm</key>
-								<integer>0</integer>
+								<integer>1</integer>
 								<key>auto-rainbow style</key>
 								<integer>1</integer>
 								<key>font</key>
@@ -864,10 +915,6 @@
 								<integer>1</integer>
 								<key>base: priority</key>
 								<real>5</real>
-								<key>maxwidth</key>
-								<real>+infinity</real>
-								<key>minwidth</key>
-								<string>0</string>
 								<key>shared text color</key>
 								<dict>
 									<key>Alpha Component</key>
@@ -885,9 +932,11 @@
 							<key>layout advanced configuration dictionary value</key>
 							<dict>
 								<key>algorithm</key>
-								<integer>0</integer>
+								<integer>1</integer>
 								<key>auto-rainbow style</key>
-								<integer>0</integer>
+								<integer>1</integer>
+								<key>font</key>
+								<string>.AppleSystemUIFont 12</string>
 								<key>remove empty components</key>
 								<false/>
 							</dict>
@@ -916,7 +965,7 @@
 			<key>Use Non-ASCII Font</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>1</real>
+			<real>1.1000000000000001</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
@@ -966,12 +1015,18 @@
 	</dict>
 	<key>RetinaInlineImages</key>
 	<false/>
+	<key>Snippets</key>
+	<array/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>StatusBarPosition</key>
 	<integer>1</integer>
 	<key>TabStyleWithAutomaticOption</key>
 	<integer>5</integer>
+	<key>TerminalMargin</key>
+	<integer>12</integer>
+	<key>TerminalVMargin</key>
+	<integer>10</integer>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 </dict>
