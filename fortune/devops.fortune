@@ -43,3 +43,6 @@ Keep It Simple, Stupid! = KISS
 %
 완벽함을 달성하는 방법은 연습뿐이다.
     - Alex Xu
+%
+장애는 대규모 시스템이라면 피할 수 없는 것으로, 설계 시 그 점을 반드시 고려해야 한다.
+    - Alex Xu
