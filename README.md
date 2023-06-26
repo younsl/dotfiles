@@ -9,7 +9,7 @@
 
 My standard dotfiles for Mac.
 
-> **Note**: I use this dotfile on both my work and personal MacBook.
+**Note**: I use this dotfile on both my work and personal MacBook.
 
 ## List of supported dotfiles
 
