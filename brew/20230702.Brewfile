@@ -87,8 +87,6 @@ cask "drawio"
 cask "google-chrome"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
-# Korean e-book store
-cask "millie"
 # App to write, plan, collaborate, and get organized
 cask "notion"
 # Open-source software for live streaming and screen recording
@@ -99,10 +97,10 @@ cask "rectangle"
 cask "skitch"
 # System monitor for the menu bar
 cask "stats"
+# Messaging app with a focus on speed and security
+cask "telegram"
 # Open-source code editor
 cask "visual-studio-code"
-# Video communication and virtual meeting platform
-cask "zoom"
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "카카오톡", id: 869223134
@@ -114,6 +112,7 @@ vscode "donjayamanne.python-environment-manager"
 vscode "donjayamanne.python-extension-pack"
 vscode "ecmel.vscode-html-css"
 vscode "esbenp.prettier-vscode"
+vscode "jamiewoodio.cisco"
 vscode "KevinRose.vsc-python-indent"
 vscode "ms-azuretools.vscode-docker"
 vscode "MS-CEINTL.vscode-language-pack-ko"
