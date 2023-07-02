@@ -135,3 +135,8 @@ KUBE_PS1_SYMBOL_USE_IMG=false
 # k9s
 #----------------------------------
 export XDG_CONFIG_HOME="$HOME/.config"
+
+#----------------------------------
+# python (pip)
+#----------------------------------
+alias python=python3
