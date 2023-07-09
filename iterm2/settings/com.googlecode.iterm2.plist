@@ -67,7 +67,9 @@ Preferences...</string>
 		</dict>
 	</array>
 	<key>Coprocess MRU</key>
-	<integer>0</integer>
+	<array>
+		<string>open "https://github.com/younsl"</string>
+	</array>
 	<key>Default Bookmark Guid</key>
 	<string>E2AEE21F-0CE6-4733-B217-0B5648109AA7</string>
 	<key>GrowlOnForegroundTabs</key>
