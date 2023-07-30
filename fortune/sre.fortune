@@ -1,0 +1,27 @@
+테스트를 해본 적이 없다면 잘못될 가능성이 있음을 염두에 둬라.
+    - 미상
+%
+사이트 신뢰성 엔지니어의 핵심 책임 중 하나는
+자신들이 관리하는 시스템에 대한 정량화된 신뢰도다.
+%
+희망은 전략이 아니다.
+    - Google SRE Team
+%
+평범하게 운영 중인 당신의 시스템에 운영자가 손을 대야 한다면
+그 시스템에 버그가 있다는 뜻이다.
+    - Carla Geisser, Google SRE
+%
+제대로 구성된 모니터링과 알림 파이프라인은 간결하고 명료하다.
+    - 책 'Site Reliability Engineering' 중
+%
+개발자, SRE, 그리고 릴리즈 엔지니어가 함께 일하는 것은 너무나 당연하다.
+    - 책 'Site Reliability Engineering' 중
+%
+무언가를 배우는 데 있어 과거에 있었던 일을 문서로 남기는 것보다 나은 방법은 없다.
+    - 책 'Site Reliability Engineering' 중
+%
+포스트모텀 절차에는 모든 단계마다의 협업과 지식 공유가 담겨있다.
+    - 책 'Site Reliability Engineering' 중
+%
+리뷰를 거치지 않은 포스트모텀 문서는 존재하지 않아야 한다.
+    - 책 'Site Reliability Engineering' 중
