@@ -30,6 +30,13 @@ My standard dotfiles for Mac.
 
 When you commit a `*.fortune` file, the local `*.fortune.dat` file is automatically updated automatically.
 
+```bash
+$ git commit -m "style: Linting indent"
+gitstrfile-fortune..........................................................Passed
+[main a30b41e] style: Linting indent
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+```
+
 See the precommit-hook configuration file [.pre-commit-config.yaml](https://github.com/younsl/dotfiles/blob/main/.pre-commit-config.yaml) for details.
 
 ## Reference
