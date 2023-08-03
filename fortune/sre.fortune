@@ -42,3 +42,16 @@ SRE들은 주로 여러 분야에 능하다.
 %
 여러분의 엔지니어링 능력이나 테스트의 꼼꼼함 여부와는 무고나하게 API는 결함을 가질 것이다.
     - 책 'Site Reliability Engineering' 중
+%
+성공적인 SRE팀은 신뢰를 바탕으로 구성된다.
+    - 책 'Site Reliability Engineering' 중
+%
+과거의 실수를 기억하지 못하는 사람은 그 실수를 반복한다.
+    - 조지 산타야나(George Santayana), 철학자이자 수필가
+%
+변화의 속도가 빠른 환경에서는 문서 역시 빠른 속도로 노후화된다.
+    - 책 'Site Reliability Engineering' 중
+%
+SRE팀은 매일같이 운영하는 시스템에 대한 포괄적인 지식(시스템의 운영 방법, 장애가 발생하는
+요인, 그리고 장애에 대처하는 방법 등)을 갖춰야 한다.
+    - 책 'Site Reliability Engineering' 중
