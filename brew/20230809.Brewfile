@@ -116,6 +116,7 @@ vscode "donjayamanne.python-environment-manager"
 vscode "donjayamanne.python-extension-pack"
 vscode "eamodio.gitlens"
 vscode "esbenp.prettier-vscode"
+vscode "hashicorp.terraform"
 vscode "jamiewoodio.cisco"
 vscode "KevinRose.vsc-python-indent"
 vscode "ms-azuretools.vscode-docker"
@@ -136,5 +137,5 @@ vscode "yzhang.markdown-all-in-one"
 # Installed brew count: 42
 # Installed cask count: 11
 # Installed mas count: 2
-# Installed vscode count: 21
+# Installed vscode count: 22
 #--------------------------------------
