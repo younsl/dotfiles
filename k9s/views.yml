@@ -16,6 +16,7 @@ k9s:
         - NAMESPACE
         - NAME
         - STATUS
+        - RESTARTS
         - READY
         - AGE
         - IP
