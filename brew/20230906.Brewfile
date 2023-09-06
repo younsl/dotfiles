@@ -36,6 +36,8 @@ brew "htop"
 brew "hugo"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
+# Update of iperf: measures TCP, UDP, and SCTP bandwidth
+brew "iperf3"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Kubernetes CLI To Manage Your Clusters In Style!
@@ -134,7 +136,7 @@ vscode "yzhang.markdown-all-in-one"
 # Package installation summary
 #--------------------------------------
 # Installed tap count: 2
-# Installed brew count: 42
+# Installed brew count: 43
 # Installed cask count: 11
 # Installed mas count: 2
 # Installed vscode count: 22
