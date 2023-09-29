@@ -16,8 +16,6 @@ brew "bfg"
 brew "calc"
 # Emacs dependency management
 brew "cask"
-# Configurable talking characters in ASCII art
-brew "cowsay"
 # Infamous electronic fortune-cookie generator
 brew "fortune"
 # Command-line fuzzy finder written in Go
@@ -66,8 +64,6 @@ brew "redis"
 brew "sslscan"
 # User interface to the TELNET protocol
 brew "telnet"
-# Thin wrapper for Terraform e.g. for locking state
-brew "terragrunt"
 # Terraform version manager inspired by rbenv
 brew "tfenv"
 # Terminal multiplexer
@@ -139,7 +135,7 @@ vscode "yzhang.markdown-all-in-one"
 # Package installation summary
 #--------------------------------------
 # Installed tap count: 2
-# Installed brew count: 43
+# Installed brew count: 41
 # Installed cask count: 12
 # Installed mas count: 2
 # Installed vscode count: 23
