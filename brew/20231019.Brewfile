@@ -66,6 +66,8 @@ brew "sslscan"
 brew "telnet"
 # Terraform version manager inspired by rbenv
 brew "tfenv"
+# Simplified and community-driven man pages
+brew "tldr"
 # Terminal multiplexer
 brew "tmux"
 # Command-line translator using Google Translate and more
@@ -135,7 +137,7 @@ vscode "yzhang.markdown-all-in-one"
 # Package installation summary
 #--------------------------------------
 # Installed tap count: 2
-# Installed brew count: 41
+# Installed brew count: 42
 # Installed cask count: 12
 # Installed mas count: 2
 # Installed vscode count: 23
