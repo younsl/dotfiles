@@ -1,8 +1,9 @@
 #---------------------------------
-# Backup completed on 2023-08-03 
+# Backup completed on 2023-10-26 
 # Krew version is v0.4.4   
 #---------------------------------
 ctx
+kyverno
 node-shell
 ns
 stern
