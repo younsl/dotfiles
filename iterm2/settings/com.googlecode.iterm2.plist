@@ -1695,6 +1695,8 @@ Preferences...</string>
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>RetinaInlineImages</key>
 	<false/>
 	<key>Snippets</key>
