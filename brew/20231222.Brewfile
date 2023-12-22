@@ -1,3 +1,4 @@
+tap "aws/tap"
 tap "homebrew/bundle"
 tap "homebrew/services"
 # Static checker for GitHub Actions workflow files
@@ -84,6 +85,8 @@ brew "wget"
 brew "wifi-password"
 # JavaScript package manager
 brew "yarn"
+# eks-node-viewer is a tool for visualizing dynamic node usage within an EKS cluster.
+brew "aws/tap/eks-node-viewer"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Application uninstaller
@@ -136,8 +139,8 @@ vscode "yzhang.markdown-all-in-one"
 #--------------------------------------
 # Package installation summary
 #--------------------------------------
-# Installed tap count: 2
-# Installed brew count: 42
+# Installed tap count: 3
+# Installed brew count: 43
 # Installed cask count: 12
 # Installed mas count: 2
 # Installed vscode count: 23
