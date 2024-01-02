@@ -91,8 +91,6 @@ brew "aws/tap/eks-node-viewer"
 cask "1password"
 # Application uninstaller
 cask "appcleaner"
-# Two-factor authentication software
-cask "authy"
 # App to build and share containerized applications and microservices
 cask "docker"
 # Online diagram software
@@ -141,7 +139,7 @@ vscode "yzhang.markdown-all-in-one"
 #--------------------------------------
 # Installed tap count: 3
 # Installed brew count: 43
-# Installed cask count: 12
+# Installed cask count: 11
 # Installed mas count: 2
 # Installed vscode count: 23
 #--------------------------------------
