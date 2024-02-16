@@ -1,6 +1,7 @@
 tap "aws/tap"
 tap "homebrew/bundle"
 tap "homebrew/services"
+tap "kreuzwerker/taps"
 # Static checker for GitHub Actions workflow files
 brew "actionlint"
 # GitOps Continuous Delivery for Kubernetes
@@ -65,6 +66,8 @@ brew "redis"
 brew "sslscan"
 # User interface to the TELNET protocol
 brew "telnet"
+# Improve Terraform's plan output
+brew "terraform_landscape"
 # Terraform version manager inspired by rbenv
 brew "tfenv"
 # Simplified and community-driven man pages
@@ -87,11 +90,13 @@ brew "wifi-password"
 brew "yarn"
 # eks-node-viewer is a tool for visualizing dynamic node usage within an EKS cluster.
 brew "aws/tap/eks-node-viewer"
+# CLI to support with downloading and compiling terraform providers for Mac with M1 chip.
+brew "kreuzwerker/taps/m1-terraform-provider-helper"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Application uninstaller
 cask "appcleaner"
-# App to build and share containerized applications and microservices
+# App to build and share containerised applications and microservices
 cask "docker"
 # Online diagram software
 cask "drawio"
@@ -113,7 +118,7 @@ mas "KakaoTalk", id: 869223134
 mas "Keynote", id: 409183694
 vscode "4ops.terraform"
 vscode "batisteo.vscode-django"
-vscode "DavidAnson.vscode-markdownlint"
+vscode "davidanson.vscode-markdownlint"
 vscode "donjayamanne.githistory"
 vscode "donjayamanne.python-environment-manager"
 vscode "donjayamanne.python-extension-pack"
@@ -122,24 +127,25 @@ vscode "esbenp.prettier-vscode"
 vscode "github.vscode-github-actions"
 vscode "hashicorp.terraform"
 vscode "jamiewoodio.cisco"
-vscode "KevinRose.vsc-python-indent"
+vscode "kevinrose.vsc-python-indent"
 vscode "ms-azuretools.vscode-docker"
-vscode "MS-CEINTL.vscode-language-pack-ko"
+vscode "ms-ceintl.vscode-language-pack-ko"
+vscode "ms-python.debugpy"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
 vscode "ms-vscode-remote.remote-containers"
 vscode "njpwerner.autodocstring"
-vscode "PKief.material-icon-theme"
-vscode "VisualStudioExptTeam.intellicode-api-usage-examples"
-vscode "VisualStudioExptTeam.vscodeintellicode"
+vscode "pkief.material-icon-theme"
+vscode "visualstudioexptteam.intellicode-api-usage-examples"
+vscode "visualstudioexptteam.vscodeintellicode"
 vscode "wholroyd.jinja"
 vscode "yzhang.markdown-all-in-one"
 #--------------------------------------
 # Package installation summary
 #--------------------------------------
-# Installed tap count: 3
-# Installed brew count: 43
+# Installed tap count: 4
+# Installed brew count: 45
 # Installed cask count: 11
 # Installed mas count: 2
-# Installed vscode count: 23
+# Installed vscode count: 24
 #--------------------------------------
