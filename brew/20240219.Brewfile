@@ -104,8 +104,6 @@ cask "drawio"
 cask "google-chrome"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
-# Knowledge base that works on top of a local folder of plain text Markdown files
-cask "obsidian"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
 # Screen capture tool with mark up and sharing features
@@ -145,7 +143,7 @@ vscode "yzhang.markdown-all-in-one"
 #--------------------------------------
 # Installed tap count: 4
 # Installed brew count: 45
-# Installed cask count: 11
+# Installed cask count: 10
 # Installed mas count: 2
 # Installed vscode count: 24
 #--------------------------------------
