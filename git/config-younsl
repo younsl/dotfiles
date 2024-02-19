@@ -1,5 +1,8 @@
 # This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
 	name = younsl
 	email = cysl@kakao.com
+
+[push]
+	# no upstream tracking exists for the current branch
+	autoSetupRemote = true
