@@ -1,0 +1,26 @@
+repos:
+  - repo: local
+    hooks:
+      - id: strfile-fortune
+        name: strfile-fortune
+        entry: bash
+        language: system
+        always_run: true
+        pass_filenames: false
+        stages: [commit]
+        types: [file]
+        description: |-
+          This hook runs strfile command on all .fortune files
+          under the fortune/ directory.
+
+        # fortune/ 디렉토리 아래에 있는 모든 *.fortune 파일들을 매칭합니다.
+        files: ^fortune/.*\.fortune$
+
+        # strfile 명령어를 실행하는 bash 쉘 스크립트를 정의합니다.
+        # $file 변수에 각 .fortune 파일 경로가 할당되며, for 반복문으로 파일들을 처리합니다.
+        # strfile 명령어는 .fortune 파일과 해당 .dat 파일을 생성합니다.
+        # pre-commit 훅에서 실행될 때, 모든 .fortune 파일들에 대해 strfile을 실행합니다.
+        args: [
+          '-c',
+          'for file in fortune/*.fortune; do strfile "$file"; done'
+        ]

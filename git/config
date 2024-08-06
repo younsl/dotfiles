@@ -1,0 +1,29 @@
+#--------------------------------------------------------
+# Reference for git configuration file:
+# https://git-scm.com/docs/git-config
+#--------------------------------------------------------
+[init]
+    defaultBranch = main
+
+[commit]
+    template = ~/.config/git/gitmessage
+
+[push]
+    autoSetupRemote = true
+    default = current
+
+[color]
+    ui = auto
+
+[log]
+    abbrevCommit = true
+
+# 개인 저장소(Github Cloud) 설정:
+# `~/github/younsl/` 경로에 위치한 Git 저장소에서 사용되는 설정파일입니다.
+[includeIf "gitdir:~/github/younsl/"]
+    path = ~/.config/git/config-younsl
+
+# 회사 저장소(Github Enterprise) 설정:
+# `~/github/company/` 경로에 위치한 Git 저장소에서 사용되는 설정파일입니다.
+[includeIf "gitdir:~/github/coinone/"]
+    path = ~/.config/git/config-coinone
