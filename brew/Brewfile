@@ -52,8 +52,6 @@ brew "krew"
 brew "kube-ps1"
 # Tool that can switch between kubectl contexts easily and create aliases
 brew "kubectx"
-# Linux virtual machines
-brew "lima"
 # Mac App Store command-line interface
 brew "mas"
 # Fast, highly customisable system info script
@@ -74,14 +72,14 @@ brew "telnet"
 brew "terraform_landscape"
 # Terraform version manager inspired by rbenv
 brew "tfenv"
-# Simplified and community-driven man pages
-brew "tldr"
 # Terminal multiplexer
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Vulnerability scanner for container images, file systems, and Git repos
 brew "trivy"
+# Disaster recovery for Kubernetes resources and persistent volumes
+brew "velero"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
 # Internet file retriever
@@ -96,6 +94,8 @@ brew "aws/tap/eks-node-viewer"
 brew "kreuzwerker/taps/m1-terraform-provider-helper"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
+# App to build and share containerised applications and microservices
+cask "docker"
 # Online diagram software
 cask "drawio"
 # Web browser
@@ -142,11 +142,11 @@ vscode "yoco.yoco"
 vscode "yzhang.markdown-all-in-one"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2024-07-27
+# Date: 2024-08-09
 #-------------------------------
 # Installed tap count: 4
-# Installed brew count: 46
-# Installed cask count: 8
+# Installed brew count: 45
+# Installed cask count: 9
 # Installed mas count: 2
 # Installed vscode count: 28
 #-------------------------------
