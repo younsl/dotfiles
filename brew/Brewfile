@@ -3,6 +3,7 @@ tap "aws/tap"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "kreuzwerker/taps"
+tap "robusta-dev/krr"
 # Static checker for GitHub Actions workflow files
 brew "actionlint"
 # General-purpose data compression with high compression ratio
@@ -97,6 +98,8 @@ brew "argoproj/tap/kubectl-argo-rollouts"
 brew "aws/tap/eks-node-viewer"
 # CLI to support with downloading and compiling terraform providers for Mac with M1 chip.
 brew "kreuzwerker/taps/m1-terraform-provider-helper"
+# Kubernetes Resource Recommender by Robusta
+brew "robusta-dev/krr/krr"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # App to build and share containerised applications and microservices
@@ -148,10 +151,10 @@ vscode "yoco.yoco"
 vscode "yzhang.markdown-all-in-one"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2024-09-12
+# Date: 2024-09-14
 #-------------------------------
-# Installed tap count: 5
-# Installed brew count: 47
+# Installed tap count: 6
+# Installed brew count: 48
 # Installed cask count: 9
 # Installed mas count: 2
 # Installed vscode count: 29
