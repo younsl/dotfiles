@@ -140,3 +140,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # python (pip)
 #----------------------------------
 alias python=python3
+
+#----------------------------------
+# vim
+#----------------------------------
+export CUSTOM_VIMRC="${HOME}/github/younsl/dotfiles/vim/.vimrc"
+alias vi="vim -u ${CUSTOM_VIMRC}"
+alias vim="vim -u ${CUSTOM_VIMRC}"
