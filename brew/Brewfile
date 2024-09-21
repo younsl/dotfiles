@@ -30,6 +30,8 @@ brew "fortune"
 brew "fzf"
 # GitHub command-line tool
 brew "gh"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
 # Git extension for versioning large files
 brew "git-lfs"
 # Open source programming language to build simple/reliable/efficient software
@@ -58,6 +60,8 @@ brew "kube-ps1"
 brew "kubectx"
 # Mac App Store command-line interface
 brew "mas"
+# Run a Kubernetes cluster locally
+brew "minikube"
 # Fast, highly customisable system info script
 brew "neofetch"
 # Platform built on V8 to build network applications
@@ -102,6 +106,8 @@ brew "kreuzwerker/taps/m1-terraform-provider-helper"
 brew "robusta-dev/krr/krr"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
+# Write, edit, and chat about your code with AI
+cask "cursor"
 # App to build and share containerised applications and microservices
 cask "docker"
 # Online diagram software
@@ -116,46 +122,15 @@ cask "rectangle"
 cask "skitch"
 # System monitor for the menu bar
 cask "stats"
-# Open-source code editor
-cask "visual-studio-code"
 mas "Keynote", id: 409183694
 mas "카카오톡", id: 869223134
-vscode "4ops.terraform"
-vscode "64kramsystem.markdown-code-blocks-terraform-syntax-highlighting"
-vscode "batisteo.vscode-django"
-vscode "bierner.markdown-mermaid"
-vscode "davidanson.vscode-markdownlint"
-vscode "donjayamanne.githistory"
-vscode "donjayamanne.python-environment-manager"
-vscode "donjayamanne.python-extension-pack"
-vscode "eamodio.gitlens"
-vscode "esbenp.prettier-vscode"
-vscode "github.vscode-github-actions"
-vscode "golang.go"
-vscode "hashicorp.terraform"
-vscode "jamiewoodio.cisco"
-vscode "kevinrose.vsc-python-indent"
-vscode "marp-team.marp-vscode"
-vscode "ms-azuretools.vscode-docker"
-vscode "ms-ceintl.vscode-language-pack-ko"
-vscode "ms-python.debugpy"
-vscode "ms-python.python"
-vscode "ms-python.vscode-pylance"
-vscode "ms-vscode-remote.remote-containers"
-vscode "njpwerner.autodocstring"
-vscode "pkief.material-icon-theme"
-vscode "visualstudioexptteam.intellicode-api-usage-examples"
-vscode "visualstudioexptteam.vscodeintellicode"
-vscode "wholroyd.jinja"
-vscode "yoco.yoco"
-vscode "yzhang.markdown-all-in-one"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2024-09-14
+# Date: 2024-09-21
 #-------------------------------
 # Installed tap count: 6
-# Installed brew count: 48
+# Installed brew count: 50
 # Installed cask count: 9
 # Installed mas count: 2
-# Installed vscode count: 29
+# Installed vscode count: 0
 #-------------------------------
