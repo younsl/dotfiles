@@ -1,66 +1,163 @@
-" ---------- 기본 설정 ----------
+"------------------------------------
+" Basic Settings
+"------------------------------------
+" Disable Vi compatibility mode and use Vim-specific features
+set nocompatible
 
-" 줄 번호 표시
+" Display window title
+set title
+
+" Show line numbers
 set number
+set ruler
 
-" 탭 대신 스페이스 사용
+" Use spaces instead of tabs
 set expandtab
 
-" 탭 너비 설정 (2칸)
+" Set tab width (2 spaces)
 set tabstop=2
 set shiftwidth=2
+set softtabstop=2
 
-" 자동 들여쓰기
+" Automatic indentation
 set autoindent
 set smartindent
 
-" 검색 시 대소문자 구분 없음
+" Case-insensitive search
 set ignorecase
 
-" 대소문자 포함 검색 시 대소문자 구분
+" Case-sensitive search when using uppercase
 set smartcase
 
-" 실시간 검색 결과 하이라이트
+" Highlight search results in real-time
 set hlsearch
 set incsearch
 
-" 커서가 화면 밖으로 나가지 않게 하기
+" Prevent cursor from going off-screen
 set nowrap
 
-" 커서가 어디에 있는지 항상 표시 (상,하 여백 확보)
+" Always show cursor position (maintain top/bottom margin)
 set scrolloff=8
 
-" 백업 파일 생성하지 않기
+" Don't create backup files
 set nobackup
 set nowritebackup
 set noswapfile
 
-" 문법 강조 (Syntax Highlighting)
+" Enable syntax highlighting
 syntax on
 
-" 파일 인코딩 설정 (UTF-8)
+" Set file encoding (UTF-8)
 set encoding=utf-8
 
-" 파일 자동 업데이트 (다른 프로그램에서 파일이 수정될 때)
+" Automatically update file when modified externally
 set autoread
 
-" 클립보드 공유 (복사/붙여넣기)
-set clipboard=unnamedplus
+" Share clipboard (copy/paste)
+if has('mac')
+  set clipboard=unnamed
+elseif has('unix')
+  set clipboard=unnamedplus
+endif
 
-" ---------- UI 설정 ----------
+" Enable file type detection, plugins, and indentation settings
+filetype on
+filetype plugin on
+filetype indent on
 
-" 상태 줄을 항상 보이게 설정
+" Disable .netrwhist file creation
+let g:netrw_dirhistmax = 0
+
+"------------------------------------
+" Plugin Settings
+"------------------------------------
+" Auto-install Vim-plug
+if empty(glob('$HOME/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" List of plugins
+call plug#begin('$HOME/.vim/plugged')
+
+" CoC (Conquer of Completion): Powerful plugin for autocompletion and LSP support
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" vim-polyglot: Syntax highlighting and indentation for many programming languages
+Plug 'sheerun/vim-polyglot'
+
+" indentLine: Display indentation guides
+Plug 'Yggdroot/indentLine'
+
+call plug#end()
+
+" Install CoC extensions
+let g:coc_global_extensions = ['coc-yaml']
+
+"------------------------------------
+" Kubernetes YAML Configuration
+"------------------------------------
+" Enable indentation guides for YAML files
+let g:indentLine_fileTypeExclude = ['markdown']
+let g:indentLine_char = '⦙'
+let g:indentLine_color_term = 239
+
+" Settings for YAML files
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab autoindent
+
+" Show indentation guides only for YAML files
+autocmd FileType yaml,yml let g:indentLine_enabled=1
+
+" Prevent indentation of comments starting with '#' in YAML files
+autocmd FileType yaml setlocal indentkeys-=0#
+
+" Recognize Kubernetes YAML files
+autocmd BufNewFile,BufRead *.yaml,*.yml
+  \ if getline(1) =~ '^apiVersion:' || getline(2) =~ '^apiVersion:'
+  \ | setfiletype yaml.kubernetes
+  \ | endif
+
+"------------------------------------
+" Conquer of Completion Configuration
+"------------------------------------
+" Use Tab for autocompletion selection
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Use Enter to confirm autocompletion
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+"------------------------------------
+" UI Settings
+"------------------------------------
+" Use visual bell instead of sound
+set visualbell
+
+" Always show status line
 set laststatus=2
 
-" 탭이 아닌 스페이스를 사용할 때 공백을 하이라이트
+" Customize status bar
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]
+set statusline+=\ [POS=%l,%v][%P]\ [BUFFER=%n]
+set statusline+=%=  " Left/right separator
+set statusline+=%{strftime('%Y-%m-%d\ (%a)\ %H:%M:%S')}
+
+" Highlight spaces when not using tabs
 set listchars=tab:»\ ,trail:·
 set list
 
-" 괄호 자동 매칭 시 강조
+" Highlight matching brackets
 set showmatch
 
-" 컬러 스킴 (colorscheme)
-colorscheme black  " Vim에 기본 포함된 테마
+" Set color scheme
+colorscheme paramount
 
-" 커서 라인 하이라이트
+" Highlight cursor line
 set cursorline
+
+" Set background color (dark or light)
+set background=dark
+
+" Enable mouse support
+set mouse=a
