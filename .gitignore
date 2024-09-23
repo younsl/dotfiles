@@ -50,6 +50,7 @@ credentials
 
 # Ignore AWS config file
 config
+!nvim/lua/config
 
 #----------------------------------
 # Git

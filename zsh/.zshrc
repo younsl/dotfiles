@@ -1,5 +1,19 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.krew/bin:/usr/local/bin:$PATH:$(python3 -m site --user-base)/bin
+# Existing PATH components
+path=(
+  $HOME/bin
+  $HOME/.krew/bin
+  /usr/local/bin
+  $path
+)
+
+# Add Python user base binary directory
+if command -v python3 >/dev/null 2>&1; then
+  path+=$(python3 -m site --user-base)/bin
+fi
+
+# Remove duplicate entries and export
+typeset -U path
+export PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -142,8 +156,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 alias python=python3
 
 #----------------------------------
-# vim
+# neovim
 #----------------------------------
-export CUSTOM_VIMRC="${HOME}/github/younsl/dotfiles/vim/.vimrc"
-alias vi="vim -u ${CUSTOM_VIMRC}"
-alias vim="vim -u ${CUSTOM_VIMRC}"
+alias vi=nvim
+alias vim=nvim
