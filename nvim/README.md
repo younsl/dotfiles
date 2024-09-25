@@ -4,6 +4,7 @@ neovim<sup>nvim</sup> dotfile
 
 ## 노트
 
+> [!WARNING]
 > 개인적으로 숙달하기 위한 기록 목적이며 아래 내용은 언제든 사라질 수 있음
 
 ### comment.nvim
