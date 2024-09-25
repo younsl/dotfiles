@@ -1,6 +1,6 @@
 # nvim
 
-nvim dotfile
+neovim<sup>nvim</sup> dotfile
 
 ## 노트
 
