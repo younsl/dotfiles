@@ -26,6 +26,7 @@ My standard dotfiles for Mac.
 | 8   | neofetch  | Terminal        | ✅ Yes |
 | 9   | zsh       | Terminal        | ✅ Yes |
 | 10  | vscode    | IDE             | ❌ No |
+| 11  | nvim      | IDE             | ✅ Yes |
 
 ### fortune strfile automation using pre-commit hook
 
