@@ -12,7 +12,9 @@ return {
           "vimdoc",
           "query",
           "markdown",
-          "markdown_inline"
+          "markdown_inline",
+          "terraform",
+          "helm"
         },
       
         -- Install parsers synchronously (only applied to `ensure_installed`)

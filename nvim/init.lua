@@ -17,3 +17,16 @@ require("plugins.indent-blankline")
 
 -- Configure and enable Treesitter for better syntax highlighting and code analysis
 require("plugins.nvim-treesitter")
+
+--------------------------------------------------
+-- Editor Settings
+--------------------------------------------------
+
+require("core.options")
+
+--------------------------------------------------
+-- Keymaps
+--------------------------------------------------
+
+-- Load custom keymaps
+require("core.keymaps")
