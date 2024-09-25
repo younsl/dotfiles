@@ -21,5 +21,5 @@ nvim dotfile
 ### nvim-tree
 
 ```bash
-control + n - Toggles tree tab
+`control` + `n` - Toggles tree tab
 ```
