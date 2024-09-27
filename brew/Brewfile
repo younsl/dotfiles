@@ -1,5 +1,6 @@
 tap "argoproj/tap"
 tap "aws/tap"
+tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "kreuzwerker/taps"
@@ -64,18 +65,16 @@ brew "mas"
 brew "minikube"
 # Fast, highly customisable system info script
 brew "neofetch"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # Framework for managing multi-language pre-commit hooks
 brew "pre-commit"
-# Persistent key-value database, with built-in net interface
-brew "redis"
 # Test SSL/TLS enabled services to discover supported cipher suites
 brew "sslscan"
-# User interface to the TELNET protocol
-brew "telnet"
 # Improve Terraform's plan output
 brew "terraform_landscape"
 # Terraform version manager inspired by rbenv
@@ -126,10 +125,10 @@ mas "Keynote", id: 409183694
 mas "카카오톡", id: 869223134
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2024-09-21
+# Date: 2024-09-27
 #-------------------------------
-# Installed tap count: 6
-# Installed brew count: 50
+# Installed tap count: 7
+# Installed brew count: 49
 # Installed cask count: 9
 # Installed mas count: 2
 # Installed vscode count: 0
