@@ -18,6 +18,9 @@ require("plugins.indent-blankline")
 -- Configure and enable Treesitter for better syntax highlighting and code analysis
 require("plugins.nvim-treesitter")
 
+-- Set up Telescope for fuzzy finding
+require("plugins.telescope")
+
 --------------------------------------------------
 -- Editor Settings
 --------------------------------------------------
