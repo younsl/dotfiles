@@ -83,8 +83,6 @@ brew "tfenv"
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
-# Vulnerability scanner for container images, file systems, and Git repos
-brew "trivy"
 # Disaster recovery for Kubernetes resources and persistent volumes
 brew "velero"
 # Executes a program periodically, showing output fullscreen
@@ -125,10 +123,10 @@ mas "Keynote", id: 409183694
 mas "카카오톡", id: 869223134
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2024-09-27
+# Date: 2024-10-03
 #-------------------------------
 # Installed tap count: 7
-# Installed brew count: 49
+# Installed brew count: 48
 # Installed cask count: 9
 # Installed mas count: 2
 # Installed vscode count: 0
