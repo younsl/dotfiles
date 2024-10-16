@@ -22,5 +22,6 @@ neovim<sup>nvim</sup> dotfile
 ### nvim-tree
 
 ```bash
-`control` + `n` - Toggles tree tab
+`control` + `n` : Toggles tree tab
+`-` : 상위 디렉토리로 이동
 ```
