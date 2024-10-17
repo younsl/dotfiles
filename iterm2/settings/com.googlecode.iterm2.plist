@@ -66,6 +66,8 @@ Preferences...</string>
 			<integer>1</integer>
 		</dict>
 	</array>
+	<key>AlternateMouseScroll</key>
+	<true/>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>GitHub Dark</key>
