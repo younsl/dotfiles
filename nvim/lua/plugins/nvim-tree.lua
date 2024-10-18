@@ -23,8 +23,5 @@ return {
 
     -- Set up automatic opening of NvimTree
     vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
-
-    -- Set up key mapping
-    vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
   end,
 }

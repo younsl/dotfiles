@@ -24,6 +24,10 @@ vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = '파일 저장' })
 -- Search
 vim.keymap.set('n', '<leader>nh', ':nohlsearch<CR>', { desc = '검색 강조 제거' })
 
+-- nvim-tree
+vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = "Toggle NvimTree" })
+vim.keymap.set('n', '<leader>c', ':NvimTreeCollapse<CR>', { noremap = true, silent = true, desc = "Collapse NvimTree" })
+
 -- Telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
