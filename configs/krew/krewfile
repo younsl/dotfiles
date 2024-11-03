@@ -1,0 +1,10 @@
+#---------------------------------
+# Backup completed on 2024-11-03 
+# Krew version is v0.4.4   
+#---------------------------------
+ctx
+kyverno
+node-shell
+ns
+stern
+tree

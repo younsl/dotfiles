@@ -1,0 +1,23 @@
+repos:
+  - repo: local
+    hooks:
+      - id: strfile-fortune
+        name: Generate strfile for fortune files
+        entry: bash
+        language: system
+        always_run: true
+        pass_filenames: false
+        stages: [pre-commit]
+        types: [file]
+        description: |-
+          This hook generates .dat files from .fortune files using the strfile command.
+          It processes all .fortune files under the fortune/ directory.
+
+        files: ^configs/fortune/.*\.fortune$
+
+        args:
+          - "-c"
+          - |
+            for file in configs/fortune/*.fortune; do
+              strfile "$file"
+            done
