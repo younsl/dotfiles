@@ -27,11 +27,11 @@ plugins:
   argo-rollouts-restart:
     shortCut: r
     confirm: true
-    description: "Restart"
+    description: Restart
     scopes:
       - rollouts
-    command: sh
+    command: bash
     background: false
     args:
       - -c
-      - "kubectl argo rollouts restart $NAME --context $CONTEXT --namespace $NAMESPACE |& less"
+      - kubectl argo rollouts restart $NAME --context $CONTEXT --namespace $NAMESPACE |& less
