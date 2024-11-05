@@ -1,5 +1,8 @@
 # Neovim Key Mappings
 
+-- 이 문서를 요약해봐
+
+-- 
 This document provides an overview of the custom key mappings configured for `nvim`. The leader key is set to `Space (␣)` for efficient command access, and various mappings are defined for tab management, window operations, file management, and plugin functionality.
 
 ## Leader Key

@@ -5,6 +5,7 @@
 -- Load and configure lazy loading for plugins
 require("config.lazy")
 
+
 --------------------------------------------------
 -- Plugin Configurations
 --------------------------------------------------
@@ -35,4 +36,3 @@ require("core.options")
 
 -- Load custom keymaps
 require("core.keymaps")
-

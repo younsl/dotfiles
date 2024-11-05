@@ -38,16 +38,17 @@ local function focus_github_directory()
 
     -- 트리가 열려 있으면 갱신하고, 닫혀 있으면 열기
     if not api.tree.is_visible() then
-        api.tree.open()  -- 트리가 닫혀 있으면 열기
+        api.tree.open() -- 트리가 닫혀 있으면 열기
     end
 
     -- 현재 디렉토리로 루트 변경 및 포커스
     api.tree.change_root(vim.fn.getcwd())
-    vim.cmd('NvimTreeFindFile')  -- 현재 디렉토리에 포커스
+    vim.cmd('NvimTreeFindFile') -- 현재 디렉토리에 포커스
 end
 
 -- ~/github/으로 이동하고 포커스하는 키맵핑
-vim.keymap.set('n', '<leader>g', focus_github_directory, { noremap = true, silent = true, desc = "Focus ~/github/ in NvimTree" })
+vim.keymap.set('n', '<leader>g', focus_github_directory,
+    { noremap = true, silent = true, desc = "Focus ~/github/ in NvimTree" })
 
 -- Telescope
 local builtin = require('telescope.builtin')
@@ -55,3 +56,9 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find f
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+
+-- Github Copilot
+vim.api.nvim_set_keymap("i", '<C-l>', "copilot#Accept('<CR>')", { expr = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-[>.', 'copilot#Previous()', { expr = true, noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-]>', 'copilot#Next()', { expr = true, noremap = true, silent = true })
+

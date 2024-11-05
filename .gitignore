@@ -109,3 +109,16 @@ terraform.rc
 commit-history-cleaner.sh
 
 nvim/lazy-lock.json
+
+#----------------------------------
+# Zed
+#----------------------------------
+configs/zed/*
+
+!configs/zed/themes/
+!configs/zed/settings.json
+
+configs/zed/conversations/
+configs/zed/embeddings/
+configs/zed/prompts/
+
