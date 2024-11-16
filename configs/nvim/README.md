@@ -1,107 +1,79 @@
 # Neovim Key Mappings
 
--- 이 문서를 요약해봐
+This document provides a comprehensive overview of custom key mappings for Neovim configuration. The leader key is set to Space (`␣`).
 
--- 
-This document provides an overview of the custom key mappings configured for `nvim`. The leader key is set to `Space (␣)` for efficient command access, and various mappings are defined for tab management, window operations, file management, and plugin functionality.
+## Core Mappings
 
-## Leader Key
-
-The leader key is set to **space** (`␣`).
-
-```lua
--- nvim/core/keymaps.lua
-vim.g.mapleader = ' '
-```
-
-## Key Mappings
+> Mode: `n` (Normal Mode), `i` (Insert Mode)
 
 ### Tab Management
+| Key | Mode | Action | Description |
+|-----|------|--------|-------------|
+| `␣t` | `n` | `:tabnew` | Open new tab |
+| `␣]` | `n` | `:tabnext` | Next tab |
+| `␣[` | `n` | `:tabprevious` | Previous tab |
+| `␣x` | `n` | `:tabclose` | Close current tab |
 
-| Key Binding     | Command                | Description               |
-|-----------------|------------------------|---------------------------|
-| `<leader>t`     | `:tabnew`               | Open a new tab            |
-| `<leader>]`     | `:tabnext`              | Go to the next tab        |
-| `<leader>[`     | `:tabprevious`          | Go to the previous tab    |
-| `<leader>x`     | `:tabclose`             | Close the current tab     |
-
-### Window Management
-
-| Key Binding     | Command                | Description               |
-|-----------------|------------------------|---------------------------|
-| `<leader>v`     | `:vsplit`               | Vertical split            |
-| `<leader>h`     | `:split`                | Horizontal split          |
-| `<leader>q`     | `:close`                | Close the current window  |
-
-### Window Navigation
-
-| Key Binding     | Command                | Description                   |
-|-----------------|------------------------|-------------------------------|
-| `<C-h>`         | `<C-w>h`               | Move to the left window        |
-| `<C-j>`         | `<C-w>j`               | Move to the window below       |
-| `<C-k>`         | `<C-w>k`               | Move to the window above       |
-| `<C-l>`         | `<C-w>l`               | Move to the right window       |
+### Window Operations
+| Key | Mode | Action | Description |
+|-----|------|--------|-------------|
+| `␣v` | `n` | `:vsplit` | Vertical split |
+| `␣h` | `n` | `:split` | Horizontal split |
+| `␣q` | `n` | `:close` | Close window |
+| `Ctrl-h` | `n` | `<C-w>h` | Move to left window |
+| `Ctrl-j` | `n` | `<C-w>j` | Move to bottom window |
+| `Ctrl-k` | `n` | `<C-w>k` | Move to top window |
+| `Ctrl-l` | `n` | `<C-w>l` | Move to right window |
 
 ### File Operations
+| Key | Mode | Action | Description |
+|-----|------|--------|-------------|
+| `␣w` | `n` | `:w` | Save file |
+| `␣nh` | `n` | `:nohlsearch` | Clear search highlights |
 
-| Key Binding     | Command                | Description     |
-|-----------------|------------------------|-----------------|
-| `<leader>w`     | `:w`                   | Save the file   |
+## Plugin Mappings
 
-### Search
+### Nvim-Tree
+| Key | Mode | Action | Description |
+|-----|------|--------|-------------|
+| `␣n` | `n` | `:NvimTreeToggle` | Toggle file explorer |
+| `␣c` | `n` | `:NvimTreeCollapse` | Collapse all folders |
+| `␣g` | `n` | Custom function | Focus ~/github/ directory |
 
-| Key Binding     | Command                | Description             |
-|-----------------|------------------------|-------------------------|
-| `<leader>nh`    | `:nohlsearch`          | Remove search highlight |
+### Telescope
+| Key | Mode | Action | Description |
+|-----|------|--------|-------------|
+| `␣ff` | `n` | `find_files` | Search files |
+| `␣fg` | `n` | `live_grep` | Search text in files |
+| `␣fb` | `n` | `buffers` | List open buffers |
+| `␣fh` | `n` | `help_tags` | Search help docs |
 
-### Plugins
+### Github Copilot
+| Key | Mode | Action | Description |
+|-----|------|--------|-------------|
+| `Ctrl-l` | `i` | `copilot#Accept` | Accept suggestion |
+| `Ctrl-[` | `i` | `copilot#Previous` | Previous suggestion |
+| `Ctrl-]` | `i` | `copilot#Next` | Next suggestion |
 
-#### Nvim-Tree
+## Plugin Setup
 
-| Key Binding     | Command                     | Description            |
-|-----------------|-----------------------------|------------------------|
-| `<leader>n`     | `:NvimTreeToggle`            | Toggle NvimTree        |
-| `<leader>c`     | `:NvimTreeCollapse`          | Collapse all nodes     |
+This configuration uses Lazy.nvim as the plugin manager. Key plugins include:
+- nvim-tree (File explorer)
+- telescope (Fuzzy finder)
+- nvim-treesitter (Syntax highlighting)
+- nvim-autopairs (Auto brackets)
+- Comment.nvim (Code commenting)
+- Github Copilot (AI code completion)
 
-#### Telescope
+## Editor Settings
 
-| Key Binding     | Function                    | Description             |
-|-----------------|-----------------------------|-------------------------|
-| `<leader>ff`    | `builtin.find_files`         | Find files              |
-| `<leader>fg`    | `builtin.live_grep`          | Live grep search        |
-| `<leader>fb`    | `builtin.buffers`            | List open buffers       |
-| `<leader>fh`    | `builtin.help_tags`          | Search help tags        |
+Notable editor settings include:
+- Line numbers enabled (relative)
+- Tab width: 2 spaces
+- Mouse support enabled
+- Column markers at 80 chars (100 for Go files)
+- Clipboard integration
+- Auto-save on focus lost
+- Case-insensitive search
 
-## Installation
-
-Ensure you have `nvim` installed along with the necessary plugins, such as `nvim-tree` and `telescope`. You can manage these plugins using a package manager like `Packer`, `Lazy.nvim`, or any other of your choice.
-
-### Example Plugin Setup with Lazy.nvim
-
-Here’s an example of how you can set up these plugins using `Lazy.nvim` in your `init.lua`:
-
-```lua
--- nvim/init.lua
-require("lazy").setup({
-  -- Nvim Tree
-  { "nvim-tree/nvim-tree.lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
-  
-  -- Telescope
-  { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } }
-})
-```
-
-## Customization
-
-Feel free to customize the key mappings according to your preferences. Modify the key bindings in your configuration file as needed. Here’s an example of how to change the key mapping for saving files:
-
-```lua
--- nvim/core/keymaps.lua
-vim.keymap.set('n', '<leader>s', ':w<CR>', { desc = '파일 저장' })  -- Change save to <leader>s
-```
-
-## Conclusion
-
-This key mapping configuration enhances your productivity by allowing quick access to essential commands and tools in `nvim`. Explore and modify the mappings to fit your workflow better!
-
-Happy coding!
+For detailed plugin configurations and customization options, refer to the individual plugin files in the `lua/plugins` directory.
