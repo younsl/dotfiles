@@ -57,13 +57,15 @@ This document provides a comprehensive overview of custom key mappings for Neovi
 
 ## Plugin Setup
 
-This configuration uses Lazy.nvim as the plugin manager. Key plugins include:
-- nvim-tree (File explorer)
-- telescope (Fuzzy finder)
-- nvim-treesitter (Syntax highlighting)
-- nvim-autopairs (Auto brackets)
-- Comment.nvim (Code commenting)
-- Github Copilot (AI code completion)
+This configuration uses [Lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager. Key plugins include:
+
+- [Comment.nvim](https://github.com/numToStr/Comment.nvim): Code commenting
+- [copilot.vim](https://github.com/github/copilot.vim): Github Copilot (AI code completion)
+- [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim): Indentation lines
+- [nvim-autopairs](https://github.com/windwp/nvim-autopairs): Auto brackets
+- [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua): File explorer
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter): Syntax highlighting
+- [telescope](https://github.com/nvim-telescope/telescope.nvim): Fuzzy finder
 
 ## Editor Settings
 
