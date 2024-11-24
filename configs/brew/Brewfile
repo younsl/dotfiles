@@ -98,6 +98,8 @@ brew "aws/tap/eks-node-viewer"
 brew "robusta-dev/krr/krr"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
+# Write, edit, and chat about your code with AI
+cask "cursor"
 # App to build and share containerised applications and microservices
 cask "docker"
 # Online diagram software
@@ -112,13 +114,11 @@ cask "rectangle"
 cask "skitch"
 # System monitor for the menu bar
 cask "stats"
-# Multiplayer code editor
-cask "zed"
 mas "Keynote", id: 409183694
 mas "카카오톡", id: 869223134
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2024-11-03
+# Date: 2024-11-24
 #-------------------------------
 # Installed tap count: 6
 # Installed brew count: 46
