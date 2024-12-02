@@ -167,3 +167,9 @@ alias vim=nvim
 # linkerd CLI
 #----------------------------------
 export PATH=${PATH}:${HOME}/.linkerd2/bin
+
+#----------------------------------
+# podman
+#----------------------------------
+alias docker=podman
+
