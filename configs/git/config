@@ -1,0 +1,28 @@
+#--------------------------------------------------------
+# Reference for git configuration file:
+# https://git-scm.com/docs/git-config
+#--------------------------------------------------------
+[init]
+    defaultBranch = main
+
+[commit]
+    template = ~/.config/git/gitmessage
+
+[push]
+    autoSetupRemote = true
+    default = current
+
+[color]
+    ui = auto
+
+[log]
+    abbrevCommit = true
+
+[http]
+    postBuffer = 500M
+
+[includeIf "gitdir:~/github/younsl/"]
+    path = ~/.config/git/config-younsl
+
+[includeIf "gitdir:~/github/coinone/"]
+    path = ~/.config/git/config-coinone
