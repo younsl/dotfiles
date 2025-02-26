@@ -2,8 +2,22 @@
 # Reference for git configuration file:
 # https://git-scm.com/docs/git-config
 #--------------------------------------------------------
+[column]
+    ui = auto
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+
 [init]
     defaultBranch = main
+
+[fetch]
+    prune = true
+    pruneTags = true
+    followTags = true
 
 [commit]
     template = ~/.config/git/gitmessage
