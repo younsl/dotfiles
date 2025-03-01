@@ -1,0 +1,37 @@
+plugins:
+  get-all:
+    shortCut: g
+    confirm: false
+    description: "Get all"
+    scopes:
+      - all
+    command: sh
+    background: false
+    args:
+      - -c
+      - "kubectl -n $NAMESPACE get all | less"
+
+  tree:
+    shortCut: q
+    confirm: false
+    description: "Tree"
+    scopes:
+      - all
+    command: sh
+    background: false
+    args:
+      - -i
+      - -c
+      - "kubectl tree -n $NAMESPACE $RESOURCE_NAME $NAME --context $CONTEXT && tail -f /dev/null"
+
+  argo-rollouts-restart:
+    shortCut: r
+    confirm: true
+    description: Restart
+    scopes:
+      - rollouts
+    command: bash
+    background: false
+    args:
+      - -c
+      - kubectl argo rollouts restart $NAME --context $CONTEXT --namespace $NAMESPACE |& less
