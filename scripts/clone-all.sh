@@ -1,17 +1,12 @@
 #!/bin/bash
 
-# 사용자명
 github_username="younsl"
-
-# GitHub API의 엔드포인트
 api_url="https://api.github.com/users/${github_username}/repos"
 
-# ANSI 색상 코드
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
-# 폴더 생성 함수
 create_directory() {
     local path=$1
     if [ ! -d "$path" ]; then
@@ -20,22 +15,34 @@ create_directory() {
     fi
 }
 
-# 레포지토리 데이터 가져오기 함수
 fetch_repos_data() {
     local url=$1
     echo $(curl -s "$url")
 }
 
-# 레포지토리 개수 및 목록 출력 함수
 display_repos() {
     local repos_data=$1
+    
     local repo_count=$(echo "$repos_data" | jq '. | length')
     echo "${GREEN}Total $repo_count repositories found.${NC}"
     echo "${GREEN}Repository list:${NC}"
-    echo "$repos_data" | jq -r '.[].name' | nl
+    
+    echo "$repos_data" | jq -r '
+        .[] | {
+            number: 1,
+            name: .name,
+            description: (.description // "No description")
+        } | [.name, .description] | @tsv
+    ' | \
+    awk '
+        { printf "%-2d  %-30s  %s\n",
+            NR,                       # Number
+            $1,                       # Repository Name
+            substr($0, index($0,$2))  # Description
+        }
+    '
 }
 
-# 레포지토리 클론 함수
 clone_repository() {
     local repo_url=$1
     local repo_name=$2
@@ -43,7 +50,6 @@ clone_repository() {
     git clone "$repo_url" "$clone_path/$repo_name"
 }
 
-# 모든 레포지토리 클론
 clone_all_repos() {
     local repos_data=$1
     local clone_path=$2
@@ -54,7 +60,6 @@ clone_all_repos() {
     done
 }
 
-# 메인 스크립트 실행
 main() {
     read -p "$(echo "${GREEN}Enter the path to clone repositories: ${NC}")" clone_path
     create_directory "$clone_path"

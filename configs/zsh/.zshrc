@@ -171,5 +171,6 @@ alias docker=podman
 #----------------------------------
 # macOS
 #----------------------------------
-## Disable to create .DS_Store file on network drives
+# Disable to create .DS_Store file on Network and USB drives
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+defaults write com.apple.desktopservices DSDontWriteUSBStores true
