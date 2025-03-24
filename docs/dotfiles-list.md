@@ -22,4 +22,3 @@ These dotfiles are optimized for macOS 15.3.x (Sequoia).
 | 8   | fastfetch | Terminal        | Supported    | $HOME/.config/fastfetch |
 | 9   | zsh       | Terminal        | Supported    | $HOME/.zshrc |
 | 10  | nvim      | IDE             | Supported    | $HOME/.config/nvim |
-| 11  | cursor    | IDE             | Supported    | Not applicable |
