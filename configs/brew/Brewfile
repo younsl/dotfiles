@@ -96,6 +96,8 @@ brew "watch"
 brew "wget"
 # Show the current WiFi network password
 brew "wifi-password"
+# Linter for YAML files
+brew "yamllint"
 # JavaScript package manager
 brew "yarn"
 # Kubectl Argo Rollouts Plugin.
@@ -132,6 +134,7 @@ vscode "kennylong.kubernetes-yaml-formatter"
 vscode "marp-team.marp-vscode"
 vscode "ms-azuretools.vscode-docker"
 vscode "ms-ceintl.vscode-language-pack-ko"
+vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
 vscode "n3rds-inc.time"
 vscode "redhat.vscode-yaml"
 vscode "tim-koehler.helm-intellisense"
@@ -139,11 +142,11 @@ vscode "viktorqvarfordt.vscode-pitch-black-theme"
 vscode "wholroyd.jinja"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2025-03-21
+# Date: 2025-04-01
 #-------------------------------
 # Installed tap count: 6
-# Installed brew count: 50
+# Installed brew count: 51
 # Installed cask count: 9
 # Installed mas count: 2
-# Installed vscode count: 14
+# Installed vscode count: 15
 #-------------------------------
