@@ -1,0 +1,45 @@
+views:
+  v1/pods:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - PF
+      - READY|S
+      - STATUS|S
+      - RESTARTS
+      - CPU
+      - MEM
+      - '%CPU/R'
+      - '%CPU/L'
+      - '%MEM/R'
+      - '%MEM/L'
+      - IP|S
+      - NODE
+      - AGE
+      - IMAGE:.spec.containers[0].image|S
+  
+  velero.io/v1/schedules:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - STATUS
+      - SCHEDULE
+      - TTL:.spec.template.ttl|S
+      - LASTBACKUP
+      - PAUSED
+      - LOCATION:.spec.template.storageLocation|S
+      - AGE
+  
+  velero.io/v1/backupstoragelocations:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - STORAGE REGION:.spec.config.region|S
+      - STORAGE NAME:.spec.objectStorage.bucket|S
+      - PHASE
+      - LAST VALIDATED
+      - DEFAULT
+      - AGE
