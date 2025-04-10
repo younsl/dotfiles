@@ -17,7 +17,8 @@ views:
       - IP|S
       - NODE
       - AGE
-      - IMAGE:.spec.containers[0].image|S
+      # Support 'super column blow' 0.50.0 and later
+      - IMAGE VERSION:.spec.containers[0].image|split(":")|.[-1]|RS
   
   velero.io/v1/schedules:
     sortColumn: AGE:asc
