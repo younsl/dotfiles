@@ -123,6 +123,9 @@ cask "skitch"
 cask "slack"
 # System monitor for the menu bar
 cask "stats"
+mas "Keynote", id: 409183694
+mas "Okta Verify", id: 490179405
+mas "카카오톡", id: 869223134
 vscode "donjayamanne.githistory"
 vscode "eamodio.gitlens"
 vscode "github.vscode-github-actions"
@@ -133,6 +136,7 @@ vscode "marp-team.marp-vscode"
 vscode "ms-azuretools.vscode-docker"
 vscode "ms-ceintl.vscode-language-pack-ko"
 vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
+vscode "ms-vscode.makefile-tools"
 vscode "n3rds-inc.time"
 vscode "redhat.vscode-yaml"
 vscode "tim-koehler.helm-intellisense"
@@ -140,11 +144,11 @@ vscode "viktorqvarfordt.vscode-pitch-black-theme"
 vscode "wholroyd.jinja"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2025-04-05
+# Date: 2025-04-14
 #-------------------------------
 # Installed tap count: 6
 # Installed brew count: 51
 # Installed cask count: 9
-# Installed mas count: 0
-# Installed vscode count: 15
+# Installed mas count: 3
+# Installed vscode count: 16
 #-------------------------------
