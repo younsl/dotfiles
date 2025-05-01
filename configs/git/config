@@ -1,0 +1,45 @@
+#--------------------------------------------------------
+# Reference for git configuration file:
+# https://git-scm.com/docs/git-config
+#--------------------------------------------------------
+[column]
+    ui = auto
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+
+[init]
+    defaultBranch = main
+
+[fetch]
+    prune = true
+    pruneTags = true
+    followTags = true
+
+[commit]
+    template = ~/.config/git/gitmessage
+
+[push]
+    autoSetupRemote = true
+    default = current
+
+[core]
+    ignorecase = false
+
+[color]
+    ui = auto
+
+[log]
+    abbrevCommit = true
+
+[http]
+    postBuffer = 500M
+
+[includeIf "gitdir:~/github/younsl/"]
+    path = ~/.config/git/config-younsl
+
+[includeIf "gitdir:~/github/coinone/"]
+    path = ~/.config/git/config-coinone

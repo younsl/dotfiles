@@ -1,0 +1,17 @@
+# Example configuration for ol
+#
+# Rename this file to config.yaml and place it in your config directory:
+# - $XDG_CONFIG_HOME/ol/config.yaml
+# - $HOME/.config/ol/config.yaml
+
+# IANA timezone name (e.g., "UTC", "America/New_York", "Asia/Seoul")
+timezone: Asia/Seoul
+
+# Directory where data files (e.g., log files: ol-YYYY.txt) will be stored.
+# If commented out or empty, defaults to XDG standard data directory.
+# Supports tilde (~) expansion and environment variables (e.g., $HOME, ${XDG_DATA_HOME}).
+# Examples:
+# dataDirectory: "$HOME/MyData/ol_data"
+# dataDirectory: "${XDG_DATA_HOME}/ol"
+# dataDirectory: "/var/data/ol"
+dataDirectory: $HOME/github/younsl/box/box/oneliner
