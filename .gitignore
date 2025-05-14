@@ -126,6 +126,6 @@ configs/zed/prompts/
 # Temporary ad-hoc script
 #----------------------------------
 commit-history-cleaner.sh
-!scripts/commit-history-cleaner.sh
+!scripts/**/commit-history-cleaner.sh
 
 nvim/lazy-lock.json
