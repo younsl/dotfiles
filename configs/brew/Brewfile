@@ -34,6 +34,8 @@ brew "gh"
 brew "ghostscript"
 # Git extension for versioning large files
 brew "git-lfs"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Kubernetes package manager
@@ -78,8 +80,6 @@ brew "openssh"
 brew "podman"
 # Framework for managing multi-language pre-commit hooks
 brew "pre-commit"
-# Test SSL/TLS enabled services to discover supported cipher suites
-brew "sslscan"
 # Terraform Language Server
 brew "terraform-ls"
 # Terraform version manager inspired by rbenv
@@ -125,7 +125,6 @@ cask "skitch"
 cask "slack"
 # System monitor for the menu bar
 cask "stats"
-mas "Keynote", id: 409183694
 mas "Okta Verify", id: 490179405
 mas "카카오톡", id: 869223134
 vscode "donjayamanne.githistory"
@@ -146,11 +145,11 @@ vscode "viktorqvarfordt.vscode-pitch-black-theme"
 vscode "wholroyd.jinja"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2025-05-01
+# Date: 2025-05-15
 #-------------------------------
 # Installed tap count: 6
 # Installed brew count: 52
 # Installed cask count: 9
-# Installed mas count: 3
+# Installed mas count: 2
 # Installed vscode count: 16
 #-------------------------------
