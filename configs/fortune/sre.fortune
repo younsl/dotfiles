@@ -4,6 +4,12 @@
 사이트 신뢰성 엔지니어의 핵심 책임 중 하나는
 자신들이 관리하는 시스템에 대한 정량화된 신뢰도다.
 %
+If you can’t measure it, you can’t improve it.
+    - Peter Drucker
+%
+The only constant is change.
+    - Heraclitus
+%
 희망은 전략이 아니다.
     - Google SRE Team
 %
