@@ -1,0 +1,66 @@
+views:
+  v1/pods:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - PF
+      - READY|S
+      - STATUS|S
+      - RESTARTS
+      - CPU
+      - MEM
+      - '%CPU/R'
+      - '%CPU/L'
+      - '%MEM/R'
+      - '%MEM/L'
+      - IP|S
+      - NODE
+      - AGE
+      # Support 'super column blow' 0.50.0 and later
+      - IMAGE VERSION:.spec.containers[0].image|split(":")|.[-1]|RS
+      - NDOTS:.spec.dnsConfig.options[?(@.name=="ndots")].value|RS
+  
+  v1/nodes:
+    sortColumn: AGE:asc
+    columns:
+      - NAME
+      - GROUP:.metadata.labels.node\.kubernetes\.io/name|S
+      - TYPE:.metadata.labels.node\.kubernetes\.io/instance-type|S
+      - STATUS
+      - ROLE
+      - TAINTS
+      - VERSION
+      - PODS
+      - CPU
+      - MEM
+      - '%CPU'
+      - '%MEM'
+      - 'CPU/A'
+      - 'MEM/A'
+      - AGE
+
+  velero.io/v1/schedules:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - STATUS
+      - SCHEDULE
+      - TTL:.spec.template.ttl|S
+      - LASTBACKUP
+      - PAUSED
+      - LOCATION:.spec.template.storageLocation|S
+      - AGE
+  
+  velero.io/v1/backupstoragelocations:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - STORAGE REGION:.spec.config.region|S
+      - STORAGE NAME:.spec.objectStorage.bucket|S
+      - PHASE
+      - LAST VALIDATED
+      - DEFAULT
+      - AGE
