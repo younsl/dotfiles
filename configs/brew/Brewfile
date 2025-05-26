@@ -117,6 +117,8 @@ cask "drawio"
 cask "ghostty"
 # Web browser
 cask "google-chrome"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "google-cloud-sdk"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
 # Screen capture tool with mark up and sharing features
@@ -127,6 +129,7 @@ cask "slack"
 cask "stats"
 mas "Okta Verify", id: 490179405
 mas "카카오톡", id: 869223134
+vscode "bierner.markdown-mermaid"
 vscode "donjayamanne.githistory"
 vscode "eamodio.gitlens"
 vscode "github.vscode-github-actions"
@@ -145,11 +148,11 @@ vscode "viktorqvarfordt.vscode-pitch-black-theme"
 vscode "wholroyd.jinja"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2025-05-15
+# Date: 2025-05-26
 #-------------------------------
 # Installed tap count: 6
 # Installed brew count: 52
-# Installed cask count: 9
+# Installed cask count: 10
 # Installed mas count: 2
-# Installed vscode count: 16
+# Installed vscode count: 17
 #-------------------------------
