@@ -27,6 +27,8 @@ views:
       - NAME
       - GROUP:.metadata.labels.node\.kubernetes\.io/name|S
       - TYPE:.metadata.labels.node\.kubernetes\.io/instance-type|S
+      # CAPTYPE is only available in karpenter nodes
+      - CAPTYPE:.metadata.labels.karpenter\.sh/capacity-type|S
       - STATUS
       - ROLE
       - TAINTS
