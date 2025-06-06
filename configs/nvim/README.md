@@ -2,6 +2,13 @@
 
 This document provides a comprehensive overview of custom key mappings for Neovim configuration. The leader key is set to Space (`␣`).
 
+## Cheatsheet
+
+```bash
+:%d    # [Command Mode] 전체 내용 삭제
+ggVGd  # [Normal Mode] 전체 선택 후 삭제
+```
+
 ## Core Mappings
 
 > Mode: `n` (Normal Mode), `i` (Insert Mode)
