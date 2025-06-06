@@ -4,6 +4,8 @@ This document provides a comprehensive overview of custom key mappings for Neovi
 
 ## Cheatsheet
 
+![Cheatsheet](./assets/1.png)
+
 ```bash
 :%d    # [Command Mode] 전체 내용 삭제
 ggVGd  # [Normal Mode] 전체 선택 후 삭제
