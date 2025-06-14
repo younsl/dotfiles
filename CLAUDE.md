@@ -46,9 +46,26 @@ The repository uses a local pre-commit hook that:
 - Automatically runs `strfile` to generate corresponding .dat files
 - Ensures fortune databases stay synchronized with source files
 
+## File Structure and Linking System
+
+The repository uses a centralized symbolic linking approach where:
+- Source configurations live in `configs/<tool>/` 
+- The bootstrap script (`./scripts/bootstrap/bootstrap-dotfiles.sh`) creates symlinks to standard locations
+- Target locations include `~/.config/`, `~/.gnupg/`, and specific dotfiles like `~/.zshrc`
+- The COMPONENTS array in bootstrap-dotfiles.sh:712 defines all symlink mappings
+
+## Development Workflow
+
+When modifying configurations:
+1. Edit files in `configs/<tool>/` directories (never edit the symlinked versions)
+2. For fortune files: Only edit `.fortune` files - `.dat` files are auto-generated
+3. Test changes by running the bootstrap script to verify symlinks
+4. Use `pre-commit install` after any repository setup to enable automated fortune processing
+
 ## Important Notes
 
 - The dotfiles are structured for macOS Sequoia 15.x specifically
 - Always run the bootstrap script to properly link configurations
 - Fortune .dat files are auto-generated - modify only .fortune source files
 - The manage-krew-brew.sh script provides interactive package management workflows
+- Never edit symlinked files directly - always edit source files in `configs/`
