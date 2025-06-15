@@ -174,6 +174,16 @@ alias vim=nvim
 #----------------------------------
 alias docker=podman
 
+_container_nuke() {
+    echo "All containers and container images in this system will be removed."
+    docker rm -f $(docker ps -aq) 2>/dev/null
+    docker rmi -f $(docker images -aq) 2>/dev/null
+    echo "All containers and images have been removed."
+}
+
+podman-nuke() { _container_nuke }
+docker-nuke() { _container_nuke }
+
 #----------------------------------
 # claude code
 #----------------------------------
