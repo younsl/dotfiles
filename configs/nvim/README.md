@@ -129,8 +129,8 @@ ggVGd  # [Normal Mode] 전체 선택 후 삭제
 | `sa{motion/textobject}{addition}` | `n` | Surround **a**dd | Add surroundings (e.g., `saiw"` adds quotes around word) |
 | `sd{deletion}` | `n` | Surround **d**elete | Delete surroundings (e.g., `sd"` deletes quotes) |
 | `sr{deletion}{addition}` | `n` | Surround **r**eplace | Replace surroundings (e.g., `sr"'` replaces " with ') |
-| `ib`/`ab` | `o`,`x` | Text object | Select text inside/around brackets |
-| `is`/`as` | `o`,`x` | Text object | Select text inside/around sandwich |
+| `ib`/`ab` | `o`,`v` | Text object | Select text inside/around brackets |
+| `is`/`as` | `o`,`v` | Text object | Select text inside/around sandwich |
 | `.` | `n` | Repeat operation | Repeat last vim-sandwich operation (built-in support) |
 
 **Common Examples:**
