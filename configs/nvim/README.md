@@ -107,6 +107,58 @@ ggVGd  # [Normal Mode] 전체 선택 후 삭제
 |-----|------|--------|-------------|
 | `[c` | `n` | Jump to context | Jump to the context line |
 
+### vim-sandwich
+
+**Add surroundings:** mapped to the key sequence `sa` (add)
+```
+{surrounded text} → {surrounding}{surrounded text}{surrounding}
+```
+
+**Delete surroundings:** mapped to the key sequence `sd` (delete)
+```
+{surrounding}{surrounded text}{surrounding} → {surrounded text}
+```
+
+**Replace surroundings:** mapped to the key sequence `sr` (replace)
+```
+{surrounding}{surrounded text}{surrounding} → {new surrounding}{surrounded text}{new surrounding}
+```
+
+| Key | Mode | Action | Description |
+|-----|------|--------|-------------|
+| `sa{motion/textobject}{addition}` | `n` | Surround **a**dd | Add surroundings (e.g., `saiw"` adds quotes around word) |
+| `sd{deletion}` | `n` | Surround **d**elete | Delete surroundings (e.g., `sd"` deletes quotes) |
+| `sr{deletion}{addition}` | `n` | Surround **r**eplace | Replace surroundings (e.g., `sr"'` replaces " with ') |
+| `ib`/`ab` | `o`,`x` | Text object | Select text inside/around brackets |
+| `is`/`as` | `o`,`x` | Text object | Select text inside/around sandwich |
+| `.` | `n` | Repeat operation | Repeat last vim-sandwich operation (built-in support) |
+
+**Common Examples:**
+- `saiw"` → Add double quotes around word (`iw` = inner word)
+  ```
+  Hello world!  →  "Hello" world!
+  ```
+- `sr"'` → Replace double quotes with single quotes  
+  ```
+  "Hello world!"  →  'Hello world!'
+  ```
+- `sr'<q>` → Replace single quotes with `<q>` tag
+  ```
+  'Hello world!'  →  <q>Hello world!</q>
+  ```
+- `srt"` → Replace HTML tag with double quotes
+  ```
+  <q>Hello world!</q>  →  "Hello world!"
+  ```
+- `sd"` → Delete double quotes
+  ```
+  "Hello world!"  →  Hello world!
+  ```
+- `V` + `S<p>` → Add `<p>` tag around selected lines
+  ```
+  Hello world!  →  <p>Hello world!</p>
+  ```
+
 ## Plugin Setup
 
 This configuration uses [Lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager. Key plugins include:
@@ -123,6 +175,7 @@ This configuration uses [Lazy.nvim](https://github.com/folke/lazy.nvim) as the p
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context): Code context display for better readability
 - [telescope](https://github.com/nvim-telescope/telescope.nvim): Fuzzy finder
 - [vim-fugitive](https://github.com/tpope/vim-fugitive): Git integration
+- [vim-sandwich](https://github.com/machakann/vim-sandwich): Set of operators and textobjects to search/select/edit sandwiched texts.
 
 ## Configuration Philosophy
 
