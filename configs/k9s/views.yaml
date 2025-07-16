@@ -25,6 +25,7 @@ views:
     sortColumn: AGE:asc
     columns:
       - NAME
+      - INSTANCE ID:.spec.providerID|split("/")|.[-1]|RS
       - GROUP:.metadata.labels.node\.kubernetes\.io/name|S
       - TYPE:.metadata.labels.node\.kubernetes\.io/instance-type|S
       # CAPTYPE is only available in karpenter nodes
