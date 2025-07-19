@@ -167,6 +167,7 @@ This configuration uses [Lazy.nvim](https://github.com/folke/lazy.nvim) as the p
 - [copilot.vim](https://github.com/github/copilot.vim): Github Copilot (AI code completion)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim): Git diff indicators in sign column
 - [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim): Indentation lines
+- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim): Statusline plugin
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs): Auto brackets
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp): Completion engine
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig): Language server protocol (LSP)

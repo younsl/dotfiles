@@ -63,6 +63,8 @@ vim.o.smartcase = true
 -- Enable auto-saving when focus is lost
 vim.cmd [[autocmd FocusLost * silent! wa]]
 
--- Show git branch and gitsigns status in statusline
--- Format: filename.lua [branch]+added ~changed -removed
-vim.opt.statusline = "%f [%{get(b:,'gitsigns_head','')}]%{get(b:,'gitsigns_status','')} %="
+-- Disable default statusline (using lualine instead)
+vim.o.laststatus = 0
+vim.o.ruler = false
+vim.o.showcmd = false
+vim.o.showmode = false
