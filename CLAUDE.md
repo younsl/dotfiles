@@ -52,7 +52,7 @@ The repository uses a centralized symbolic linking approach where:
 - Source configurations live in `configs/<tool>/` 
 - The bootstrap script (`./scripts/bootstrap/bootstrap-dotfiles.sh`) creates symlinks to standard locations
 - Target locations include `~/.config/`, `~/.gnupg/`, and specific dotfiles like `~/.zshrc`
-- The COMPONENTS array in bootstrap-dotfiles.sh:712 defines all symlink mappings
+- The COMPONENTS array in bootstrap-dotfiles.sh:5-17 defines all symlink mappings
 
 ## Development Workflow
 
