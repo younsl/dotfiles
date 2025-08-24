@@ -1,0 +1,22 @@
+name: Close Pull Requests
+run-name: Close PR
+
+on:
+  pull_request:
+    types: [opened]
+  workflow_dispatch:
+
+permissions:
+  pull-requests: write
+
+jobs:
+  close:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Close pull requests
+        uses: peter-evans/close-fork-pulls@v3.0.0
+        with:
+          comment: |
+            ${{ github.repository }} repository does not accept any external contributions by pull requests.
+
+            This pull request will be closed automatically by ${{ github.workflow }} workflow.
