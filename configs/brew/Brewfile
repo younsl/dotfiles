@@ -1,0 +1,151 @@
+tap "argoproj/tap"
+tap "aws/tap"
+tap "datadog/mkat", "https://github.com/datadog/managed-kubernetes-auditing-toolkit"
+tap "hashicorp/tap"
+tap "homebrew/autoupdate"
+tap "homebrew/bundle"
+tap "homebrew/services"
+# Static checker for GitHub Actions workflow files
+brew "actionlint"
+# General-purpose data compression with high compression ratio
+brew "xz"
+# Get stuff done with container-native workflows for Kubernetes
+brew "argo"
+# GitOps Continuous Delivery for Kubernetes
+brew "argocd"
+# Shell extension to jump to frequently used directories
+brew "autojump"
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Arbitrary precision calculator
+brew "calc"
+# Emacs dependency management
+brew "cask"
+# Tool for interacting with remote images and registries
+brew "crane"
+# Like neofetch, but much faster because written mostly in C
+brew "fastfetch"
+# Infamous electronic fortune-cookie generator
+brew "fortune"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GitHub command-line tool
+brew "gh"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
+# Git extension for versioning large files
+brew "git-lfs"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Kubernetes package manager
+brew "helm"
+# Tool for automatically generating markdown documentation for helm charts
+brew "helm-docs"
+# Language server for Helm
+brew "helm-ls"
+# Improved top (interactive process viewer)
+brew "htop"
+# Configurable static site generator
+brew "hugo"
+# Tools and libraries to manipulate images in many formats
+brew "imagemagick"
+# Update of iperf: measures TCP, UDP, and SCTP bandwidth
+brew "iperf3"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "k9s"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Package manager for kubectl plugins
+brew "krew"
+# Kubernetes prompt info for bash and zsh
+brew "kube-ps1"
+# Tool that can switch between kubectl contexts easily and create aliases
+brew "kubectx"
+# Language Server for the Lua language
+brew "lua-language-server"
+# Mac App Store command-line interface
+brew "mas"
+# CLI for interacting with Grafana Mimir
+brew "mimirtool"
+# Run a Kubernetes cluster locally
+brew "minikube"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Platform built on V8 to build network applications
+brew "node"
+# OpenBSD freely-licensed SSH connectivity tools
+brew "openssh"
+# Tool for managing OCI containers and pods
+brew "podman"
+# Framework for managing multi-language pre-commit hooks
+brew "pre-commit"
+# Test SSL/TLS enabled services to discover supported cipher suites
+brew "sslscan"
+# User interface to the TELNET protocol
+brew "telnet"
+# Terraform Language Server
+brew "terraform-ls"
+# Terraform version manager inspired by rbenv
+brew "tfenv"
+# Linter for Terraform files
+brew "tflint"
+# Terminal multiplexer
+brew "tmux"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Disaster recovery for Kubernetes resources and persistent volumes
+brew "velero"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
+# Internet file retriever
+brew "wget"
+# Show the current WiFi network password
+brew "wifi-password"
+# Linter for YAML files
+brew "yamllint"
+# JavaScript package manager
+brew "yarn"
+# Kubectl Argo Rollouts Plugin.
+brew "argoproj/tap/kubectl-argo-rollouts"
+# eks-node-viewer is a tool for visualizing dynamic node usage within an EKS cluster.
+brew "aws/tap/eks-node-viewer"
+brew "datadog/mkat/managed-kubernetes-auditing-toolkit"
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
+# Terminal-based AI coding assistant
+cask "claude-code"
+# Online diagram software
+cask "drawio"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "gcloud-cli"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+# Web browser
+cask "google-chrome"
+# Terminal emulator as alternative to Apple's Terminal app
+cask "iterm2"
+# Software for Logitech devices
+cask "logi-options+"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
+# Screen capture tool with mark up and sharing features
+cask "skitch"
+# Team communication and collaboration software
+cask "slack"
+# System monitor for the menu bar
+cask "stats"
+mas "카카", id: 869223134
+#-------------------------------
+# PACKAGE INSTALLATION SUMMARY
+# Date: 2025-09-01
+#-------------------------------
+# Installed tap count: 7
+# Installed brew count: 55
+# Installed cask count: 12
+# Installed mas count: 1
+# Installed vscode count: 0
+#-------------------------------
