@@ -1,17 +1,17 @@
 name: Close Pull Requests
-run-name: Close PR
+run-name: Close PR ${{ github.event.pull_request.number }} automatically by @${{ github.actor }}
 
 on:
   pull_request:
     types: [opened]
   workflow_dispatch:
 
-permissions:
-  pull-requests: write
-
 jobs:
   close:
     runs-on: ubuntu-24.04
+    # Only this job has the necessary permissions, following the principle of least privilege
+    permissions:
+      pull-requests: write
     steps:
       - name: Close pull requests
         uses: peter-evans/close-fork-pulls@v3.0.0
