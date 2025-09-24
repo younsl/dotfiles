@@ -1,31 +1,32 @@
 return {
     "neovim/nvim-lspconfig",
     config = function()
-        local lspconfig = require('lspconfig')
-
         -- Terraform LSP
-        lspconfig.terraformls.setup({
+        vim.lsp.config('terraformls', {
             cmd = { "terraform-ls", "serve" },
             filetypes = { "terraform" },
-            root_dir = lspconfig.util.root_pattern(".git", ".terraform"),
+            root_markers = { ".git", ".terraform" },
         })
-        
+
         -- Go LSP
-        lspconfig.gopls.setup({
+        vim.lsp.config('gopls', {
             cmd = { "gopls" },
             filetypes = { "go" },
-            root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
+            root_markers = { "go.mod", ".git" },
         })
-        
+
         -- Helm LSP
-        lspconfig.helm_ls.setup({
+        vim.lsp.config('helm_ls', {
             cmd = { "helm_ls", "serve" },
             filetypes = { "yaml" },
-            root_dir = lspconfig.util.root_pattern("Chart.yaml", ".git"),
+            root_markers = { "Chart.yaml", ".git" },
         })
 
         -- Lua LSP
-        lspconfig.lua_ls.setup({
+        vim.lsp.config('lua_ls', {
+            cmd = { "lua-language-server" },
+            filetypes = { "lua" },
+            root_markers = { ".git", ".luarc.json", ".luarc.jsonc" },
             on_init = function(client)
                 if client.workspace_folders then
                     local path = client.workspace_folders[1].name
@@ -33,7 +34,7 @@ return {
                         return
                     end
                 end
-            
+
                 client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
                     runtime = {
                         version = 'LuaJIT'
@@ -58,24 +59,25 @@ return {
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-        lspconfig.cssls.setup({
+        vim.lsp.config('cssls', {
             capabilities = capabilities,
             cmd = { "vscode-css-language-server", "--stdio" },
             filetypes = { "css", "scss", "less" },
-            root_dir = lspconfig.util.root_pattern(".git"),
+            root_markers = { ".git" },
             settings = {
-                {
-                    css = {
-                      validate = true
-                    },
-                    less = {
-                      validate = true
-                    },
-                    scss = {
-                      validate = true
-                    }
+                css = {
+                    validate = true
+                },
+                less = {
+                    validate = true
+                },
+                scss = {
+                    validate = true
                 }
             }
         })
+
+        -- Enable all configured LSP servers
+        vim.lsp.enable({'terraformls', 'gopls', 'helm_ls', 'lua_ls', 'cssls'})
     end
 }
