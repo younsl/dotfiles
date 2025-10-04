@@ -51,7 +51,7 @@ The repository uses a local pre-commit hook that:
 ## File Structure and Linking System
 
 The repository uses a centralized symbolic linking approach where:
-- Source configurations live in `configs/<tool>/` 
+- Source configurations live in `configs/<tool>/`
 - The bootstrap script (`./scripts/bootstrap/bootstrap-dotfiles.sh`) creates symlinks to standard locations
 - Target locations include `~/.config/`, `~/.gnupg/`, and specific dotfiles like `~/.zshrc`
 - The COMPONENTS array in bootstrap-dotfiles.sh:5-17 defines all symlink mappings
