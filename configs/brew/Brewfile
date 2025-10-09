@@ -1,6 +1,7 @@
 tap "argoproj/tap"
 tap "aws/tap"
 tap "datadog/mkat", "https://github.com/datadog/managed-kubernetes-auditing-toolkit"
+tap "derailed/k9s"
 tap "hashicorp/tap"
 tap "homebrew/autoupdate"
 tap "homebrew/bundle"
@@ -143,9 +144,9 @@ cask "stats"
 mas "카카", id: 869223134
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2025-10-01
+# Date: 2025-10-09
 #-------------------------------
-# Installed tap count: 7
+# Installed tap count: 8
 # Installed brew count: 56
 # Installed cask count: 12
 # Installed mas count: 1
