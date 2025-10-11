@@ -50,8 +50,6 @@ brew "helm-docs"
 brew "helm-ls"
 # Improved top (interactive process viewer)
 brew "htop"
-# Configurable static site generator
-brew "hugo"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
 # Update of iperf: measures TCP, UDP, and SCTP bandwidth
@@ -112,6 +110,8 @@ brew "wifi-password"
 brew "yamllint"
 # JavaScript package manager
 brew "yarn"
+# Fast static site generator in a single binary with everything built-in
+brew "zola"
 # Kubectl Argo Rollouts Plugin.
 brew "argoproj/tap/kubectl-argo-rollouts"
 # eks-node-viewer is a tool for visualizing dynamic node usage within an EKS cluster.
@@ -144,7 +144,7 @@ cask "stats"
 mas "카카", id: 869223134
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2025-10-09
+# Date: 2025-10-11
 #-------------------------------
 # Installed tap count: 8
 # Installed brew count: 56
