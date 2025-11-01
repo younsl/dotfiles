@@ -76,7 +76,7 @@ brew "mimirtool"
 brew "minikube"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Platform built on V8 to build network applications
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
@@ -146,12 +146,17 @@ cask "stats"
 mas "카카", id: 869223134
 go "golang.org/x/tools/gopls"
 go "honnef.co/go/tools/cmd/staticcheck"
+# Installed brew count: 57
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2025-10-28
+# Date: 2025-11-02
 #-------------------------------
+# Installed cask count: 12
 # Installed tap count: 8
+# Installed mas count: 1
 # Installed brew count: 57
+# Installed vscode count: 0
+#-------------------------------
 # Installed cask count: 12
 # Installed mas count: 1
 # Installed vscode count: 0
