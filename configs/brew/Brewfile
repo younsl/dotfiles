@@ -42,8 +42,6 @@ brew "gnupg"
 brew "go"
 # Language server for the Go language
 brew "gopls"
-# Kubernetes package manager
-brew "helm"
 # Tool for automatically generating markdown documentation for helm charts
 brew "helm-docs"
 # Language server for Helm
@@ -148,10 +146,10 @@ go "golang.org/x/tools/gopls"
 go "honnef.co/go/tools/cmd/staticcheck"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2025-11-10
+# Date: 2025-11-21
 #-------------------------------
 # Installed tap count: 8
-# Installed brew count: 57
+# Installed brew count: 56
 # Installed cask count: 12
 # Installed mas count: 1
 # Installed vscode count: 0
