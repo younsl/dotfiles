@@ -44,12 +44,6 @@
 	process = git-lfs filter-process
 	required = true
 
-[includeIf "gitdir:~/github/younsl/"]
-  path = ~/.config/git/config-younsl
-
-[includeIf "gitdir:~/github/younsl/"]
-  path = ~/.config/git/younsl-gpg-signing.key
-
 [alias]
   # Prune remote tracking branches and delete local branches that have been deleted on remote
   sweep = "!f() { \
@@ -66,6 +60,12 @@
 		  refs/heads/ \
 	  | column -t -s \"|\"; \
   }; f"
+
+[includeIf "gitdir:~/github/younsl/"]
+  path = ~/.config/git/config-younsl
+
+[includeIf "gitdir:~/github/younsl/"]
+  path = ~/.config/git/younsl-gpg-signing.key
 
 [includeIf "gitdir:~/github/coinone/"]
   path = ~/.config/git/config-coinone
