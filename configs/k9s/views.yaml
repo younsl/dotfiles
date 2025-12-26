@@ -35,7 +35,8 @@ views:
     columns:
       - NAME
       - INSTANCE ID:.spec.providerID|split("/")|.[-1]|RS
-      - GROUP:.metadata.labels.node\.kubernetes\.io/name|S
+      # EKS Managed Node Group
+      - GROUP:.metadata.labels.eks\.amazonaws\.com/nodegroup|S
       - TYPE:.metadata.labels.node\.kubernetes\.io/instance-type|S
       # CAPTYPE is only available in karpenter nodes
       - CAPTYPE:.metadata.labels.karpenter\.sh/capacity-type|S
