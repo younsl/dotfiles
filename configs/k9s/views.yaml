@@ -1,4 +1,6 @@
 views:
+  # Adds image version and DNS ndots for quick debugging
+  # of container versions and DNS resolution issues
   v1/pods:
     sortColumn: AGE:asc
     columns:
@@ -20,7 +22,8 @@ views:
       # Support 'super column blow' 0.50.0 and later
       - IMAGE VERSION:.spec.containers[0].image|split(":")|.[-1]|RS
       - NDOTS:.spec.dnsConfig.options[?(@.name=="ndots")].value|RS
-  
+
+  # Shows IAM role ARN for IRSA verification
   v1/serviceaccounts:
     sortColumn: AGE:asc
     columns:
@@ -30,6 +33,8 @@ views:
       - ROLE:.metadata.annotations.eks\.amazonaws\.com/role-arn|RS
       - AGE
 
+  # Displays EC2 instance ID, node group, instance type,
+  # and Karpenter capacity type for EKS cluster management
   v1/nodes:
     sortColumn: AGE:asc
     columns:
@@ -53,6 +58,7 @@ views:
       - 'MEM/A'
       - AGE
 
+  # Shows TTL and storage location for backup retention policy
   velero.io/v1/schedules:
     sortColumn: AGE:asc
     columns:
@@ -65,7 +71,8 @@ views:
       - PAUSED
       - LOCATION:.spec.template.storageLocation|S
       - AGE
-  
+
+  # Displays S3 bucket region and name for backup verification
   velero.io/v1/backupstoragelocations:
     sortColumn: AGE:asc
     columns:
@@ -78,6 +85,7 @@ views:
       - DEFAULT
       - AGE
 
+  # Shows target revision (branch/tag) for GitOps tracking
   argoproj.io/v1alpha1/applicationsets:
     sortColumn: AGE:asc
     columns:
