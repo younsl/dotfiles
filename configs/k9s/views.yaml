@@ -77,3 +77,11 @@ views:
       - LAST VALIDATED
       - DEFAULT
       - AGE
+
+  argoproj.io/v1alpha1/applicationsets:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - REVISION:.spec.template.spec.source.targetRevision|S
+      - AGE
