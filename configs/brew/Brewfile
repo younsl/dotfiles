@@ -59,6 +59,8 @@ brew "imagemagick"
 brew "iperf3"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Domain specific configuration language for defining JSON data
+brew "jsonnet"
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "k9s"
 # Kubernetes command-line interface
@@ -158,13 +160,14 @@ cask "shottr"
 cask "slack"
 # System monitor for the menu bar
 cask "stats"
+go "github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb"
 cargo "ij"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2025-12-29
+# Date: 2026-01-08
 #-------------------------------
 # Installed tap count: 7
-# Installed brew count: 66
+# Installed brew count: 67
 # Installed cask count: 11
 # Installed mas count: 0
 # Installed vscode count: 0

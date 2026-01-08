@@ -201,8 +201,9 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores true
 # terragrunt, kubectl, steampipe
 #----------------------------------
 ## terragrunt
-alias tga="terragrunt apply"
 alias tgp="terragrunt plan"
+alias tga="terragrunt apply"
+alias tgd="terragrunt destroy"
 alias tgo="terragrunt output"
 alias tgf="terragrunt hclfmt"
 
