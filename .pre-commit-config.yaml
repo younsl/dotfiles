@@ -1,0 +1,80 @@
+repos:
+  - repo: local
+    hooks:
+      - id: strfile-fortune
+        name: Generate strfile for fortune files
+        entry: bash
+        language: system
+        always_run: true
+        pass_filenames: false
+        stages: [pre-commit]
+        types: [file]
+        description: |-
+          This hook generates .dat files from .fortune files using the strfile command.
+          It processes all .fortune files under the fortune/ directory.
+        files: ^configs/fortune/.*\.fortune$
+        args:
+          - "-c"
+          - |
+            FORTUNE_DIR="configs/fortune"
+
+            for file in "${FORTUNE_DIR}"/*.fortune; do
+              strfile "$file"
+            done
+
+      - id: backup-brewfile
+        name: Backup Brewfile (daily)
+        entry: bash
+        language: system
+        always_run: true
+        pass_filenames: false
+        stages: [pre-commit]
+        description: |-
+          This hook backs up Brewfile once per day.
+          It compares the last backup date with the current date.
+        args:
+          - "-c"
+          - |
+            BREWFILE="configs/brew/Brewfile"
+            TIMESTAMP_FILE=".brewfile-last-backup"
+            TODAY=$(date +%Y-%m-%d)
+
+            # Read last backup date
+            if [[ -f "$TIMESTAMP_FILE" ]]; then
+              LAST_BACKUP=$(cat "$TIMESTAMP_FILE")
+            else
+              LAST_BACKUP=""
+            fi
+
+            # Only backup if date has changed
+            if [[ "$LAST_BACKUP" != "$TODAY" ]]; then
+              echo "🔄 Backing up Brewfile (last backup: ${LAST_BACKUP:-never})"
+
+              if command -v brew &> /dev/null; then
+                brew bundle dump --force --describe --file="$BREWFILE"
+
+                # Append summary
+                {
+                  echo "#-------------------------------"
+                  echo "# PACKAGE INSTALLATION SUMMARY"
+                  echo "# Date: $TODAY"
+                  echo "#-------------------------------"
+                  grep -c "^tap " "$BREWFILE" | xargs echo "# Installed tap count:"
+                  grep -c "^brew " "$BREWFILE" | xargs echo "# Installed brew count:"
+                  grep -c "^cask " "$BREWFILE" | xargs echo "# Installed cask count:"
+                  grep -c "^mas " "$BREWFILE" | xargs echo "# Installed mas count:"
+                  grep -c "^vscode " "$BREWFILE" | xargs echo "# Installed vscode count:"
+                  echo "#-------------------------------"
+                } >> "$BREWFILE"
+
+                # Update timestamp
+                echo "$TODAY" > "$TIMESTAMP_FILE"
+                git add "$BREWFILE"
+
+                echo "✅ Brewfile backup completed"
+              else
+                echo "⚠️  brew command not found, skipping Brewfile backup"
+              fi
+            else
+              echo "✅ Brewfile already backed up today, skipping"
+            fi
