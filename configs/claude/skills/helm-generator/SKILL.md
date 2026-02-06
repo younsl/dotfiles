@@ -247,6 +247,47 @@ Create the name of the service account to use
 - Support nodeSelector, tolerations, affinity
 - Include HPA and PDB as optional features
 
+## Leaving Room for Imperativeness
+
+When HPA or other controllers manage certain fields, the Helm template should conditionally omit those fields to avoid GitOps conflicts.
+
+### Conditional Replicas in Deployment Template
+If `autoscaling.enabled` is true, omit `replicas` from the Deployment so that HPA controls scaling without conflicting with the Git-tracked value.
+
+```yaml
+# templates/deployment.yaml
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+```
+
+### values.yaml Convention
+```yaml
+# replicaCount is ignored when autoscaling.enabled is true
+replicaCount: 2
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+```
+
+### ArgoCD ignoreDifferences for Wrapper Charts
+When wrapping external charts that do not conditionally omit `replicas`, configure ArgoCD to ignore diffs:
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+spec:
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
+```
+
 ## Validation After Generation
 ```bash
 helm lint <chart-path>

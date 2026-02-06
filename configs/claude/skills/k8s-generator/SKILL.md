@@ -235,6 +235,51 @@ metadata:
 automountServiceAccountToken: false  # Set true only if needed
 ```
 
+## Leaving Room for Imperativeness
+
+When using GitOps (e.g., ArgoCD), not every field should be tracked in Git. If a controller (HPA, VPA, KEDA) manages a field, omit it from the manifest to avoid conflicts.
+
+### Replicas Managed by HPA
+If `replicas` is defined in both the manifest and an HPA, ArgoCD and HPA will fight over the value. Omit `replicas` from the Deployment when HPA controls scaling.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  # Do not include replicas if controlled by HPA
+  # replicas: 2
+  template:
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.25.3
+        ports:
+        - containerPort: 80
+```
+
+### Common Fields to Omit
+| Field | Omit When Managed By |
+|-------|---------------------|
+| `spec.replicas` | HPA, KEDA, Rollout controller |
+| `resources.requests/limits` | VPA |
+| `metadata.annotations` | External controllers (e.g., cert-manager) |
+
+### ArgoCD ignoreDifferences
+If a field must exist in the manifest but is also managed externally, configure ArgoCD to ignore diffs:
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+spec:
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
+```
+
 ## Output Format
 - Use `---` to separate multiple resources
 - Order: Namespace > ServiceAccount > ConfigMap/Secret > Deployment/StatefulSet > Service > Ingress
