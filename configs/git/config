@@ -1,0 +1,71 @@
+#--------------------------------------------------------
+# Reference for git configuration file:
+# https://git-scm.com/docs/git-config
+#--------------------------------------------------------
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
+[init]
+  defaultBranch = main
+
+[fetch]
+  prune = true
+  pruneTags = true
+  followTags = true
+
+[commit]
+  template = ~/.config/git/gitmessage
+
+[push]
+  autoSetupRemote = true
+  default = current
+
+[core]
+  ignorecase = false
+
+[color]
+  ui = auto
+
+[log]
+  abbrevCommit = true
+
+[http]
+  postBuffer = 500M
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[alias]
+  # Prune remote tracking branches and delete local branches that have been deleted on remote
+  sweep = "!f() { \
+	  git remote prune origin && \
+	  git branch -vv | grep \": gone]\" | awk \"{print \\$1}\" | xargs -r -n 1 git branch -D; \
+  }; f"
+
+  # Show branches with their last commit date and subject
+  # for-each-ref: more formatting options than 'git branch', shows only local branches
+  br = "!f() { \
+	  git for-each-ref \
+		  --sort=-committerdate \
+		  --format=\"%(HEAD) %(refname:short) | %(authorname) | %(committerdate:relative) | %(contents:subject)\" \
+		  refs/heads/ \
+	  | column -t -s \"|\"; \
+  }; f"
+
+[includeIf "gitdir:~/github/younsl/"]
+  path = ~/.config/git/config-younsl
+
+[includeIf "gitdir:~/github/younsl/"]
+  path = ~/.config/git/younsl-gpg-signing.key
+
+[includeIf "gitdir:~/github/musinsa/"]
+  path = ~/.config/git/config-musinsa-payments

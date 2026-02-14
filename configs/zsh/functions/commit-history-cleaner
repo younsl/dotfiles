@@ -1,0 +1,37 @@
+local git_root new_branch="latest_branch" base_branch="main"
+
+if ! command -v git &>/dev/null; then
+  echo "Error: 'git' command is not installed."
+  return 1
+fi
+
+git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+if [[ -z "$git_root" ]]; then
+  echo "Error: Not inside a git repository."
+  return 1
+fi
+
+echo "project=${git_root:t} root=$git_root"
+
+echo "This script will delete the '${base_branch}' branch and create the '${new_branch}' branch."
+read "REPLY?Do you want to continue? (Yes/n) "
+if [[ "$REPLY" != "Yes" ]]; then
+  echo "Operation canceled by user."
+  return 1
+fi
+
+(
+  cd "$git_root" || exit 1
+  git checkout --orphan "$new_branch"
+  git add -A
+  git commit \
+    -m "nuke(git): Regular commit history cleanup" \
+    -m "Initialize repository to clean all commit history using commit history cleaner script" \
+    -s
+  git branch -D "$base_branch" || true
+  git branch -m "$base_branch"
+  git push -f origin "$base_branch"
+  git branch --set-upstream-to=origin/"$base_branch"
+) || return 1
+
+echo "Done."

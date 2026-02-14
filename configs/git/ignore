@@ -1,0 +1,19 @@
+# Global Git ignore file
+
+# Claude Code settings
+**/.claude/settings.local.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Vim/Neovim
+*.swp
+*.swo
+*~
+.viminfo

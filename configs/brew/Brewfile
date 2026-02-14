@@ -1,0 +1,181 @@
+tap "argoproj/tap"
+tap "aws/tap"
+tap "derailed/k9s"
+tap "gjbae1212/gossm"
+tap "hashicorp/tap"
+tap "homebrew/autoupdate"
+tap "ramonvermeulen/whosthere"
+tap "younsl/tap"
+# Static checker for GitHub Actions workflow files
+brew "actionlint"
+# General-purpose data compression with high compression ratio
+brew "xz"
+# Get stuff done with container-native workflows for Kubernetes
+brew "argo"
+# GitOps Continuous Delivery for Kubernetes
+brew "argocd"
+# Shell extension to jump to frequently used directories
+brew "autojump"
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Arbitrary precision calculator
+brew "calc"
+# Emacs dependency management
+brew "cask"
+# Tool for interacting with remote images and registries
+brew "crane"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+# Embeddable SQL OLAP Database Management System
+brew "duckdb"
+# Like neofetch, but much faster because written mostly in C
+brew "fastfetch"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Infamous electronic fortune-cookie generator
+brew "fortune"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GitHub command-line tool
+brew "gh"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
+# Distributed revision control system
+brew "git"
+# Git extension for versioning large files
+brew "git-lfs"
+# Open-source GitLab command-line tool
+brew "glab"
+# GNU Privacy Guard (OpenPGP)
+brew "gnupg"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Language server for the Go language
+brew "gopls"
+# Tool for automatically generating markdown documentation for helm charts
+brew "helm-docs"
+# Language server for Helm
+brew "helm-ls"
+# Improved top (interactive process viewer)
+brew "htop"
+# Tools and libraries to manipulate images in select formats
+brew "imagemagick"
+# Update of iperf: measures TCP, UDP, and SCTP bandwidth
+brew "iperf3"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Domain specific configuration language for defining JSON data
+brew "jsonnet"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "k9s"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Package manager for kubectl plugins
+brew "krew"
+# Kubernetes prompt info for bash and zsh
+brew "kube-ps1"
+# Tool that can switch between kubectl contexts easily and create aliases
+brew "kubectx"
+# Language Server for the Lua language
+brew "lua-language-server"
+# Mac App Store command-line interface
+brew "mas"
+# CLI for interacting with Grafana Mimir
+brew "mimirtool"
+# Run a Kubernetes cluster locally
+brew "minikube"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# OpenBSD freely-licensed SSH connectivity tools
+brew "openssh"
+# Tool for managing OCI containers and pods
+brew "podman"
+# Framework for managing multi-language pre-commit hooks
+brew "pre-commit"
+# Persistent key-value database, with built-in net interface
+brew "redis"
+# Rust toolchain installer
+brew "rustup"
+# Test SSL/TLS enabled services to discover supported cipher suites
+brew "sslscan"
+# Use SQL to instantly query your cloud services
+brew "steampipe"
+# User interface to the TELNET protocol
+brew "telnet"
+# Terraform Language Server
+brew "terraform-ls"
+# Linter for Terraform files
+brew "tflint"
+# Text interface for Git repositories
+brew "tig"
+# Terminal multiplexer
+brew "tmux"
+# OpenTofu version manager inspired by tfenv
+brew "tofuenv"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
+# Disaster recovery for Kubernetes resources and persistent volumes
+brew "velero"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
+# Internet file retriever
+brew "wget"
+# Show the current WiFi network password
+brew "wifi-password"
+# Linter for YAML files
+brew "yamllint"
+# JavaScript package manager
+brew "yarn"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
+# Fast static site generator in a single binary with everything built-in
+brew "zola"
+# Kubectl Argo Rollouts Plugin.
+brew "argoproj/tap/kubectl-argo-rollouts"
+# eks-node-viewer is a tool for visualizing dynamic node usage within an EKS cluster.
+brew "aws/tap/eks-node-viewer"
+# gossm is interactive CLI tool that you select server in AWS and then could connect or send files your AWS server using start-session, ssh, scp under AWS Systems Manger.
+brew "gjbae1212/gossm/gossm"
+# Interactive EC2 Session Manager connection tool with fuzzy search
+brew "younsl/tap/ij"
+# Karpenter NodePool consolidation manager CLI tool
+brew "younsl/tap/karc"
+# Interactive EKS cluster upgrade CLI tool
+brew "younsl/tap/kup"
+# Terminal-based AI coding assistant
+cask "claude-code"
+# Online diagram software
+cask "drawio"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "gcloud-cli"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+# Web browser
+cask "google-chrome"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
+# Plugin for AWS CLI to start and end sessions that connect to managed instances
+cask "session-manager-plugin"
+# Screenshot measurement and annotation tool
+cask "shottr"
+# Team communication and collaboration software
+cask "slack"
+# System monitor for the menu bar
+cask "stats"
+go "github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb"
+cargo "cargo-audit"
+cargo "cargo-zigbuild"
+#-------------------------------
+# PACKAGE INSTALLATION SUMMARY
+# Date: 2026-02-14
+#-------------------------------
+# Installed tap count: 8
+# Installed brew count: 70
+# Installed cask count: 10
+# Installed mas count: 0
+# Installed vscode count: 0
+#-------------------------------

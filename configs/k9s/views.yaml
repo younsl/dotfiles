@@ -1,0 +1,117 @@
+views:
+  # Adds image version and DNS ndots for quick debugging
+  # of container versions and DNS resolution issues
+  v1/pods:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - PF
+      - READY|S
+      - STATUS|S
+      - RESTARTS
+      - CPU
+      - MEM
+      - '%CPU/R'
+      - '%CPU/L'
+      - '%MEM/R'
+      - '%MEM/L'
+      - IP|S
+      - NODE
+      - AGE
+      # Support 'super column blow' 0.50.0 and later
+      - IMAGE VERSION:.spec.containers[0].image|split(":")|.[-1]|RS
+      - NDOTS:.spec.dnsConfig.options[?(@.name=="ndots")].value|RS
+
+  # Shows IAM role ARN for IRSA verification
+  v1/serviceaccounts:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - SECRET
+      - ROLE:.metadata.annotations.eks\.amazonaws\.com/role-arn|RS
+      - AGE
+
+  # Displays EC2 instance ID, node group, instance type,
+  # and Karpenter capacity type for EKS cluster management
+  v1/nodes:
+    sortColumn: AGE:asc
+    columns:
+      - NAME
+      - INSTANCE ID:.spec.providerID|split("/")|.[-1]|RS
+      # EKS Managed Node Group
+      - GROUP:.metadata.labels.eks\.amazonaws\.com/nodegroup|S
+      - TYPE:.metadata.labels.node\.kubernetes\.io/instance-type|S
+      # CAPTYPE is only available in karpenter nodes
+      - CAPTYPE:.metadata.labels.karpenter\.sh/capacity-type|S
+      - STATUS
+      - ROLE
+      - TAINTS
+      - VERSION
+      - PODS
+      - CPU
+      - MEM
+      - '%CPU'
+      - '%MEM'
+      - 'CPU/A'
+      - 'MEM/A'
+      - AGE
+
+  # Shows TTL and storage location for backup retention policy
+  velero.io/v1/schedules:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - STATUS
+      - SCHEDULE
+      - TTL:.spec.template.ttl|S
+      - LASTBACKUP
+      - PAUSED
+      - LOCATION:.spec.template.storageLocation|S
+      - AGE
+
+  # Displays S3 bucket region and name for backup verification
+  velero.io/v1/backupstoragelocations:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - STORAGE REGION:.spec.config.region|S
+      - STORAGE NAME:.spec.objectStorage.bucket|S
+      - PHASE
+      - LAST VALIDATED
+      - DEFAULT
+      - AGE
+
+  # Shows target revision (branch/tag) for GitOps tracking
+  argoproj.io/v1alpha1/applicationsets:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - REVISION:.spec.template.spec.source.targetRevision|S
+      - AGE
+
+  # Displays disk size, volume type, and AMI family for Karpenter nodes
+  karpenter.k8s.aws/v1/ec2nodeclasses:
+    sortColumn: AGE:asc
+    columns:
+      - NAME
+      - DISK SIZE:.spec.blockDeviceMappings[0].ebs.volumeSize|S
+      - VOL TYPE:.spec.blockDeviceMappings[0].ebs.volumeType|S
+      - AMI FAMILY:.spec.amiFamily|S
+      - AMI SELECTOR:.spec.amiSelectorTerms[0].alias|S
+      - AGE
+
+  # Shows parent gateway name and namespace for HTTPRoute routing
+  gateway.networking.k8s.io/v1/httproutes:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - PARENT NAME:.spec.parentRefs[0].name|S
+      - PARENT NS:.spec.parentRefs[0].namespace|S
+      - HOSTNAMES:.spec.hostnames[0]|S
+      - AGE

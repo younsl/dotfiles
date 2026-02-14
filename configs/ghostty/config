@@ -1,0 +1,218 @@
+font-family =
+font-family-bold =
+font-family-italic =
+font-family-bold-italic =
+font-style = default
+font-style-bold = default
+font-style-italic = default
+font-style-bold-italic = default
+font-synthetic-style = bold,italic,bold-italic
+font-feature =
+font-size = 11
+font-variation =
+font-variation-bold =
+font-variation-italic =
+font-variation-bold-italic =
+font-codepoint-map =
+font-thicken = false
+font-thicken-strength = 255
+alpha-blending = native
+adjust-cell-width =
+adjust-cell-height =
+adjust-font-baseline =
+adjust-underline-position =
+adjust-underline-thickness =
+adjust-strikethrough-position =
+adjust-strikethrough-thickness =
+adjust-overline-position =
+adjust-overline-thickness =
+adjust-cursor-thickness =
+adjust-cursor-height =
+adjust-box-thickness =
+grapheme-width-method = unicode
+freetype-load-flags = hinting,force-autohint,monochrome,autohint
+theme = 3024 Night
+selection-foreground =
+selection-background =
+selection-invert-fg-bg = false
+minimum-contrast = 1
+cursor-color =
+cursor-invert-fg-bg = false
+cursor-opacity = 1
+cursor-style = block
+cursor-style-blink =
+cursor-text =
+cursor-click-to-move = true
+mouse-hide-while-typing = false
+mouse-shift-capture = false
+mouse-scroll-multiplier = 1
+background-opacity = 1
+background-blur = false
+unfocused-split-opacity = 0.7
+unfocused-split-fill =
+split-divider-color =
+command =
+initial-command =
+wait-after-command = false
+abnormal-command-exit-runtime = 250
+scrollback-limit = 10000000
+link-url = true
+maximize = false
+fullscreen = false
+title =
+class =
+x11-instance-name =
+working-directory =
+keybind = super+page_up=scroll_page_up
+keybind = super+ctrl+equal=equalize_splits
+keybind = super+physical:four=goto_tab:4
+keybind = super+shift+down=jump_to_prompt:1
+keybind = super+shift+w=close_window
+keybind = super+shift+left_bracket=previous_tab
+keybind = super+backspace=text:\x15
+keybind = super+alt+w=close_tab
+keybind = super+w=close_surface
+keybind = super+alt+i=inspector:toggle
+keybind = super+physical:eight=goto_tab:8
+keybind = super+alt+right=goto_split:right
+keybind = shift+up=adjust_selection:up
+keybind = super+down=jump_to_prompt:1
+keybind = super+enter=toggle_fullscreen
+keybind = super+t=new_tab
+keybind = super+c=copy_to_clipboard
+keybind = super+shift+right_bracket=next_tab
+keybind = super+physical:one=goto_tab:1
+keybind = shift+left=adjust_selection:left
+keybind = super+equal=increase_font_size:1
+keybind = shift+page_up=adjust_selection:page_up
+keybind = super+physical:three=goto_tab:3
+keybind = super+right=text:\x05
+keybind = super+d=new_split:right
+keybind = super+s=new_split:left
+keybind = super+ctrl+down=resize_split:down,10
+keybind = shift+end=adjust_selection:end
+keybind = super+plus=increase_font_size:1
+keybind = super+q=quit
+keybind = super+home=scroll_to_top
+keybind = super+ctrl+left=resize_split:left,10
+keybind = alt+left=esc:b
+keybind = super+ctrl+up=resize_split:up,10
+keybind = super+left=text:\x01
+keybind = super+shift+up=jump_to_prompt:-1
+keybind = shift+right=adjust_selection:right
+keybind = super+comma=open_config
+keybind = super+shift+comma=reload_config
+keybind = super+minus=decrease_font_size:1
+keybind = shift+page_down=adjust_selection:page_down
+keybind = ctrl+tab=next_tab
+keybind = super+a=select_all
+keybind = alt+right=esc:f
+keybind = super+shift+enter=toggle_split_zoom
+keybind = super+alt+down=goto_split:down
+keybind = super+ctrl+f=toggle_fullscreen
+keybind = super+ctrl+right=resize_split:right,10
+keybind = super+alt+shift+j=write_screen_file:open
+keybind = shift+down=adjust_selection:down
+keybind = ctrl+shift+tab=previous_tab
+keybind = super+n=new_window
+keybind = super+alt+left=goto_split:left
+keybind = super+page_down=scroll_page_down
+keybind = super+alt+shift+w=close_all_windows
+keybind = super+alt+up=goto_split:up
+keybind = super+shift+v=paste_from_selection
+keybind = super+left_bracket=goto_split:previous
+keybind = super+physical:nine=last_tab
+keybind = super+right_bracket=goto_split:next
+keybind = super+end=scroll_to_bottom
+keybind = super+shift+j=write_screen_file:paste
+keybind = super+shift+d=new_split:down
+keybind = super+zero=reset_font_size
+keybind = super+physical:five=goto_tab:5
+keybind = shift+home=adjust_selection:home
+keybind = super+physical:seven=goto_tab:7
+keybind = super+up=jump_to_prompt:-1
+keybind = super+k=clear_screen
+keybind = super+physical:two=goto_tab:2
+keybind = super+physical:six=goto_tab:6
+keybind = super+v=paste_from_clipboard
+window-padding-x = 2
+window-padding-y = 2
+window-padding-balance = false
+window-padding-color = background
+window-vsync = true
+window-inherit-working-directory = true
+window-inherit-font-size = true
+window-decoration = auto
+window-title-font-family =
+window-subtitle = false
+window-theme = auto
+window-colorspace = srgb
+window-height = 0
+window-width = 0
+window-position-x =
+window-position-y =
+window-save-state = default
+window-step-resize = false
+window-new-tab-position = current
+window-titlebar-background =
+window-titlebar-foreground =
+resize-overlay = after-first
+resize-overlay-position = center
+resize-overlay-duration = 750ms
+focus-follows-mouse = false
+clipboard-read = ask
+clipboard-write = allow
+clipboard-trim-trailing-spaces = true
+clipboard-paste-protection = true
+clipboard-paste-bracketed-safe = true
+title-report = false
+image-storage-limit = 320000000
+copy-on-select = true
+click-repeat-interval = 0
+config-file =
+config-default-files = true
+confirm-close-surface = true
+quit-after-last-window-closed = false
+quit-after-last-window-closed-delay =
+initial-window = true
+quick-terminal-position = top
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0.2
+quick-terminal-autohide = true
+quick-terminal-space-behavior = move
+shell-integration = detect
+shell-integration-features = cursor,no-sudo,title
+osc-color-report-format = 16-bit
+vt-kam-allowed = false
+custom-shader =
+custom-shader-animation = true
+app-notifications = clipboard-copy
+macos-non-native-fullscreen = false
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = visible
+macos-option-as-alt =
+macos-window-shadow = true
+macos-auto-secure-input = true
+macos-secure-input-indication = true
+macos-icon = official
+macos-icon-frame = aluminum
+macos-icon-ghost-color =
+macos-icon-screen-color =
+linux-cgroup = single-instance
+linux-cgroup-memory-limit =
+linux-cgroup-processes-limit =
+linux-cgroup-hard-fail = false
+gtk-opengl-debug = false
+gtk-single-instance = desktop
+gtk-titlebar = true
+gtk-tabs-location = top
+gtk-titlebar-hide-when-maximized = false
+adw-toolbar-style = raised
+gtk-wide-tabs = true
+gtk-custom-css =
+desktop-notifications = true
+bold-is-bright = false
+term = xterm-ghostty
+enquiry-response =
+auto-update = download
+auto-update-channel = stable

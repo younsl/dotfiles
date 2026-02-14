@@ -1,0 +1,142 @@
+#----------------------------------
+# Keypair and SSH related files
+#----------------------------------
+# Ignore SSH keypair files
+.ssh/id_rsa
+.ssh/id_rsa.pub
+*.pub
+*.pem
+*.rsa
+*.dsa
+*.ppk
+
+# Ignore SSH configuration and known_hosts
+.ssh/config
+.ssh/known_hosts
+
+#----------------------------------
+# Token
+#----------------------------------
+# Ignore authentication tokens and secrets
+*.token
+*.secret
+
+#----------------------------------
+# DS_Store
+#----------------------------------
+.DS_Store
+
+#----------------------------------
+# fortune
+#----------------------------------
+*.fortune.dat
+
+#----------------------------------
+# Brewfile backup timestamp
+#----------------------------------
+.brewfile-last-backup
+
+#----------------------------------
+# AWS CLI
+#----------------------------------
+# Ignore AWS config and credential files
+.aws/*
+*.aws
+
+# Ignore AWS credentials file
+credentials
+
+# Ignore AWS config file
+config
+!nvim/lua/config
+
+#----------------------------------
+# Git
+#----------------------------------
+# Ignore git configuration files
+.gitconfig
+.gitconfig-*
+
+config-*
+!config-younsl
+
+!configs/git/config
+!configs/git/config-sample
+
+younsl-gpg-signing.key
+
+#----------------------------------
+# Terraform
+#----------------------------------
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files, which are likely to contain sensitive data, such as
+# password, private keys, and other secrets. These should not be part of version 
+# control as they are data points which are potentially sensitive and subject 
+# to change depending on the environment.
+*.tfvars
+*.tfvars.json
+
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include override files you do wish to add to version control using negated pattern
+# !example_override.tf
+
+# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
+# example: *tfplan*
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+#----------------------------------
+# Neovim
+#----------------------------------
+*.swp
+*.swo
+!configs/nvim/**/config
+
+#----------------------------------
+# Ghostty
+#----------------------------------
+!configs/ghostty/config
+
+#----------------------------------
+# Zed
+#----------------------------------
+configs/zed/*
+
+!configs/zed/themes/
+!configs/zed/settings.json
+
+configs/zed/conversations/
+configs/zed/embeddings/
+configs/zed/prompts/
+
+#----------------------------------
+# Temporary ad-hoc script
+#----------------------------------
+commit-history-cleaner.sh
+!scripts/**/commit-history-cleaner.sh
+
+nvim/lazy-lock.json
+
+#----------------------------------
+# Zsh local config (sensitive aliases)
+#----------------------------------
+.zshrc.local
+configs/zsh/.zshrc.local
