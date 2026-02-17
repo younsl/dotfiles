@@ -6,6 +6,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal dotfiles repository optimized for macOS Sequoia 15.x. Manages configuration files through symbolic links, with automated backup and setup workflows.
 
+## Commit Message Convention
+
+Format: `[<DOTFILE>] <type>(<scope>): <detail message>`
+
+- `<DOTFILE>`은 변경 대상 도구/설정 이름입니다.
+- 특정 도구에 해당하지 않는 변경은 `[repo]`를 사용합니다.
+
+Examples:
+- `[nvim] feat(plugin): add lazy.nvim telescope extension`
+- `[zsh] fix(alias): correct kubectl alias conflict`
+- `[k9s] chore(skin): update catppuccin color scheme`
+- `[git] refactor(config): consolidate GPG signing settings`
+- `[repo] chore(docs): update CLAUDE.md`
+
+Types: `feat`, `fix`, `refactor`, `docs`, `test`, `chore`, etc.
+
 ## Key Commands
 
 ### Bootstrap and Setup
