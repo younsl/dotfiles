@@ -1,5 +1,6 @@
 tap "argoproj/tap"
 tap "aws/tap"
+tap "danielfoehrkn/switch"
 tap "derailed/k9s"
 tap "gjbae1212/gossm"
 tap "hashicorp/tap"
@@ -18,6 +19,8 @@ brew "argocd"
 brew "autojump"
 # Official Amazon AWS command-line interface
 brew "awscli"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
 # Arbitrary precision calculator
 brew "calc"
 # Emacs dependency management
@@ -74,8 +77,6 @@ brew "kubernetes-cli"
 brew "krew"
 # Kubernetes prompt info for bash and zsh
 brew "kube-ps1"
-# Tool that can switch between kubectl contexts easily and create aliases
-brew "kubectx"
 # Language Server for the Lua language
 brew "lua-language-server"
 # Mac App Store command-line interface
@@ -138,14 +139,16 @@ brew "zola"
 brew "argoproj/tap/kubectl-argo-rollouts"
 # eks-node-viewer is a tool for visualizing dynamic node usage within an EKS cluster.
 brew "aws/tap/eks-node-viewer"
-# gossm is interactive CLI tool that you select server in AWS and then could connect or send files your AWS server using start-session, ssh, scp under AWS Systems Manger.
-brew "gjbae1212/gossm/gossm"
+# The kubectx for operators.
+brew "danielfoehrkn/switch/switch"
 # Interactive EC2 Session Manager connection tool with fuzzy search
 brew "younsl/tap/ij"
 # Karpenter NodePool consolidation manager CLI tool
 brew "younsl/tap/karc"
 # Interactive EKS cluster upgrade CLI tool
 brew "younsl/tap/kup"
+# Prometheus metric filter configuration generator
+brew "younsl/tap/promdrop"
 # Terminal-based AI coding assistant
 cask "claude-code"
 # Online diagram software
@@ -171,10 +174,10 @@ cargo "cargo-audit"
 cargo "cargo-zigbuild"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2026-02-14
+# Date: 2026-02-17
 #-------------------------------
-# Installed tap count: 8
-# Installed brew count: 70
+# Installed tap count: 9
+# Installed brew count: 71
 # Installed cask count: 10
 # Installed mas count: 0
 # Installed vscode count: 0

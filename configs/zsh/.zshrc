@@ -221,6 +221,14 @@ autoload -Uz ~/.config/zsh/functions/*(:t)
 alias chc=commit-history-cleaner
 
 #----------------------------------
+# kubeswitch
+#----------------------------------
+source <(switcher init zsh)
+source <(switcher completion zsh)
+compdef _switcher switch
+alias s=switch
+
+#----------------------------------
 # Load local config (not tracked in git)
 #----------------------------------
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
