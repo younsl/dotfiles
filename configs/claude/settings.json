@@ -7,36 +7,6 @@
     "defaultMode": "default"
   },
   "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "nohup afplay ~/.claude/hooks/sounds/PeasantReady1.wav &"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "nohup afplay ~/.claude/hooks/sounds/PeasantYes3.wav &"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "nohup afplay ~/.claude/hooks/sounds/PeasantWhat3.wav &"
-          }
-        ]
-      }
-    ],
     "PostToolUse": [
       {
         "matcher": "Edit|Write",
@@ -53,11 +23,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "nohup afplay ~/.claude/hooks/sounds/PeasantYes4.wav &"
-          },
-          {
-            "type": "command",
-            "command": "osascript -e 'display notification \"Task completed\" with title \"Claude Code\" sound name \"default\"'"
+            "command": "osascript -e 'display notification \"Task completed\" with title \"Claude Code\"'"
           }
         ]
       }
