@@ -90,11 +90,15 @@ brew "minikube"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Open-source, cross-platform JavaScript runtime environment
-brew "node"
+brew "node", link: false
+# Open-source, cross-platform JavaScript runtime environment
+brew "node@22", link: true
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # Tool for managing OCI containers and pods
 brew "podman"
+# Alternative to docker-compose using podman
+brew "podman-compose"
 # Framework for managing multi-language pre-commit hooks
 brew "pre-commit"
 # Persistent key-value database, with built-in net interface
@@ -141,6 +145,8 @@ brew "argoproj/tap/kubectl-argo-rollouts"
 brew "aws/tap/eks-node-viewer"
 # The kubectx for operators.
 brew "danielfoehrkn/switch/switch"
+# TUI tool to find and remove unused AMIs and associated EBS snapshots
+brew "younsl/tap/ami-cleanup"
 # Interactive EC2 Session Manager connection tool with fuzzy search
 brew "younsl/tap/ij"
 # Karpenter NodePool consolidation manager CLI tool
@@ -171,10 +177,10 @@ cargo "cargo-audit"
 cargo "cargo-zigbuild"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2026-03-04
+# Date: 2026-03-08
 #-------------------------------
 # Installed tap count: 9
-# Installed brew count: 69
+# Installed brew count: 72
 # Installed cask count: 10
 # Installed mas count: 0
 # Installed vscode count: 0
