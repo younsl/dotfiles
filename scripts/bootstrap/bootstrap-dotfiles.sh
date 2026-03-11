@@ -19,6 +19,7 @@ COMPONENTS=(
     "claude/CLAUDE.md:$HOME/.claude/CLAUDE.md"
     "claude/skills:$HOME/.claude/skills"
     "claude/hooks:$HOME/.claude/hooks"
+    "claude/scripts:$HOME/.claude/scripts"
 )
 
 print_symlinks() {

@@ -29,10 +29,15 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "python3 ~/.claude/scripts/context-monitor.py"
+  },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true,
     "security-guidance@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true
-  }
+  },
+  "effortLevel": "high"
 }

@@ -11,6 +11,10 @@ tap "younsl/tap"
 brew "actionlint"
 # General-purpose data compression with high compression ratio
 brew "xz"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Automate deployment, configuration, and upgrading
+brew "ansible"
 # Get stuff done with container-native workflows for Kubernetes
 brew "argo"
 # GitOps Continuous Delivery for Kubernetes
@@ -119,8 +123,6 @@ brew "tflint"
 brew "tmux"
 # OpenTofu version manager inspired by tfenv
 brew "tofuenv"
-# Display directories as trees (with optional color/HTML output)
-brew "tree"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Disaster recovery for Kubernetes resources and persistent volumes
@@ -177,10 +179,10 @@ cargo "cargo-audit"
 cargo "cargo-zigbuild"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2026-03-08
+# Date: 2026-03-11
 #-------------------------------
 # Installed tap count: 9
-# Installed brew count: 72
+# Installed brew count: 73
 # Installed cask count: 10
 # Installed mas count: 0
 # Installed vscode count: 0
