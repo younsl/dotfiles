@@ -2,10 +2,8 @@ tap "argoproj/tap"
 tap "aws/tap"
 tap "danielfoehrkn/switch"
 tap "derailed/k9s"
-tap "gjbae1212/gossm"
 tap "hashicorp/tap"
 tap "homebrew/autoupdate"
-tap "ramonvermeulen/whosthere"
 tap "younsl/tap"
 # Static checker for GitHub Actions workflow files
 brew "actionlint"
@@ -87,8 +85,6 @@ brew "lua-language-server"
 brew "marp-cli"
 # Mac App Store command-line interface
 brew "mas"
-# CLI for interacting with Grafana Mimir
-brew "mimirtool"
 # Run a Kubernetes cluster locally
 brew "minikube"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -179,10 +175,10 @@ cargo "cargo-audit"
 cargo "cargo-zigbuild"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2026-03-11
+# Date: 2026-03-12
 #-------------------------------
-# Installed tap count: 9
-# Installed brew count: 73
+# Installed tap count: 7
+# Installed brew count: 72
 # Installed cask count: 10
 # Installed mas count: 0
 # Installed vscode count: 0
