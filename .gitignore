@@ -136,6 +136,12 @@ commit-history-cleaner.sh
 nvim/lazy-lock.json
 
 #----------------------------------
+# Rust build artifacts
+#----------------------------------
+**/target/
+context-monitor-rs
+
+#----------------------------------
 # Zsh local config (sensitive aliases)
 #----------------------------------
 .zshrc.local
