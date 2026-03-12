@@ -39,5 +39,6 @@
     "claude-md-management@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true
   },
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "voiceEnabled": true
 }
