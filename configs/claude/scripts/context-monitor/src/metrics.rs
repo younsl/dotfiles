@@ -36,7 +36,7 @@ fn format_cost(cost_usd: Option<f64>) -> Option<String> {
         format!("${usd:.3}")
     };
 
-    Some(color.paint(&format!("💰 {text}")))
+    Some(color.paint(&text))
 }
 
 fn format_duration(duration_ms: Option<u64>) -> Option<String> {
@@ -55,7 +55,7 @@ fn format_duration(duration_ms: Option<u64>) -> Option<String> {
         format!("{minutes:.0}m")
     };
 
-    Some(color.paint(&format!("⏱ {text}")))
+    Some(color.paint(&format!("t:{text}")))
 }
 
 fn format_lines(added: Option<i64>, removed: Option<i64>) -> Option<String> {
@@ -75,5 +75,5 @@ fn format_lines(added: Option<i64>, removed: Option<i64>) -> Option<String> {
     };
 
     let sign = if net >= 0 { "+" } else { "" };
-    Some(color.paint(&format!("📝 {sign}{net}")))
+    Some(color.paint(&format!("{sign}{net}L")))
 }

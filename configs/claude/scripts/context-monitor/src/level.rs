@@ -32,11 +32,10 @@ impl Level {
 
     pub fn icon(self) -> &'static str {
         match self {
-            Self::Critical => "🚨",
-            Self::High => "🔴",
-            Self::Warning => "🟠",
-            Self::Moderate => "🟡",
-            Self::Normal => "🟢",
+            Self::Critical => "!!",
+            Self::High => "!",
+            Self::Warning => "*",
+            Self::Moderate | Self::Normal => "",
         }
     }
 

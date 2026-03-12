@@ -10,6 +10,7 @@ pub enum Color {
     Green,
     Blue,
     Gray,
+    Bold,
     Reset,
 }
 
@@ -24,6 +25,7 @@ impl Color {
             Self::Green => "\x1b[32m",
             Self::Blue => "\x1b[94m",
             Self::Gray => "\x1b[90m",
+            Self::Bold => "\x1b[1m",
             Self::Reset => "\x1b[0m",
         }
     }

@@ -34,20 +34,21 @@ impl ContextInfo {
 
     pub fn display(&self) -> String {
         let level = self.level();
-        let bar = progress_bar(self.percent, 8);
+        let icon = level.icon();
         let alert = self.alert_label();
-        let alert_str = if alert.is_empty() {
-            String::new()
-        } else {
-            format!(" {alert}")
+
+        let suffix = match (icon.is_empty(), alert.is_empty()) {
+            (true, true) => String::new(),
+            (false, true) => format!(" {icon}"),
+            (true, false) => format!(" {alert}"),
+            (false, false) => format!(" {icon} {alert}"),
         };
 
         format!(
-            "{}{}{bar}{} {:.0}%{alert_str}",
-            level.icon(),
+            "ctx:{}{:.0}%{}{suffix}",
             level.color(),
-            Color::Reset,
             self.percent,
+            Color::Reset,
         )
     }
 
@@ -65,12 +66,7 @@ impl ContextInfo {
 }
 
 pub fn unknown_display() -> String {
-    "🔵 ???".to_string()
-}
-
-fn progress_bar(percent: f64, segments: usize) -> String {
-    let filled = ((percent / 100.0) * segments as f64) as usize;
-    "█".repeat(filled) + &"▁".repeat(segments - filled)
+    "ctx:???".to_string()
 }
 
 const TAIL_LINES: usize = 15;

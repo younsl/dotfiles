@@ -90,9 +90,9 @@ brew "minikube"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Open-source, cross-platform JavaScript runtime environment
-brew "node", link: false
+brew "node"
 # Open-source, cross-platform JavaScript runtime environment
-brew "node@22", link: true
+brew "node@22"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # Tool for managing OCI containers and pods
@@ -175,7 +175,7 @@ cargo "cargo-audit"
 cargo "cargo-zigbuild"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2026-03-12
+# Date: 2026-03-13
 #-------------------------------
 # Installed tap count: 7
 # Installed brew count: 72

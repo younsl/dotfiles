@@ -9,6 +9,7 @@ use context::ContextInfo;
 use input::InputData;
 use std::io::{self, Read};
 use std::path::PathBuf;
+use std::process::Command;
 use std::{env, fs};
 
 fn main() {
@@ -21,9 +22,9 @@ fn main() {
         let msg = format!("{e}");
         let truncated = if msg.len() > 20 { &msg[..20] } else { &msg };
         println!(
-            "{} {} 🧠 {}",
+            "{} {} {}",
             Color::Blue.paint("[Claude]"),
-            Color::BrightYellow.paint(&format!("📁 {cwd}")),
+            Color::BrightYellow.paint(&cwd),
             Color::Red.paint(&format!("[Error: {truncated}]")),
         );
     }
@@ -55,6 +56,7 @@ fn run() -> Result<(), Box<dyn std::error::Error>> {
     };
 
     let directory = format_directory(&data);
+    let branch = git_branch(&data);
 
     let session_metrics = data
         .cost
@@ -62,10 +64,14 @@ fn run() -> Result<(), Box<dyn std::error::Error>> {
         .map(metrics::format_session_metrics)
         .unwrap_or_default();
 
+    let branch_display = branch
+        .map(|b| format!(" {}", Color::Green.paint(&format!("on {b}"))))
+        .unwrap_or_default();
+
     println!(
-        "{} {} 🧠 {context_display}{session_metrics}",
-        model_color.paint(&format!("[{model_name} {effort}]")),
-        Color::BrightYellow.paint(&format!("📁 {directory}")),
+        "{} {}{branch_display} {context_display}{session_metrics}",
+        Color::Bold.paint(&model_color.paint(&format!("{model_name} {effort}"))),
+        Color::BrightYellow.paint(&directory),
     );
 
     Ok(())
@@ -117,6 +123,30 @@ fn basename(path: &str) -> String {
         .and_then(|n| n.to_str())
         .unwrap_or("unknown")
         .to_string()
+}
+
+fn git_branch(data: &InputData) -> Option<String> {
+    let dir = data
+        .workspace
+        .as_ref()
+        .and_then(|ws| ws.current_dir.as_deref().or(ws.project_dir.as_deref()));
+
+    let output = Command::new("git")
+        .args(["rev-parse", "--abbrev-ref", "HEAD"])
+        .current_dir(dir.unwrap_or("."))
+        .output()
+        .ok()?;
+
+    if !output.status.success() {
+        return None;
+    }
+
+    let branch = String::from_utf8(output.stdout).ok()?.trim().to_string();
+    if branch.is_empty() {
+        None
+    } else {
+        Some(branch)
+    }
 }
 
 fn read_effort() -> String {
