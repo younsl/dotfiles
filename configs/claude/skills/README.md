@@ -16,6 +16,7 @@ Custom skills for DevOps workflows. Each skill is a declarative prompt template 
 | `promql-generator` | Generator | PromQL queries, alerting rules, SLO/SLIs |
 | `helm-validator` | Validator | Helm chart review and audit |
 | `k8s-validator` | Validator | Kubernetes manifest review and audit |
+| `release-retrigger` | Action | Re-trigger release by cycling a semver tag |
 
 ## Usage
 
