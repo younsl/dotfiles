@@ -17,8 +17,8 @@ Re-trigger a release pipeline by cycling a semver tag with updated changes.
 - Tag format: semver without `v` prefix (`1.2.3`, `0.1.0`)
 - User MUST specify the tag — never assume or auto-increment
 - Commit message follows the repo's CLAUDE.md convention
-- Confirm with user before each destructive step (tag delete, release delete, image delete)
 - Push to the current branch only — never force-push
+- Phase 2: check existence first; silently skip resources that don't exist (tag, release, image)
 
 ## Workflow
 
@@ -41,7 +41,9 @@ Re-trigger a release pipeline by cycling a semver tag with updated changes.
 
 ## GHCR Image Deletion Reference
 
-Derive package name from repository name. Use `gh api` to find and delete the version matching the tag.
+When the argument is `<name> <tag>` (e.g., `backstage 1.48.5-1`), the tag is `<name>/<tag>`, the GHCR package name is `<name>`, and the image tag to match is `<tag>`.
+
+Use `gh api` to find and delete the version matching the image tag.
 
 ```
 # List versions for the package
