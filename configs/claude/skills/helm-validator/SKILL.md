@@ -43,6 +43,13 @@ Validate Helm charts for correctness, security, and best practices.
 - No `privileged: true` by default
 - Secrets not stored in values.yaml
 
+### External CRD Guards
+
+| Check | Pass | Fail |
+|-------|------|------|
+| External CRD resources (ServiceMonitor, PrometheusRule) | Guarded with `.Capabilities.APIVersions.Has` | Only `.Values.*.enabled` check |
+| Chart's own CRDs | No guard | Guarded with `APIVersions.Has` (circular dependency) |
+
 ### Production Readiness
 
 - `nodeSelector`, `tolerations`, `affinity` supported

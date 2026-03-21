@@ -62,6 +62,13 @@ securityContext:
 - No hardcoded namespaces (use `{{ .Release.Namespace }}`)
 - No secrets in values.yaml
 
+## External CRD Guards
+
+| Resource type | Guard with `APIVersions.Has` | Reason |
+|---------------|------------------------------|--------|
+| External CRDs (ServiceMonitor, PrometheusRule) | Yes | Prevents install failure when CRD absent |
+| Chart's own CRDs | Never | Circular dependency on first install |
+
 ## HPA-Aware Deployments
 
 When `autoscaling.enabled` is true, omit `replicas` from Deployment to avoid GitOps conflicts:
