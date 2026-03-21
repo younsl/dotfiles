@@ -8,7 +8,7 @@ allowed-tools: Bash, Read, Edit, Glob, Grep
 
 ## Constraints
 
-- **Dependency wrapper pattern** — if the chart wraps upstream via `Chart.yaml` dependencies, bump `dependencies[].version` only; never vendor or modify upstream templates
+- **Wrapper chart pattern** — if the chart is a wrapper chart (minimal templates, upstream chart as dependency, values-only override), bump `dependencies[].version` and sync `appVersion` to match the upstream chart's `appVersion`; never vendor or modify upstream templates
 - **Verify version exists before editing** — query the registry first; if the version is not found, abort and show the latest available version
 - **Preserve all YAML comments** — never strip, rewrite, or reorder comments in `values.yaml` or `Chart.yaml`
 - **Preserve key order** — do not alphabetize or reformat; edit only the target value in place
@@ -20,12 +20,8 @@ allowed-tools: Bash, Read, Edit, Glob, Grep
 ```
 bump(<chart>): Upgrade <chart> from <old version> to <new version>
 
-Bumped components:
-- Chart version: <old> → <new>        (if changed)
-- appVersion: <old> → <new>           (if changed)
-- image tag: <old> → <new>            (if changed)
-
-Source: <upstream release URL or registry>
+* Bump <component> from <old version> to <new version>
+* Source: <upstream release URL or registry>
 ```
 
 ## Version Verification Reference
