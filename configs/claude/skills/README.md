@@ -9,6 +9,7 @@ Custom skills for DevOps workflows. Each skill is a declarative prompt template 
 | `bash-generator` | Generator | Production-ready Bash scripts |
 | `dockerfile-generator` | Generator | Optimized, secure Dockerfiles |
 | `github-actions-generator` | Generator | GitHub Actions workflow files |
+| `helm-bump` | Action | Bump Helm chart versions and image tags |
 | `helm-generator` | Generator | Helm charts with secure defaults |
 | `k8s-generator` | Generator | Kubernetes manifests (EKS-optimized) |
 | `rust-generator` | Generator | Rust applications and CLI tools |
