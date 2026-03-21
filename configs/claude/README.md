@@ -18,4 +18,4 @@ claude/
 
 ## Scripts
 
-[`context-monitor-rs`](./scripts/context-monitor-rs) is a [Rust](https://github.com/rust-lang/rust)-based status line binary for Claude Code. Source is in [`scripts/context-monitor/`](./scripts/context-monitor/).
+`context-monitor-rs` is a [Rust](https://github.com/rust-lang/rust)-based status line binary for Claude Code. Source is in [`scripts/context-monitor/`](./scripts/context-monitor/).
