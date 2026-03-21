@@ -81,6 +81,8 @@ brew "krew"
 brew "kube-ps1"
 # Language Server for the Lua language
 brew "lua-language-server"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
 # Easily convert Marp Markdown files into static HTML/CSS, PDF, PPT and images
 brew "marp-cli"
 # Mac App Store command-line interface
@@ -89,8 +91,6 @@ brew "mas"
 brew "minikube"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node@22"
 # OpenBSD freely-licensed SSH connectivity tools
@@ -175,7 +175,7 @@ cargo "cargo-audit"
 cargo "cargo-zigbuild"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2026-03-16
+# Date: 2026-03-21
 #-------------------------------
 # Installed tap count: 7
 # Installed brew count: 72
