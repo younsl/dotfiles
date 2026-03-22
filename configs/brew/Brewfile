@@ -172,10 +172,11 @@ cask "stats"
 go "sigs.k8s.io/controller-tools/cmd/controller-gen"
 go "github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb"
 cargo "cargo-audit"
+cargo "cargo-llvm-cov"
 cargo "cargo-zigbuild"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2026-03-21
+# Date: 2026-03-22
 #-------------------------------
 # Installed tap count: 7
 # Installed brew count: 72
