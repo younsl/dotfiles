@@ -9,7 +9,7 @@ Generate production-ready Rust code following best practices.
 
 ## Output Requirements
 
-- Edition 2024, `rust-version = "1.93"`
+- Edition 2024, `rust-version = "1.94"`
 - `unsafe_code` forbidden via `[lints.rust]` unless explicitly justified
 - Clippy lints enabled: `all`, `pedantic`, `nursery` as warnings
 - Custom errors defined with `thiserror`; application errors use `anyhow`
@@ -17,7 +17,7 @@ Generate production-ready Rust code following best practices.
 - Tokio async runtime for concurrent operations
 - Structured logging with `tracing` crate
 - CLI argument parsing with `clap` (derive API)
-- Release profile: `lto = true`, `codegen-units = 1`, `panic = "abort"`
+- Release profile: `opt-level = 3`, `lto = true`, `codegen-units = 1`, `strip = true`
 
 ## Project Structure
 
@@ -49,23 +49,17 @@ pedantic = "warn"
 nursery = "warn"
 
 [profile.release]
+opt-level = 3
 lto = true
 codegen-units = 1
-panic = "abort"
+strip = true
 ```
 
-## Error Handling
+## Build-Time Metadata
 
-- Library code: `thiserror` with typed error enum and `#[from]` for conversions
-- Application code: `anyhow::Result` with `.context()` for error messages
-- Error propagation via `?` operator
-
-## Ownership & Borrowing
-
-- Take `&str` not `String` for read-only string parameters
-- Take ownership (`String`) only when storing or transferring
-- Use `Cow<'_, str>` when flexibility between owned/borrowed is needed
-- Explicit lifetime annotations only when compiler cannot infer
+- `build.rs` injects `BUILD_COMMIT` (short git hash) and `BUILD_DATE` (YYYY-MM-DD) via `cargo:rustc-env`
+- Use `const_format` crate for compile-time string formatting of version info
+- Add `cargo:rerun-if-changed=.git/HEAD` to rebuild on commit changes
 
 ## CLI Flag Convention (GNU/POSIX)
 
@@ -82,19 +76,3 @@ panic = "abort"
 ## Version Control
 
 - Binary projects: `Cargo.lock` must be committed for reproducible builds
-
-## Security
-
-- Audit dependencies with `cargo audit`
-- Use `secrecy` crate for sensitive data
-- Use `ring` or `rustls` for cryptography
-- Validate all external inputs
-
-## Quality Commands
-
-```bash
-cargo fmt --check
-cargo clippy -- -D warnings
-cargo test --verbose
-cargo audit
-```
