@@ -79,6 +79,8 @@ brew "kubernetes-cli"
 brew "krew"
 # Kubernetes prompt info for bash and zsh
 brew "kube-ps1"
+# Kubernetes Native Policy Management
+brew "kyverno"
 # Language Server for the Lua language
 brew "lua-language-server"
 # Open-source, cross-platform JavaScript runtime environment
@@ -176,10 +178,10 @@ cargo "cargo-llvm-cov"
 cargo "cargo-zigbuild"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2026-03-24
+# Date: 2026-03-26
 #-------------------------------
 # Installed tap count: 7
-# Installed brew count: 72
+# Installed brew count: 73
 # Installed cask count: 10
 # Installed mas count: 0
 # Installed vscode count: 0
