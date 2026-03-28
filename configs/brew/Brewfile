@@ -176,9 +176,13 @@ go "github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb"
 cargo "cargo-audit"
 cargo "cargo-llvm-cov"
 cargo "cargo-zigbuild"
+krew "kyverno"
+krew "node-shell"
+krew "stern"
+krew "tree"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2026-03-26
+# Date: 2026-03-28
 #-------------------------------
 # Installed tap count: 7
 # Installed brew count: 73
