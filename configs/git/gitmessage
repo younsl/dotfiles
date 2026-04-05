@@ -1,0 +1,44 @@
+# Header (mandatory)
+# <type>[optional scope]: <short summary>
+# |<----  Using a Maximum Of 50 Characters  ---->|
+
+
+# Body (optional)
+# Explain what, and why this change is being made
+# |<----   Try To Limit Each Line to a Maximum Of 72 Characters   ---->|
+
+
+# Footer (optional)
+# Provide links or keys to any relevant tickets, articles or other resources
+# Example: Closes #1, fixes #2, resolves #3
+# Breaking changes should start with the word "BREAKING CHANGES:" followed by space
+# Example: BREAKING CHANGES: config filename changed
+
+# --- COMMIT END ---
+# Type can be
+#    build    (affects build components, e.g. ci pipeline, dependencies)
+#    chore    (miscellaneous changes, e.g. modifying .gitignore)
+#    docs     (changes to documentation)
+#    feat     (new feature)
+#    fix      (bug fix)
+#    perf     (refactor commit that improves performance)
+#    refactor (rewrite/restructure code that does not change behaviour)
+#    style    (formatting, missing semi colons, etc; no code change)
+#    test     (adding or correcting tests)
+# --------------------
+# Remember to
+#   - Use the imperative, present tense: "change" not "changed" nor "changes"
+#     동사는 현재 시제에 명령형으로 작성한다: changed나 changes가 아닌 change.
+#   - Don't capitalize the subject line
+#     제목줄은 대문자로 시작한다.
+#   - Don't end the subject line with a period
+#     제목줄은 마침표로 끝내지 않는다.
+#   - Separate subject from body with a blank line
+#     본문과 제목에는 빈줄을 넣어서 구분한다.
+#   - Separate body from footer with a blank line
+#     본문과 제목에는 빈줄을 넣어서 구분한다.
+#   - Use the body to explain what and why vs. how
+#     본문에는 "어떻게" 보다는 "왜"와 "무엇을" 설명한다.
+#   - Can use multiple lines with "-" for bullet points in body
+#     본문에 목록을 나타낼때는 "-"로 시작한다.
+# --------------------

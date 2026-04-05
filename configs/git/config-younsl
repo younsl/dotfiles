@@ -1,0 +1,6 @@
+[user]
+	name = younsl
+	email = cysl@kakao.com
+
+[commit]
+  gpgsign = true
