@@ -14,8 +14,14 @@ return {
       "markdown",
       "markdown_inline",
       "terraform",
+      "hcl",
       "helm",
       "yaml",
+      "json",
+      "toml",
+      "rust",
+      "bash",
+      "dockerfile",
     })
 
     -- Enable treesitter-based syntax highlighting

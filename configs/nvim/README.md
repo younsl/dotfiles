@@ -149,7 +149,6 @@ ggVGd  # [Normal Mode] 전체 선택 후 삭제
 
 This configuration uses [Lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager. Key plugins include:
 
-- [Comment.nvim](https://github.com/numToStr/Comment.nvim): Code commenting
 - [copilot.vim](https://github.com/github/copilot.vim): Github Copilot (AI code completion)
 - [data-explorer.nvim](https://github.com/Kyytox/data-explorer.nvim): Data file explorer (CSV, TSV, JSON)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim): Git diff indicators in sign column
@@ -157,7 +156,6 @@ This configuration uses [Lazy.nvim](https://github.com/folke/lazy.nvim) as the p
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim): Statusline plugin
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs): Auto brackets
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp): Completion engine
-- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig): Language server protocol (LSP)
 - [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua): File explorer
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter): Syntax highlighting (uses `main` branch new API after [legacy `nvim-treesitter.configs` module was removed on 2025-05-24](https://github.com/nvim-treesitter/nvim-treesitter/commit/42fc28ba918343ebfd5565147a42a26580579482))
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context): Code context display for better readability

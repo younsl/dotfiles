@@ -55,6 +55,12 @@ brew install terraform-ls
 # Lua - Required for Lua LSP features
 brew install lua-language-server
 
+# Rust - Required for Rust LSP features
+brew install rust-analyzer
+
+# YAML - Required for YAML LSP features
+brew install yaml-language-server
+
 # CSS/HTML/JSON - Required for web development LSP features
 npm i -g vscode-langservers-extracted
 ```
@@ -62,7 +68,7 @@ npm i -g vscode-langservers-extracted
 **Verification**: Check if language servers are installed:
 ```bash
 # Quick check all servers
-which terraform-ls gopls helm_ls lua-language-server vscode-css-language-server
+which terraform-ls gopls helm_ls lua-language-server rust-analyzer yaml-language-server vscode-css-language-server
 
 # Individual check
 command -v gopls && echo "✓ gopls installed" || echo "✗ gopls missing"
@@ -76,6 +82,8 @@ vim.lsp.enable('pyright')
 vim.lsp.enable('gopls')
 vim.lsp.enable('terraformls')
 vim.lsp.enable('lua_ls')
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('yamlls')
 vim.lsp.enable('cssls')
 ```
 
@@ -93,12 +101,12 @@ vim.lsp.enable('cssls')
 # Check if LSP server binaries are installed on PATH
 # Use this when LSP features aren't working or after fresh installation
 nvim --headless -c 'lua
-for _, s in ipairs({"terraform-ls", "gopls", "helm_ls", "lua-language-server", "vscode-css-language-server"}) do
+for _, s in ipairs({"terraform-ls", "gopls", "helm_ls", "lua-language-server", "rust-analyzer", "yaml-language-server", "vscode-css-language-server"}) do
   print(s .. ": " .. (vim.fn.executable(s) == 1 and "✓ installed" or "✗ not found"))
 end' -c 'qa'
 
 # Alternative: Simple shell check for binary availability
-which terraform-ls gopls helm_ls lua-language-server vscode-css-language-server
+which terraform-ls gopls helm_ls lua-language-server rust-analyzer yaml-language-server vscode-css-language-server
 ```
 
 ## Migration from Old Configuration
@@ -218,6 +226,39 @@ return {
             }
         })
 
+        -- Rust LSP
+        vim.lsp.config('rust_analyzer', {
+            cmd = { "rust-analyzer" },
+            filetypes = { "rust" },
+            root_markers = { "Cargo.toml", ".git" },
+            settings = {
+                ["rust-analyzer"] = {
+                    check = {
+                        command = "clippy",
+                    },
+                },
+            },
+        })
+
+        -- YAML LSP
+        vim.lsp.config('yamlls', {
+            cmd = { "yaml-language-server", "--stdio" },
+            filetypes = { "yaml", "yaml.docker-compose" },
+            root_markers = { ".git" },
+            settings = {
+                yaml = {
+                    schemas = {
+                        kubernetes = "/*.k8s.yaml",
+                        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                        ["https://json.schemastore.org/github-action.json"] = "/.github/actions/*/action.yaml",
+                    },
+                    validate = true,
+                    completion = true,
+                    hover = true,
+                },
+            },
+        })
+
         -- CSS LSP
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -241,7 +282,7 @@ return {
         })
 
         -- Enable all configured LSP servers
-        vim.lsp.enable({'terraformls', 'gopls', 'helm_ls', 'lua_ls', 'cssls'})
+        vim.lsp.enable({'terraformls', 'gopls', 'helm_ls', 'lua_ls', 'rust_analyzer', 'yamlls', 'cssls'})
     end
 }
 ```
