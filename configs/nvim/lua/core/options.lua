@@ -71,13 +71,6 @@ vim.filetype.add({
     },
 })
 
--- TODO: remove after Neovim 0.12.0 treesitter range() nil bug is fixed
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "markdown",
-    callback = function(args)
-      vim.treesitter.stop(args.buf)
-    end,
-})
 
 -- Disable default statusline (using lualine instead)
 vim.o.laststatus = 0

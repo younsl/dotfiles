@@ -11,10 +11,6 @@ return {
       mode = 'cursor',
       separator = nil,
       zindex = 20,
-      -- TODO: remove after Neovim 0.12.0 markdown treesitter bug is fixed
-      on_attach = function(buf)
-        return vim.bo[buf].filetype ~= "markdown"
-      end,
     }
   end,
 }

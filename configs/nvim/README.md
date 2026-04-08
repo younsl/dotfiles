@@ -159,7 +159,7 @@ This configuration uses [Lazy.nvim](https://github.com/folke/lazy.nvim) as the p
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp): Completion engine
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig): Language server protocol (LSP)
 - [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua): File explorer
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter): Syntax highlighting
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter): Syntax highlighting (uses `main` branch new API after [legacy `nvim-treesitter.configs` module was removed on 2025-05-24](https://github.com/nvim-treesitter/nvim-treesitter/commit/42fc28ba918343ebfd5565147a42a26580579482))
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context): Code context display for better readability
 - [telescope](https://github.com/nvim-telescope/telescope.nvim): Fuzzy finder
 - [vim-fugitive](https://github.com/tpope/vim-fugitive): Git integration

@@ -125,6 +125,8 @@ brew "tflint"
 brew "tmux"
 # OpenTofu version manager inspired by tfenv
 brew "tofuenv"
+# Parser generator tool
+brew "tree-sitter-cli"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Disaster recovery for Kubernetes resources and persistent volumes
@@ -186,10 +188,10 @@ krew "stern"
 krew "tree"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2026-04-06
+# Date: 2026-04-08
 #-------------------------------
 # Installed tap count: 7
-# Installed brew count: 75
+# Installed brew count: 76
 # Installed cask count: 10
 # Installed mas count: 0
 # Installed vscode count: 0
