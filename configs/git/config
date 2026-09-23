@@ -1,0 +1,79 @@
+#--------------------------------------------------------
+# Reference for git configuration file:
+# https://git-scm.com/docs/git-config
+#--------------------------------------------------------
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
+[init]
+  defaultBranch = main
+
+[fetch]
+  prune = true
+  pruneTags = true
+  followTags = true
+
+[commit]
+  template = ~/.config/git/gitmessage
+  gpgsign = true
+
+[push]
+  autoSetupRemote = true
+  default = current
+
+[core]
+  ignorecase = false
+
+[color]
+  ui = auto
+
+[log]
+  abbrevCommit = true
+
+[http]
+  postBuffer = 500M
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[alias]
+  # Prune remote tracking branches and delete local branches that have been deleted on remote
+  # Branches checked out in a linked worktree are prefixed with '+' in 'git branch -vv',
+  # so use for-each-ref and remove the worktree before deleting the branch
+  sweep = "!f() { \
+	  git remote prune origin && \
+	  git for-each-ref --format='%(refname:short) %(upstream:track) %(worktreepath)' refs/heads \
+	  | awk '$2 == \"[gone]\"' \
+	  | while read -r branch _ wt; do \
+	      if [ -n \"$wt\" ]; then git worktree remove --force \"$wt\"; fi; \
+	      git branch -D \"$branch\"; \
+	    done; \
+  }; f"
+
+  # Show branches with their last commit date and subject
+  # for-each-ref: more formatting options than 'git branch', shows only local branches
+  br = "!f() { \
+	  git for-each-ref \
+		  --sort=-committerdate \
+		  --format=\"%(HEAD) %(refname:short) | %(authorname) | %(committerdate:relative) | %(contents:subject)\" \
+		  refs/heads/ \
+	  | column -t -s \"|\"; \
+  }; f"
+
+[includeIf "gitdir:~/github/younsl/"]
+  path = ~/.config/git/config-younsl
+
+[includeIf "gitdir:~/github/younsl/"]
+  path = ~/.config/git/younsl-gpg-signing.key
+
+[includeIf "gitdir:~/github/musinsa/"]
+  path = ~/.config/git/config-musinsa-payments

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Helm Validator"
+  short_description: "Review and validate Helm charts"
+  default_prompt: "Use $helm-validator to review a Helm chart for correctness and security."

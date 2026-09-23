@@ -1,0 +1,21 @@
+# $XDG_CONFIG_HOME/k9s/navigations.yaml
+# Custom jump navigation rules for quick resource traversal.
+# Ref: https://github.com/derailed/k9s/issues/3737
+jumps:
+  # ExternalSecret -> Secret (created by ESO)
+  "external-secrets.io/v1beta1/externalsecrets":
+    targetGVR: "v1/secrets"
+    fieldSelector: "metadata.name={{.metadata.name}}"
+    targetNamespace: "same"
+
+  # ServiceMonitor -> Service
+  "monitoring.coreos.com/v1/servicemonitors":
+    targetGVR: "v1/services"
+    fieldSelector: "metadata.name={{.metadata.name}}"
+    targetNamespace: "same"
+
+  # NodePool -> Nodes (Karpenter)
+  "karpenter.sh/v1/nodepools":
+    targetGVR: "v1/nodes"
+    labelSelector: "karpenter.sh/nodepool={{.metadata.name}}"
+    targetNamespace: "all"

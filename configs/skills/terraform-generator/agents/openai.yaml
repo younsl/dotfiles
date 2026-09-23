@@ -1,0 +1,4 @@
+interface:
+  display_name: "Terraform Generator"
+  short_description: "Generate Terraform AWS IaC files"
+  default_prompt: "Use $terraform-generator to create production-ready Terraform configuration."

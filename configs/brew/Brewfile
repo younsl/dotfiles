@@ -1,0 +1,195 @@
+tap "argoproj/tap"
+tap "atlassian/acli"
+tap "aws/tap"
+tap "danielfoehrkn/switch"
+tap "derailed/k9s"
+tap "grafana/grafana"
+tap "hashicorp/tap"
+tap "homebrew/autoupdate"
+tap "younsl/tap"
+# Static checker for GitHub Actions workflow files
+brew "actionlint"
+# General-purpose data compression with high compression ratio
+brew "xz"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Automate deployment, configuration, and upgrading
+brew "ansible"
+# Get stuff done with container-native workflows for Kubernetes
+brew "argo"
+# Shell extension to jump to frequently used directories
+brew "autojump"
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Arbitrary precision calculator
+brew "calc"
+# Incremental parsing library
+brew "tree-sitter"
+# Emacs dependency management
+brew "cask"
+# Tool for interacting with remote images and registries
+brew "crane"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+# Embeddable SQL OLAP Database Management System
+brew "duckdb"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GitHub command-line tool
+brew "gh"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
+# Distributed revision control system
+brew "git"
+# Quickly rewrite git repository history
+brew "git-filter-repo"
+# Git extension for versioning large files
+brew "git-lfs"
+# Open-source GitLab command-line tool
+brew "glab"
+# GNU Privacy Guard (OpenPGP)
+brew "gnupg"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Language server for the Go language
+brew "gopls"
+# Tool for automatically generating markdown documentation for helm charts
+brew "helm-docs"
+# Language server for Helm
+brew "helm-ls"
+# Agent multiplexer that lives in your terminal
+brew "herdr"
+# Improved top (interactive process viewer)
+brew "htop"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Domain specific configuration language for defining JSON data
+brew "jsonnet"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "k9s"
+# Run local Kubernetes cluster in Docker
+brew "kind"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Package manager for kubectl plugins
+brew "krew"
+# Kubernetes prompt info for bash and zsh
+brew "kube-ps1"
+# FAST Kubernetes manifests validator, with support for Custom Resources!
+brew "kubeconform"
+# Library to render SVG files using Cairo
+brew "librsvg"
+# Language Server for the Lua language
+brew "lua-language-server"
+# Mac App Store command-line interface
+brew "mas"
+# Java-based project management
+brew "maven"
+# Run a Kubernetes cluster locally
+brew "minikube"
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Development kit for the Java programming language
+brew "openjdk@21"
+# OpenBSD freely-licensed SSH connectivity tools
+brew "openssh"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
+# Tool for managing OCI containers and pods
+brew "podman"
+# Alternative to docker-compose using podman
+brew "podman-compose"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
+# Framework for managing multi-language pre-commit hooks
+brew "pre-commit"
+# Persistent key-value database, with built-in net interface
+brew "redis"
+# Rust toolchain installer
+brew "rustup"
+# Work with remote images registries
+brew "skopeo"
+# Test SSL/TLS enabled services to discover supported cipher suites
+brew "sslscan"
+# Terraform Language Server
+brew "terraform-ls"
+# Linter for Terraform files
+brew "tflint"
+# Terminal multiplexer
+brew "tmux"
+# OpenTofu version manager inspired by tfenv
+brew "tofuenv"
+# Parser generator tool
+brew "tree-sitter-cli"
+# Find and verify credentials
+brew "trufflehog"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
+# Disaster recovery for Kubernetes resources and persistent volumes
+brew "velero"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
+# Internet file retriever
+brew "wget"
+# Show the current WiFi network password
+brew "wifi-password"
+# Language Server for Yaml Files
+brew "yaml-language-server"
+# Linter for YAML files
+brew "yamllint"
+# JavaScript package manager
+brew "yarn"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
+# Software to interact with Atlassian Cloud from the terminal
+brew "atlassian/acli/acli", trusted: true
+# Vendor-agnostic OpenTelemetry Collector distribution with programmable pipelines
+brew "grafana/grafana/alloy", trusted: true
+# Interactive EC2 Session Manager connection tool with fuzzy search
+brew "younsl/tap/ij", trusted: true
+# Terminal-based AI coding assistant
+cask "claude-code@latest"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+# Web browser
+cask "google-chrome"
+# Screenshot and screen recording tool
+cask "macshot"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
+# Plugin for AWS CLI to start and end sessions that connect to managed instances
+cask "session-manager-plugin"
+# Team communication and collaboration software
+cask "slack"
+# System monitor for the menu bar
+cask "stats"
+# Connect to Windows
+cask "windows-app"
+go "sigs.k8s.io/controller-tools/cmd/controller-gen"
+go "helm.sh/helm/v3/cmd/helm"
+go "github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb"
+cargo "cargo-audit"
+cargo "cargo-llvm-cov"
+cargo "cargo-zigbuild"
+cargo "vlt"
+krew "node-shell"
+krew "stern"
+krew "tree"
+npm "@openai/codex"
+npm "corepack"
+#-------------------------------
+# PACKAGE INSTALLATION SUMMARY
+# Date: 2026-09-23
+#-------------------------------
+# Installed tap count: 9
+# Installed brew count: 73
+# Installed cask count: 9
+# Installed mas count: 0
+# Installed vscode count: 0
+#-------------------------------

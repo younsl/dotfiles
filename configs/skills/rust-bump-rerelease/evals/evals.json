@@ -1,0 +1,26 @@
+{
+  "skill_name": "rust-bump-rerelease",
+  "evals": [
+    {
+      "id": 1,
+      "name": "kuo-per-version-delete",
+      "prompt": "kuo도 rust 1.96.0으로 업그레이드하고 재릴리즈해줘",
+      "expected_output": "Bumps rust-version in box/kubernetes/kubernetes-upgrade-operator/Cargo.toml and README badge to 1.96.0; commit `[kuo] chore(deps): bump Rust to 1.96.0`; recognizes the GHCR package kuo has multiple tagged versions (0.2.0, 0.1.0) so the 0.2.0 image is deleted per-version (not whole-package); triggers `gh workflow run _release-rust-scratch-containers.yml -f project=kuo`. Notes dir is kubernetes-upgrade-operator but project value is kuo.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "aurora-whole-package-delete",
+      "prompt": "aurora-database-insights-exporter rust 버전 1.96.0으로 bump 하고 문서 업데이트 후 재릴리즈",
+      "expected_output": "Bumps Cargo.toml rust-version + README badge to 1.96.0; commit convention correct; recognizes the GHCR package has only one tagged version (0.1.0) so per-version delete fails and the whole package must be deleted — flags this as destructive + public-visibility caveat needing user confirmation; triggers workflow with project=aurora-database-insights-exporter.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "ij-cli-only-scope",
+      "prompt": "ij를 rust 1.96.0으로 업그레이드 후 재릴리즈",
+      "expected_output": "Bumps box/tools/ij/Cargo.toml rust-version to 1.96.0; commit convention correct; recognizes ij is CLI-only (no Dockerfile) so there is NO container re-release via the scratch-container workflow — bump + commit only, optionally a tagged CLI release. Does not invent a GHCR deletion or container workflow trigger.",
+      "files": []
+    }
+  ]
+}

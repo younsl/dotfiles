@@ -1,0 +1,4 @@
+interface:
+  display_name: "Helm Bump"
+  short_description: "Bump Helm chart versions safely"
+  default_prompt: "Use $helm-bump to update Helm chart or image versions without unrelated edits."

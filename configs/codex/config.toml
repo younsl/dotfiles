@@ -1,0 +1,11 @@
+# Git-tracked Codex base configuration.
+#
+# Do not add MCP server credentials here. The bootstrap script preserves local
+# [mcp_servers.*] sections from ~/.codex/config.toml when applying this file.
+#
+# Project trust entries can contain machine-specific or company repository
+# paths, so bootstrap also preserves local [projects.*] sections instead of
+# tracking them in this public dotfiles repository.
+
+approval_policy = "never"
+sandbox_mode = "danger-full-access"

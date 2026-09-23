@@ -1,0 +1,4 @@
+interface:
+  display_name: "Promql Generator"
+  short_description: "Generate PromQL and alerting rules"
+  default_prompt: "Use $promql-generator to write PromQL queries, SLOs, or alerting rules."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bash Generator"
+  short_description: "Generate production Bash scripts"
+  default_prompt: "Use $bash-generator to create a safe production Bash script."
