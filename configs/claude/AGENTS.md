@@ -14,8 +14,8 @@ Applies to amends (`git commit --amend -s`) and cherry-picks (`git cherry-pick -
 
 ## GitHub Actions Conventions
 
-- Runner labels pin an explicit OS version (`ubuntu-24.04`, `macos-26`); `-latest` silently changes the OS and breaks reproducibility.
-- Binary releases build all four targets: `x86_64-unknown-linux-gnu`, `aarch64-unknown-linux-gnu` (ubuntu-24.04) and `x86_64-apple-darwin`, `aarch64-apple-darwin` (macos-26). Container images build `linux/amd64` + `linux/arm64`.
+- Runner labels pin an explicit OS version (`ubuntu-26.04`, `ubuntu-26.04-arm`, `macos-26`); `-latest` silently changes the OS and breaks reproducibility.
+- Binary releases build all four targets: `x86_64-unknown-linux-gnu` (ubuntu-26.04), `aarch64-unknown-linux-gnu` (ubuntu-26.04-arm) and `x86_64-apple-darwin`, `aarch64-apple-darwin` (macos-26). Container images build `linux/amd64` + `linux/arm64`.
 
 ## Skills Security Policy
 

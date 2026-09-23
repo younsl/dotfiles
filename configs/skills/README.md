@@ -57,7 +57,7 @@ Links are created per skill rather than for the whole directory, so entries the 
 
 ## Authoring
 
-Skills are declarative. They state the constraints the output must satisfy, not step-by-step procedures. See the Skills Authoring Guidelines in [`../claude/CLAUDE.md`](../claude/CLAUDE.md).
+Skills are declarative. They state the constraints the output must satisfy, not step-by-step procedures. See the Skills Authoring Guidelines in [`../claude/AGENTS.md`](../claude/AGENTS.md).
 
 Each `SKILL.md` follows this structure:
 

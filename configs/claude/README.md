@@ -6,7 +6,7 @@ Configuration files for [Claude Code](https://docs.anthropic.com/en/docs/claude-
 
 ```
 claude/
-├── CLAUDE.md            # Global instructions (loaded into system prompt)
+├── AGENTS.md            # Global instructions (loaded into system prompt)
 ├── settings.json        # User settings, plugins, and hooks
 ├── hooks/
 │   └── post-edit-rs.sh  # Auto-runs rustfmt on .rs file edits

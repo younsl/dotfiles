@@ -21,7 +21,7 @@ COMPONENTS=(
     "gnupg/gpg-agent.conf:$HOME/.gnupg/gpg-agent.conf"
     "gnupg/common.conf:$HOME/.gnupg/common.conf"
     "claude/settings.json:$HOME/.claude/settings.json"
-    "claude/CLAUDE.md:$HOME/.claude/CLAUDE.md"
+    "claude/AGENTS.md:$HOME/.claude/CLAUDE.md"
     "skills:$HOME/.claude/skills"
     "claude/hooks:$HOME/.claude/hooks"
     "claude/scripts:$HOME/.claude/scripts"
