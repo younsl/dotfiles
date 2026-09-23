@@ -13,7 +13,7 @@ Skills live in [`../skills`](../skills) and are shared with every agent that rea
 
 ## Setup
 
-The bootstrap script applies `config.toml` and links the shared skills:
+The bootstrap script applies `config.toml`, links the shared skills, and links the global instructions in [`../claude/AGENTS.md`](../claude/AGENTS.md) to `~/.codex/AGENTS.md`:
 
 ```bash
 ./scripts/bootstrap/bootstrap-dotfiles.sh

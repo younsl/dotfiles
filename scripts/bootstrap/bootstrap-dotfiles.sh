@@ -22,6 +22,7 @@ COMPONENTS=(
     "gnupg/common.conf:$HOME/.gnupg/common.conf"
     "claude/settings.json:$HOME/.claude/settings.json"
     "claude/AGENTS.md:$HOME/.claude/CLAUDE.md"
+    "claude/AGENTS.md:$HOME/.codex/AGENTS.md"
     "skills:$HOME/.claude/skills"
     "claude/hooks:$HOME/.claude/hooks"
     "claude/scripts:$HOME/.claude/scripts"
