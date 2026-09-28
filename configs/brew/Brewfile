@@ -175,6 +175,7 @@ go "sigs.k8s.io/controller-tools/cmd/controller-gen"
 go "helm.sh/helm/v3/cmd/helm"
 go "github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb"
 cargo "cargo-audit"
+cargo "cargo-edit"
 cargo "cargo-llvm-cov"
 cargo "cargo-zigbuild"
 cargo "vlt"
@@ -185,7 +186,7 @@ npm "@openai/codex"
 npm "corepack"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2026-09-23
+# Date: 2026-09-28
 #-------------------------------
 # Installed tap count: 9
 # Installed brew count: 73
