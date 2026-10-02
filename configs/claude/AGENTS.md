@@ -12,6 +12,17 @@ git commit -s -m "..."
 
 Applies to amends (`git commit --amend -s`) and cherry-picks (`git cherry-pick -s`). Prevents DCO check failures on OSS PRs.
 
+## Code Comments
+
+Always-on ground rule for every file Claude writes or edits: application code, Helm charts and values, Kubernetes manifests, Terraform and Terragrunt, Dockerfiles, workflows, scripts, config files, and command snippets shown in chat.
+
+- Default to no comment. Add one only when the code cannot say it: a non-obvious constraint, a workaround with its cause, or a format the tooling requires (helm-docs `# --`, doc comments on public APIs, lint directives)
+- Never narrate what the next line does, restate a key or function name, or log the change history ("added for X", "changed from Y")
+- Background, rationale, and references belong in the commit message or MR body, not in code
+- Never edit or delete existing comments, upstream originals included, unless asked; this rule governs only what Claude adds
+- When editing a file, match its existing comment density rather than raising it
+- Required comments are one short line, no em dash, no Kubernetes or tool version notes
+
 ## GitHub Actions Conventions
 
 - Runner labels pin an explicit OS version (`ubuntu-26.04`, `ubuntu-26.04-arm`, `macos-26`); `-latest` silently changes the OS and breaks reproducibility.
