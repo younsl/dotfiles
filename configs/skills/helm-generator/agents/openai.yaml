@@ -1,4 +1,0 @@
-interface:
-  display_name: "Helm Generator"
-  short_description: "Generate production Helm charts"
-  default_prompt: "Use $helm-generator to create a production-ready Helm chart."

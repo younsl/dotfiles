@@ -60,7 +60,7 @@ completion — dropping `kubectl` or `autojump` removes the command itself.
 - link pointing elsewhere → replaced
 - real file or directory → **moved** to `~/.dotfiles-backup/<timestamp>/`, never deleted
 
-Two special cases: `zshrc` links from `configs/zsh/.zshrc`, and `codex/config.toml` is *merged* rather than linked so local `[mcp_servers]` / `[projects]` sections survive.
+Special case: `zshrc` links from `configs/zsh/.zshrc`.
 
 ## Pre-commit Hooks
 
@@ -77,5 +77,4 @@ Only the non-obvious constraints; the rest is readable from `configs/`.
 - **mise**: replaced nvm, which sourced two shell scripts and forked `brew --prefix` twice per shell start. Runtimes are pinned in `configs/mise/config.toml`; add new ones with `mise use -g <tool>@<version>` so the change lands in tracked config. It owns every version-sensitive CLI, so nothing needs a hand-rolled installer or its own PATH entry.
 - **istioctl**: pinned in `configs/mise/config.toml`, never brew — istioctl is version-coupled to the control plane and brew's daily `--upgrade` would silently bump it past the mesh. Bump it with `mise use -g istioctl@<version>` so the pin lands in tracked config.
 - **git**: per-org profiles selected by `includeIf gitdir:`; GPG signing is on globally.
-- **codex**: MCP credentials live only in the local `~/.codex/config.toml` and are never tracked here.
 - **zsh local overrides**: `~/.zshrc.local` is gitignored, sourced last.

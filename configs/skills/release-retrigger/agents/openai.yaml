@@ -1,4 +1,0 @@
-interface:
-  display_name: "Release Retrigger"
-  short_description: "Cycle release tags and rerun CI"
-  default_prompt: "Use $release-retrigger to cycle a semver tag and re-trigger a release."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Rust Bump Rerelease"
-  short_description: "Bump Rust MSRV and rerun release"
-  default_prompt: "Use $rust-bump-rerelease to bump Rust MSRV and re-release the same image version."

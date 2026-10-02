@@ -1,4 +1,0 @@
-interface:
-  display_name: "Rust Generator"
-  short_description: "Generate production Rust projects"
-  default_prompt: "Use $rust-generator to create a production-ready Rust app, CLI, or library."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Dockerfile Generator"
-  short_description: "Generate secure Dockerfiles"
-  default_prompt: "Use $dockerfile-generator to create or improve a production Dockerfile."

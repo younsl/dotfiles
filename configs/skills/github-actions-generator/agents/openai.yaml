@@ -1,4 +1,0 @@
-interface:
-  display_name: "GitHub Actions Generator"
-  short_description: "Generate GitHub Actions workflows"
-  default_prompt: "Use $github-actions-generator to create a secure GitHub Actions workflow."

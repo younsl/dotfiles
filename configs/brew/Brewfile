@@ -1,10 +1,10 @@
-tap "argoproj/tap"
+tap "argoproj/tap", trusted: true
 tap "atlassian/acli"
-tap "aws/tap"
-tap "danielfoehrkn/switch"
-tap "derailed/k9s"
+tap "aws/tap", trusted: true
+tap "danielfoehrkn/switch", trusted: true
+tap "derailed/k9s", trusted: true
 tap "grafana/grafana"
-tap "hashicorp/tap"
+tap "hashicorp/tap", trusted: true
 tap "homebrew/autoupdate"
 tap "younsl/tap"
 # Static checker for GitHub Actions workflow files
@@ -31,6 +31,8 @@ brew "tree-sitter"
 brew "cask"
 # Tool for interacting with remote images and registries
 brew "crane"
+# C library implementing the SSH2 protocol
+brew "libssh2"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Embeddable SQL OLAP Database Management System
@@ -41,6 +43,8 @@ brew "fd"
 brew "fzf"
 # GitHub command-line tool
 brew "gh"
+# OpenType text shaping engine
+brew "harfbuzz"
 # Interpreter for PostScript and PDF
 brew "ghostscript"
 # Distributed revision control system
@@ -85,6 +89,8 @@ brew "kubeconform"
 brew "librsvg"
 # Language Server for the Lua language
 brew "lua-language-server"
+# Bare libuv bindings for lua
+brew "luv"
 # Mac App Store command-line interface
 brew "mas"
 # Java-based project management
@@ -99,6 +105,8 @@ brew "neovim"
 brew "openjdk@21"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@4"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
 # Tool for managing OCI containers and pods
@@ -119,8 +127,6 @@ brew "skopeo"
 brew "sslscan"
 # Terraform Language Server
 brew "terraform-ls"
-# Linter for Terraform files
-brew "tflint"
 # Terminal multiplexer
 brew "tmux"
 # OpenTofu version manager inspired by tfenv
@@ -149,6 +155,10 @@ brew "yarn"
 brew "yq"
 # Software to interact with Atlassian Cloud from the terminal
 brew "atlassian/acli/acli", trusted: true
+# eks-node-viewer is a tool for visualizing dynamic node usage within an EKS cluster.
+brew "aws/tap/eks-node-viewer"
+# The kubectx for operators.
+brew "danielfoehrkn/switch/switch"
 # Vendor-agnostic OpenTelemetry Collector distribution with programmable pipelines
 brew "grafana/grafana/alloy", trusted: true
 # Interactive EC2 Session Manager connection tool with fuzzy search
@@ -182,14 +192,13 @@ cargo "vlt"
 krew "node-shell"
 krew "stern"
 krew "tree"
-npm "@openai/codex"
 npm "corepack"
 #-------------------------------
 # PACKAGE INSTALLATION SUMMARY
-# Date: 2026-09-28
+# Date: 2026-10-02
 #-------------------------------
 # Installed tap count: 9
-# Installed brew count: 73
+# Installed brew count: 78
 # Installed cask count: 9
 # Installed mas count: 0
 # Installed vscode count: 0

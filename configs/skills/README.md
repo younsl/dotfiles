@@ -1,6 +1,6 @@
 # Skills
 
-Custom skills for DevOps workflows, written to the [Agent Skills](https://agentskills.io) format: one directory per skill holding a `SKILL.md` with `name` and `description` frontmatter. The same files serve every agent, so there is a single copy here and nothing to keep in sync.
+Custom Claude Code skills for DevOps workflows, written to the [Agent Skills](https://agentskills.io) format: one directory per skill holding a `SKILL.md` with `name` and `description` frontmatter.
 
 ## Available Skills
 
@@ -24,23 +24,13 @@ Custom skills for DevOps workflows, written to the [Agent Skills](https://agents
 
 ## Usage
 
-Agents pick a skill automatically when a task matches its description. Explicit invocation differs per agent:
-
-| Agent | Invocation |
-|-------|------------|
-| Claude Code | `/helm-bump` |
-| Codex | `$helm-bump` |
+Claude Code picks a skill automatically when a task matches its description. Invoke one explicitly with `/helm-bump`.
 
 ## Setup
 
-The bootstrap script links each skill directory into every agent location it knows about:
+The bootstrap script links each skill directory into `~/.claude/skills/<skill>`.
 
-| Target | Read by |
-|--------|---------|
-| `~/.claude/skills/<skill>` | Claude Code |
-| `~/.agents/skills/<skill>` | Codex and other agents following the shared convention |
-
-Links are created per skill rather than for the whole directory, so entries the agents manage themselves (Claude Code's `synced/`, skills installed with `npx skills` or `gh skill`) stay in the agent directory and out of this repository.
+Links are created per skill rather than for the whole directory, so entries Claude Code manages itself (`synced/`, skills installed with `npx skills` or `gh skill`) stay in `~/.claude/skills/` and out of this repository.
 
 ```bash
 ./scripts/bootstrap/bootstrap-dotfiles.sh
@@ -51,7 +41,6 @@ Links are created per skill rather than for the whole directory, so entries the 
 ```
 <skill>/
 ├── SKILL.md              # Required. Frontmatter + constraints
-├── agents/openai.yaml    # Optional. Codex UI metadata, ignored by other agents
 └── evals/                # Optional. Skill eval cases
 ```
 
@@ -68,4 +57,4 @@ Reference           -> Minimal examples clarifying constraints
 Validation          -> Commands or criteria to verify output
 ```
 
-Keep skills under 100 lines. Omit general knowledge the model already has and keep only your conventions and constraints. Nothing in `SKILL.md` may reference a specific agent or its invocation syntax, since every agent loads the same file.
+Keep skills under 100 lines. Omit general knowledge the model already has and keep only your conventions and constraints.

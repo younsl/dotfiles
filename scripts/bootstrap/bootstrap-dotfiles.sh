@@ -22,46 +22,10 @@ COMPONENTS=(
     "gnupg/common.conf:$HOME/.gnupg/common.conf"
     "claude/settings.json:$HOME/.claude/settings.json"
     "claude/AGENTS.md:$HOME/.claude/CLAUDE.md"
-    "claude/AGENTS.md:$HOME/.codex/AGENTS.md"
     "skills:$HOME/.claude/skills"
     "claude/hooks:$HOME/.claude/hooks"
     "claude/scripts:$HOME/.claude/scripts"
-    "codex/config.toml:$HOME/.codex/config.toml"
-    "skills:$HOME/.agents/skills"
 )
-
-merge_codex_config() {
-    local source_config="$1"
-    local target_config="$2"
-    local target_parent_dir
-    local temp_config
-    local temp_local_sections
-
-    target_parent_dir=$(dirname "$target_config")
-    mkdir -p "$target_parent_dir"
-
-    temp_config=$(mktemp)
-    temp_local_sections=$(mktemp)
-
-    if [[ -f "$target_config" ]]; then
-        awk '
-            /^\[(mcp_servers|projects)(\.|\])/ { keep = 1; print; next }
-            /^\[/ { keep = 0 }
-            keep { print }
-        ' "$target_config" > "$temp_local_sections"
-    fi
-
-    cp "$source_config" "$temp_config"
-
-    if [[ -s "$temp_local_sections" ]]; then
-        printf "\n" >> "$temp_config"
-        cat "$temp_local_sections" >> "$temp_config"
-    fi
-
-    mv "$temp_config" "$target_config"
-    rm -f "$temp_local_sections"
-    echo "$target_config <- $source_config (Merged; preserved local MCP and project trust sections)"
-}
 
 backup_target() {
     local target="$1"
@@ -112,10 +76,8 @@ print_symlinks() {
             COMPONENT_PATH="$DOTFILES_DIR/$COMPONENT"
         fi
 
-        if [[ "$COMPONENT" == "codex/config.toml" && -f "$COMPONENT_PATH" ]]; then
-            echo "$index: $TARGET_DIR <- $COMPONENT_PATH (merge; preserves local MCP and project trust sections)"
-        elif [[ "$COMPONENT" == "skills" && -d "$COMPONENT_PATH" ]]; then
-            echo "$index: $TARGET_DIR/* -> $COMPONENT_PATH/* (per-skill links; keeps agent-managed entries in place)"
+        if [[ "$COMPONENT" == "skills" && -d "$COMPONENT_PATH" ]]; then
+            echo "$index: $TARGET_DIR/* -> $COMPONENT_PATH/* (per-skill links; keeps Claude-managed entries in place)"
         elif [[ -e "$COMPONENT_PATH" ]]; then
             echo "$index: $TARGET_DIR -> $COMPONENT_PATH"
         else
@@ -143,14 +105,7 @@ create_symlinks() {
         TARGET_PARENT_DIR=$(dirname "$TARGET_DIR")
         mkdir -p "$TARGET_PARENT_DIR"
 
-        if [[ "$COMPONENT" == "codex/config.toml" && -f "$COMPONENT_PATH" ]]; then
-            merge_codex_config "$COMPONENT_PATH" "$TARGET_DIR"
-
-        elif [[ "$COMPONENT" == "skills" && -d "$COMPONENT_PATH" ]]; then
-            # Skills are shared across agents (Agent Skills spec), so the repo holds
-            # one copy and each agent directory gets per-skill links. Linking the
-            # whole directory would pull agent-managed entries (Claude Code's
-            # synced/, Codex's .system) into the repo tree.
+        if [[ "$COMPONENT" == "skills" && -d "$COMPONENT_PATH" ]]; then
             if [[ -L "$TARGET_DIR" ]]; then
                 rm -f "$TARGET_DIR"
             fi

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Airflow DAG Generator"
-  short_description: "Generate production Airflow DAGs"
-  default_prompt: "Use $airflow-dag-generator to write or refactor an Apache Airflow DAG."

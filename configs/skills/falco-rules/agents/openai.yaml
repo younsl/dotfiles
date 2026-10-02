@@ -1,4 +1,0 @@
-interface:
-  display_name: "Falco Rules"
-  short_description: "Generate and tune Falco rules"
-  default_prompt: "Use $falco-rules to write or tune Falco custom rules and exceptions."
