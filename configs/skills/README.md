@@ -8,23 +8,32 @@ Custom Claude Code skills for DevOps workflows, written to the [Agent Skills](ht
 |-------|------|-------------|
 | `airflow-dag-generator` | Generator | Airflow DAGs (parse cost, idempotency) |
 | `bash-generator` | Generator | Production-ready Bash scripts |
+| `done-check` | Validator | Verification gate and release readiness report |
 | `dockerfile-generator` | Generator | Optimized, secure Dockerfiles |
 | `falco-rules` | Generator | Falco custom rules, exceptions, and override syntax |
+| `git-ship` | Action | Commit, push, branch, and open or update MR/PR |
 | `github-actions-generator` | Generator | GitHub Actions workflow files |
 | `helm-bump` | Action | Bump Helm chart versions and image tags |
-| `helm-generator` | Generator | Helm charts with secure defaults |
-| `helm-validator` | Validator | Helm chart review and audit |
-| `k8s-generator` | Generator | Kubernetes manifests (EKS-optimized) |
-| `k8s-validator` | Validator | Kubernetes manifest review and audit |
-| `promql-generator` | Generator | PromQL queries, alerting rules, SLO/SLIs |
-| `release-retrigger` | Action | Re-trigger release by cycling a semver tag |
+| `helm-chart` | Generator | Author and review Helm charts and wrapper values |
+| `jira-issue` | Action | Jira work items with team template via acli |
+| `k8s-manifest` | Generator | Author and review Kubernetes manifests and CRDs |
+| `promql-generator` | Generator | PromQL, alert rules, Grafana panels verified on live data |
+| `release-promote` | Action | Release status, registry mirror, consumer chart bump |
+| `release-retrigger` | Action | Re-publish a release at the same version |
 | `rust-bump-rerelease` | Action | Bump Rust toolchain and re-release container image |
 | `rust-generator` | Generator | Rust applications and CLI tools |
-| `terraform-generator` | Generator | Terraform configurations (AWS) |
+| `terraform-generator` | Generator | Terraform and Terragrunt for AWS |
+| `writing-style` | Style | Writing rules for docs, MR, Jira, Confluence, Slack |
+
+## Site Values
+
+Action skills that touch company systems (`jira-issue`, `release-promote`) read site-specific values such as the Jira project key or internal registry host from environment variables set in `~/.zshrc.local`, which is not tracked. Each skill lists its variables.
 
 ## Usage
 
 Claude Code picks a skill automatically when a task matches its description. Invoke one explicitly with `/helm-bump`.
+
+Code comment policy is not a skill: it lives in the global [`AGENTS.md`](../claude/AGENTS.md) so it applies to every session, and code-writing skills point to it.
 
 ## Setup
 
@@ -51,10 +60,31 @@ Skills are declarative. They state the constraints the output must satisfy, not 
 Each `SKILL.md` follows this structure:
 
 ```
-Frontmatter         -> name, description (drives skill matching)
+Frontmatter         -> Standard metadata block (drives skill matching)
 Output Requirements -> Constraints the output must satisfy
 Reference           -> Minimal examples clarifying constraints
 Validation          -> Commands or criteria to verify output
 ```
 
-Keep skills under 100 lines. Omit general knowledge the model already has and keep only your conventions and constraints.
+Every skill declares the same frontmatter keys:
+
+| Key | Value |
+|-----|-------|
+| `name` | Directory name |
+| `description` | What the skill does, one sentence |
+| `when_to_use` | Trigger phrases, Korean request examples, and "Not for" hand-offs to sibling skills |
+| `argument-hint` | Autocomplete hint, `<required>` or `[optional]` |
+| `license` | `Apache-2.0` |
+| `compatibility` | Required CLIs and environment |
+| `metadata` | `version`, `category` (generator, validator, action, style), `related` skills |
+| `allowed-tools` | Tools pre-approved while the skill runs, Bash scoped by command pattern |
+| `user-invocable` | `true` |
+| `disable-model-invocation` | `false` |
+
+`model`, `effort`, `context`, `paths`, and `hooks` are left unset so skills run in the session's own context and settings.
+
+Keep the body under 100 lines, frontmatter excluded. Omit general knowledge the model already has and keep only your conventions and constraints.
+
+## License
+
+Licensed under the [Apache License 2.0](../../LICENSE).

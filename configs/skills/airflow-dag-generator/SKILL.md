@@ -1,13 +1,23 @@
 ---
 name: airflow-dag-generator
-description: Generate production-ready Apache Airflow DAGs. Use when writing or refactoring DAGs, tasks, operators, sensors, or Airflow deployment code.
+description: Generate production-ready Apache Airflow DAGs with low parse cost and idempotent tasks.
+when_to_use: Writing or refactoring DAGs, tasks, operators, sensors, or Airflow deployment code, e.g. "DAG 작성", "airflow dag 개발".
+argument-hint: "[dag purpose]"
+license: Apache-2.0
+compatibility: Python 3 with apache-airflow for airflow dags test; ruff for lint
 metadata:
+  version: "1.1.0"
+  category: generator
+  related: k8s-manifest helm-chart
   upstream-docs: https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html
+allowed-tools: Bash(airflow *) Bash(ruff *) Bash(python3 *) Read Write Edit Grep Glob
+user-invocable: true
+disable-model-invocation: false
 ---
 
 # Airflow DAG Generator
 
-Target Airflow 3.x. Standard practices (retries, `owner`, tags, docstrings, `catchup=False` unless backfill is intended) apply without restating them. Below are the constraints that decide whether a DAG survives production.
+Target Airflow 3.x. Standard practices (retries, `owner`, tags, docstrings, `catchup=False` unless backfill is intended) apply without restating them. Comments follow the global Code Comments rule. Below are the constraints that decide whether a DAG survives production.
 
 ## Parse Cost Is The Budget
 

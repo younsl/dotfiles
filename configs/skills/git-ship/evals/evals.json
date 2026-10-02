@@ -1,0 +1,26 @@
+{
+  "skill_name": "git-ship",
+  "evals": [
+    {
+      "id": 1,
+      "name": "branch-commit-mr",
+      "prompt": "별도 브랜치에 커밋 푸시후 MR 생성. 노드 잦은 교체로 파드 재시작이 많아서 consolidation 완화하는 작업이야.",
+      "expected_output": "Creates `<type>/<kebab>` branch from default branch; stages only the task file (no `git add -A`, unrelated WIP untouched); commit `type(scope): subject` in the language of recent log; no attribution trailers; `glab mr create --remove-source-branch --yes`; body has 진행배경 (with the user's stated reason), 변경사항, 기타사항, each 1 to 3 bullets; reports full MR URL.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "mr-update-shrink",
+      "prompt": "커밋 푸시하고 MR 업데이트. MR 분량 50%로 축소",
+      "expected_output": "Fetches current remote description first; keeps user-added screenshot and lines; adds the new change; rewrites to about half length keeping the three sections; uses `glab mr update`.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "commit-only",
+      "prompt": "커밋만 해줘",
+      "expected_output": "Commits staged task changes with repo convention; does not push or open an MR.",
+      "files": []
+    }
+  ]
+}

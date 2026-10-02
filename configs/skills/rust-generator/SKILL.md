@@ -1,13 +1,24 @@
 ---
 name: rust-generator
-description: Generate production-ready Rust code. Use when creating Rust applications, CLI tools, libraries, or async services.
+description: Write Rust services and CLIs with SRP module layout, 2018-style modules, strict lints, and static multi-arch packaging.
+when_to_use: Creating Rust applications, CLI tools, libraries, or async services, e.g. "Rust로 작성", "Rust로 포팅", "에드온 개발".
+argument-hint: "[project purpose]"
+license: Apache-2.0
+compatibility: cargo with rustfmt and clippy
+metadata:
+  version: "1.1.0"
+  category: generator
+  related: dockerfile-generator done-check rust-bump-rerelease
+allowed-tools: Bash(cargo *) Read Write Edit Grep Glob
+user-invocable: true
+disable-model-invocation: false
 ---
 
 # Rust Code Generator
 
 ## Output Requirements
 
-- Edition 2024; `rust-version` = current stable MSRV in full semver (`"1.96.0"`, never `"1.96"`). Existing projects bump it via the `rust-bump-rerelease` skill — do not pin a version here.
+- Edition 2024; `rust-version` = current stable MSRV in full semver (`"1.96.0"`, never `"1.96"`). Existing projects bump it via the `rust-bump-rerelease` skill: do not pin a version here.
 - `unsafe_code` forbidden via `[lints.rust]`
 - Clippy lints: `all`, `pedantic`, `nursery` as warnings
 - Errors: `thiserror` for library types, `anyhow` for application context
@@ -83,18 +94,13 @@ strip = true
 - `build.rs` injects `BUILD_COMMIT` and `BUILD_DATE` via `cargo:rustc-env`
 - `cargo:rerun-if-changed=.git/HEAD` to rebuild on commit changes
 
-## CLI Flags (GNU/POSIX)
-
-| Flag | Purpose |
-|------|---------|
-| `-v`, `--verbose` | Verbose output |
-| `-V`, `--version` | Version info (`#[command(version)]`) |
-
 ## Async Patterns
 
 - Graceful shutdown: `tokio::select!` with `signal::ctrl_c()` and SIGTERM
 - Concurrency: `JoinSet` + `Semaphore` for bounded parallelism
 
-## Version Control
+## Packaging
 
-- Commit `Cargo.lock` for binary projects (reproducible builds)
+- New Kubernetes addons are Rust, built with cargo-zigbuild as static musl binaries for amd64 and arm64, shipped in a `scratch` image (see dockerfile-generator) with a chart under `charts/<name>/`
+- `[profile.release]` adds `panic = "abort"`
+- Comments follow the global Code Comments rule; public items get doc comments only when behavior is not obvious from the signature

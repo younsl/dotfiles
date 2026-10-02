@@ -1,70 +1,52 @@
 ---
 name: release-retrigger
-description: Re-trigger a release by committing changes, deleting and re-pushing a semver tag. Use when re-releasing, re-tagging, cycling a release tag, or re-triggering a CI/CD release pipeline.
+description: Re-publish a release at the same version, either by force-dispatching the release workflow or by cycling the git tag with its release and package.
+when_to_use: Re-releasing, re-tagging, cycling a release tag, or re-triggering a release pipeline, e.g. "재릴리즈", "0.1.0으로 재릴리즈", "커밋 푸시후 재릴리즈", "태그 다시 찍고 릴리즈". Not for Rust toolchain bumps (use rust-bump-rerelease) or post-release mirroring (use release-promote).
+argument-hint: "<tag or version>"
+license: Apache-2.0
+compatibility: gh CLI authenticated with push and package access
+metadata:
+  version: "2.0.0"
+  category: action
+  related: rust-bump-rerelease release-promote git-ship done-check
+allowed-tools: Bash(git *) Bash(gh *) Read Grep
+user-invocable: true
+disable-model-invocation: false
 ---
 
 # Release Retrigger
 
-Re-trigger a release pipeline by cycling a semver tag with updated changes.
-
-## Prerequisites
-
-- `gh` CLI authenticated
-- Push access to the repository and its packages
-
 ## Constraints
 
-- User MUST specify the version — never assume or auto-increment
-- Tag format derived from the repo's AGENTS.md release/workflow section (e.g., `kuo/0.2.0`, `backstage/1.48.5-1`, `grafana-dashboards/charts/1.0.0`)
-- Commit message follows the repo's AGENTS.md convention
-- Push to the current branch only — never force-push
-- No confirmation pauses — proceed through all phases continuously once invoked
-- Phase 2: suppress errors with `2>/dev/null`; silently skip resources that don't exist
+- Same version, always: never bump Dockerfile labels, `Cargo.toml`, or `Chart.yaml` unless the user names a new version
+- Version comes from the user or the existing tag; never auto-increment
+- Tag format and commit format come from the repo `AGENTS.md` (e.g. `kuo/0.2.0`, `backstage/1.48.5-1`, `grafana-dashboards/charts/1.0.0`)
+- Runs end to end without confirmation pauses once invoked
+- Uncommitted changes are committed and pushed first via git-ship rules; push denied means print the command for the user and continue after
+- Never force-push branches
 
-## Workflow
+## Path Selection
 
-### Phase 1: Commit and Push
+| Release trigger | Re-release path |
+|-----------------|-----------------|
+| Workflow has a `force` dispatch input | `gh workflow run <wf> -f project=<name> -f force=true` (charts: `-f chart=<name>`); no deletion |
+| Tag push triggers the workflow | Delete local tag, remote tag, GitHub Release, and the GHCR version for that tag, then re-tag `HEAD` and push the tag |
+| Both image and chart changed | Re-release each artifact; they are separate runs |
 
-- Stage and commit current changes (skip entire Phase 1 if working tree is clean)
-- Push commits to current branch
-- If push is denied by permissions, ask user to run the push command manually, then continue to Phase 2
+- Cleanup commands are independent and run in parallel with errors suppressed for missing items
+- GHCR refuses to delete the last tagged version of a package; never delete the whole package (it resets visibility), switch to the force path or report
 
-### Phase 2: Cleanup
+## GHCR Reference
 
-Run all cleanup steps in parallel — they are independent:
-
-- Delete local tag: `git tag -d <tag> 2>/dev/null`
-- Delete remote tag: `git push origin --delete <tag> 2>/dev/null`
-- Delete GitHub Release if exists: `gh release delete <tag> --yes --cleanup-tag 2>/dev/null`
-- Delete GHCR container image tag if exists (see GHCR reference below)
-
-### Phase 3: Re-tag and Push
-
-- Create tag on HEAD and push: `git tag <tag> && git push origin <tag>`
-
-## GHCR Image Deletion Reference
-
-Derive the GHCR package name from the tag prefix. Use a one-liner with `--jq` to find and delete:
-
-| Tag format | Package name | Image tag |
-|---|---|---|
+| Tag | Package | Image tag |
+|-----|---------|-----------|
 | `kuo/0.2.0` | `kuo` | `0.2.0` |
-| `backstage/1.48.5-1` | `backstage` | `1.48.5-1` |
 | `grafana-dashboards/charts/1.2.0` | `charts%2Fgrafana-dashboards` | `1.2.0` |
 
-```bash
-# One-liner: find version ID by image tag and delete
-VERSION_ID=$(gh api /user/packages/container/<package>/versions \
-  --jq '.[] | select(.metadata.container.tags[] == "<image_tag>") | .id' 2>/dev/null) \
-  && [ -n "$VERSION_ID" ] \
-  && gh api -X DELETE /user/packages/container/<package>/versions/$VERSION_ID
-```
-
-For org-owned packages, replace `/user/` with `/orgs/<org>/`.
+Version id lookup: `gh api /user/packages/container/<package>/versions --jq '.[] | select(.metadata.container.tags[] == "<tag>") | .id'`; org-owned packages use `/orgs/<org>/`.
 
 ## Validation
 
-Run all checks in parallel:
-
-- `git tag -l <tag>` — tag exists locally
-- `git ls-remote --tags origin <tag>` — tag exists on remote
+- `git ls-remote --tags origin <tag>` points at `HEAD` (tag path)
+- The triggered run is found with `gh run list` and its build job took the rebuild path
+- Report the run URL; follow-up status checks belong to release-promote

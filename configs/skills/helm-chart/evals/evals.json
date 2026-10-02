@@ -1,0 +1,26 @@
+{
+  "skill_name": "helm-chart",
+  "evals": [
+    {
+      "id": 1,
+      "name": "httproute-support",
+      "prompt": "차트에서 HTTPRoute 지원해줘",
+      "expected_output": "Adds templates/httproute.yaml as its own file guarded by the chart's toggle idiom; parentRefs spell out group, kind, name, namespace; values keys carry one-line `# -- (type)` annotations above the key; no `#` comments in the template; block sequences indented under keys; helm lint, template plus kubeconform, helm-docs regenerated.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "new-env-wrapper",
+      "prompt": "shared 환경에 descheduler 차트 신규 추가",
+      "expected_output": "values.yaml is the full upstream `helm show values` for the pinned version with comments intact under the dependency key, only overrides changed; unsets use explicit null; structure matches other environments.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "review",
+      "prompt": "이 차트 변경 검증해줘",
+      "expected_output": "Severity-ranked one-line findings with file:line, flags inline comments, flow-style RBAC arrays, missing parentRefs fields, edited upstream comments; then lint and kubeconform results.",
+      "files": []
+    }
+  ]
+}

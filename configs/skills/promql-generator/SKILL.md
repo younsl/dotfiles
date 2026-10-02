@@ -1,77 +1,50 @@
 ---
 name: promql-generator
-description: Generate PromQL queries for Prometheus monitoring, alerting rules, and Grafana dashboards. Use when writing metrics queries, SLO/SLI definitions, or recording rules.
+description: Write and validate PromQL queries, PrometheusRule alerts, and Grafana dashboard panels against live data, following the user's alert copy and dashboard rules.
+when_to_use: Writing alerts, recording rules, dashboard panels, or SLO queries, e.g. "알람 룰 추가", "80% 알람 걸어둬", "대시보드 패널 추가", "PromQL 작성", "알람 예외처리". 
+argument-hint: "[metric or goal]"
+license: Apache-2.0
+compatibility: curl access to the Prometheus-compatible query API in $PROMETHEUS_URL; promtool optional
+metadata:
+  version: "2.0.0"
+  category: generator
+  related: helm-chart done-check
+allowed-tools: Bash(curl *) Bash(promtool *) Read Write Edit Grep Glob
+user-invocable: true
+disable-model-invocation: false
 ---
 
-# PromQL Query Generator
+# PromQL, Alerts, Dashboards
 
-Generate PromQL queries for Prometheus monitoring, alerting, and Grafana dashboards.
+PromQL fundamentals (rate over counters, RED and USE patterns, histogram quantiles, recording rules for heavy queries) apply without restating them. Comments in rule and dashboard files follow the global Code Comments rule.
 
-## Output Requirements
+## Live Verification
 
-- Counter metrics wrapped in `rate()` or `increase()`
-- `rate()` range minimum `[5m]` to handle scrape gaps
-- Label filters applied (job, namespace, service) to reduce cardinality
-- Expensive or frequently used queries extracted as recording rules
-- Custom metric names follow `namespace_subsystem_name_unit` convention
-- Alerting rules include `for` duration, `severity` label, and `summary`/`description` annotations
+- Label values come from the live API, never from cloud tags or guesses: `curl -sG "$PROMETHEUS_URL/api/v1/label/<name>/values"` or `/api/v1/series`
+- Every alert `expr` and panel query is executed with `curl -sG "$PROMETHEUS_URL/api/v1/query" --data-urlencode 'query=...'`; it must return the expected series with plausible values
+- Ask for `$PROMETHEUS_URL` (and any tenant header) once if unset
 
-## Selector Syntax
+## Alert Copy
 
-| Operator | Example | Meaning |
-|----------|---------|---------|
-| `=` | `{job="api"}` | Exact match |
-| `!=` | `{job!="test"}` | Not equal |
-| `=~` | `{job=~"api-.*"}` | Regex match |
-| `!~` | `{status!~"2.."}` | Regex not match |
+- `summary`: short Korean sentence, no cluster name
+- `description`: starts with `[{{ $externalLabels.cluster }}]`, states the symptom, then the high-level remediation direction; no separate action annotation
+- Cluster identity from `$externalLabels.cluster`, not a metric `cluster` label
+- No hardcoded thresholds or config values in remediation text
+- Overlapping alerts: keep the broader one, remove the narrower
+- `for` and `severity` set on every rule
 
-## Query Patterns
+## Grafana Panels
 
-### RED Method (Request, Error, Duration)
+- Panel `description` in English
+- `byRegexp` override matchers wrapped in slashes: `/limit/`
+- One unit per axis; adaptive units only in tooltips
+- Legend-based overrides over `byFrameRefID` after aggregation
 
-| Metric | Pattern |
-|--------|---------|
-| Request rate | `sum by (service) (rate(http_requests_total[5m]))` |
-| Error rate % | `sum(rate(http_requests_total{status=~"5.."}[5m])) / sum(rate(http_requests_total[5m])) * 100` |
-| P50 latency | `histogram_quantile(0.50, sum by (le) (rate(http_request_duration_seconds_bucket[5m])))` |
-| P95 latency | `histogram_quantile(0.95, sum by (le) (rate(http_request_duration_seconds_bucket[5m])))` |
-| P99 latency | `histogram_quantile(0.99, sum by (le) (rate(http_request_duration_seconds_bucket[5m])))` |
-| Avg latency | `sum(rate(http_request_duration_seconds_sum[5m])) / sum(rate(http_request_duration_seconds_count[5m]))` |
+## Collector Migration
 
-### USE Method (Utilization, Saturation, Errors)
+Replacing an exporter or scraper ships in two MRs: parallel run under a temporary `job` label with baseline and diff queries in 테스트 결과, then cutover.
 
-| Metric | Pattern |
-|--------|---------|
-| CPU by node | `100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)` |
-| Memory by node | `(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100` |
-| Disk utilization | `(1 - node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100` |
+## Validation
 
-### Kubernetes
-
-| Metric | Pattern |
-|--------|---------|
-| Pods not ready | `sum by (namespace) (kube_pod_status_ready{condition="false"})` |
-| CrashLoopBackOff | `sum by (namespace, pod) (kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff"})` |
-| Pod restarts/hr | `sum by (namespace, pod) (increase(kube_pod_container_status_restarts_total[1h]))` |
-| CPU req vs actual | `sum by (namespace) (rate(container_cpu_usage_seconds_total[5m])) / sum by (namespace) (kube_pod_container_resource_requests{resource="cpu"})` |
-
-## Alerting Rule Structure
-
-```yaml
-- alert: <AlertName>
-  expr: |
-    <promql_expression>
-  for: 5m
-  labels:
-    severity: critical|warning|info
-  annotations:
-    summary: "<human-readable summary>"
-    description: "<detail with {{ $value }} or {{ $labels.xxx }}>"
-```
-
-## SLO/SLI Patterns
-
-| Metric | Pattern |
-|--------|---------|
-| Availability SLI | `sum(rate(http_requests_total{status!~"5.."}[30d])) / sum(rate(http_requests_total[30d]))` |
-| Error budget (99.9%) | `1 - ((1 - <availability_sli>) / (1 - 0.999))` |
+- Live query returns data for every new expr and panel
+- `promtool check rules` passes for rule files

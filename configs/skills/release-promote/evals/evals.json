@@ -1,0 +1,26 @@
+{
+  "skill_name": "release-promote",
+  "evals": [
+    {
+      "id": 1,
+      "name": "mirror-and-bump",
+      "prompt": "릴리즈 완료되면 이미지 및 차트 미러링하고 전환경 차트 범프",
+      "expected_output": "Confirms workflow success and source artifacts first; copies the multi-arch index without `--platform`; switches to an in-cluster skopeo Job for layers over about 200 MB and cleans up; verifies digests; bumps every environment keeping overrides; ships via git-ship; never names the public source registry in internal text.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "status-failure",
+      "prompt": "릴리즈 상태 확인",
+      "expected_output": "Reports run URL and per-job result, quotes the decisive error line, does not retry or re-tag automatically.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "status-only-scope",
+      "prompt": "릴리즈 완료인가?",
+      "expected_output": "Runs only the Status stage; does not mirror or bump unasked.",
+      "files": []
+    }
+  ]
+}

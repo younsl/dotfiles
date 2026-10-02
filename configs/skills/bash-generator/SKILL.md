@@ -1,55 +1,36 @@
 ---
 name: bash-generator
-description: Generate production-ready Bash scripts. Use when creating automation, deployment, CI/CD helper, or system administration shell scripts.
+description: Write Bash scripts that run unchanged on macOS (BSD userland) and Linux CI, pass shellcheck, and follow the user's script conventions.
+when_to_use: Creating automation, deployment, CI helper, or admin shell scripts, e.g. "스크립트 작성", "쉘 스크립트로 만들어줘".
+argument-hint: "[script purpose]"
+license: Apache-2.0
+compatibility: bash 3.2+ (macOS default) and bash 5 (Linux); shellcheck
+metadata:
+  version: "2.0.0"
+  category: generator
+  related: github-actions-generator
+allowed-tools: Bash(shellcheck *) Bash(bash -n *) Read Write Edit Grep Glob
+user-invocable: true
+disable-model-invocation: false
 ---
 
-# Bash Script Generator
+# Bash
 
-Generate production-ready, portable, and safe Bash scripts.
+Strict mode, quoting, `trap` cleanup, `local`, and `usage()` are assumed. Comments follow the global Code Comments rule.
 
-## Output Requirements
+## Portability
 
-- Shebang: `#!/usr/bin/env bash`
-- Strict mode: `set -euo pipefail` with `IFS=$'\n\t'`
-- All variables double-quoted (`"$variable"`)
-- Constants declared with `readonly`
-- Function-scoped variables use `local`
-- Code organized into functions, not top-level imperative blocks
-- Cleanup via `trap` on EXIT
-- Required commands checked with `command -v` before use
-- Required arguments and file existence validated before use
-- Log output to stderr (`>&2`), not stdout
-- `usage()` function for `--help` flag
-- Default values via parameter expansion: `"${1:-default}"`
+- Same script works on macOS and Linux: no `sed -i` without a backup-suffix shim, no GNU-only flags (`date -d`, `readlink -f`, `grep -P`); detect and branch when unavoidable
+- No bash 4+ features (associative arrays, `${var,,}`, `mapfile`) unless the shebang targets a Homebrew bash explicitly
+- Iterate lines with `while IFS= read -r`, never `for x in $(...)`
 
-## Script Header
+## Behavior
 
-```bash
-#!/usr/bin/env bash
-#
-# Script: script-name.sh
-# Description: Brief description
-# Usage: ./script-name.sh [options] <arguments>
-#
-
-set -euo pipefail
-IFS=$'\n\t'
-```
-
-## Quality Attributes
-
-- **Portable**: `#!/usr/bin/env bash`, avoid unnecessary bashisms
-- **Safe**: No unquoted variables, no `eval`, no glob expansion surprises
-- **Debuggable**: Support `--verbose` and `--dry-run` flags
-- **Idempotent**: Safe to re-run
-
-## Argument Parsing
-
-Use `while [[ $# -gt 0 ]]; case ... esac; done` pattern with `--`, `-*`, and positional argument handling.
+- Logs to stderr, data to stdout
+- Destructive scripts support `--dry-run` and print what they would change
+- Secrets come from the environment or a credential helper, never arguments or files in the repo
+- Required tools checked with `command -v` up front with a clear message
 
 ## Validation
 
-Generated scripts should pass:
-
-- `bash -n script.sh` (syntax check)
-- `shellcheck script.sh` (static analysis)
+- `bash -n` and `shellcheck` pass with no warnings

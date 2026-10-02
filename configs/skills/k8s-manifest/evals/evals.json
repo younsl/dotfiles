@@ -1,0 +1,26 @@
+{
+  "skill_name": "k8s-manifest",
+  "evals": [
+    {
+      "id": 1,
+      "name": "externalsecret-drift",
+      "prompt": "ExternalSecret 추가하고 ArgoCD diff 안나게 해줘",
+      "expected_output": "remoteRef carries conversionStrategy Default, decodingStrategy None, metadataPolicy None; target carries creationPolicy Owner and deletionPolicy Retain; verification compares live spec against git.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "nodepool-single-type",
+      "prompt": "c7g.xlarge 단일 타입 NodePool 추가",
+      "expected_output": "Uses limits.nodes instead of cpu or memory limits; affinity order os, arch, worker selector; no port-forward for verification.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "kyverno-policy",
+      "prompt": "kyverno 정책 작성",
+      "expected_output": "title, description, and message in English; validation via kubeconform and server dry-run.",
+      "files": []
+    }
+  ]
+}

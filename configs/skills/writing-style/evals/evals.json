@@ -1,0 +1,26 @@
+{
+  "skill_name": "writing-style",
+  "evals": [
+    {
+      "id": 1,
+      "name": "confluence-guide",
+      "prompt": "Velero 복구 가이드 하위 페이지로 작성해줘",
+      "expected_output": "No em dash, middle dot, horizontal rules, or title emoji; overview states purpose and target reader; single path with alternative collapsed to one line; bullets over tables; centered image via storage format with width 760; keyword links.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "public-readme",
+      "prompt": "README 개요 섹션 간결하게 작성",
+      "expected_output": "English, concise, keyword links, no company references, no hard wrap.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "shrink",
+      "prompt": "MR 분량 30%로 축소",
+      "expected_output": "Rewrites to about 30% length while keeping the section skeleton.",
+      "files": []
+    }
+  ]
+}

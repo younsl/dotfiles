@@ -1,51 +1,45 @@
 ---
 name: dockerfile-generator
-description: Generate production-ready Dockerfiles. Use when creating, optimizing, or reviewing Dockerfiles and container image builds.
+description: Write and optimize Dockerfiles following the user's runtime-only scratch pattern for static binaries and multi-arch releases.
+when_to_use: Creating, optimizing, or reviewing Dockerfiles and container image builds, e.g. "도커파일 작성", "이미지 용량 최적화", "scratch 이미지로", "런타임 이미지 변경", "베이스 이미지 범프".
+argument-hint: "[app or Dockerfile path]"
+license: Apache-2.0
+compatibility: hadolint, docker buildx, trivy
+metadata:
+  version: "2.0.0"
+  category: generator
+  related: github-actions-generator rust-generator release-retrigger
+allowed-tools: Bash(hadolint *) Bash(docker *) Bash(trivy *) Read Write Edit Grep Glob
+user-invocable: true
+disable-model-invocation: false
 ---
 
-# Dockerfile Generator
+# Dockerfile
 
-Generate production-ready, secure, and optimized Dockerfiles.
+Generic practice (pinned bases, no secrets, cache-friendly layer order, `.dockerignore`) applies without restating it.
 
-## Output Requirements
+## Base Image Choice
 
-- Multi-stage builds: separate build stage from runtime stage
-- Base image versions pinned (never `latest`)
-- Package manager cache cleaned in the same RUN layer as install
-- Multiple related RUN/COPY commands combined with `&&` and `\`
-- Non-root user created and set with `USER` instruction
-- `HEALTHCHECK` instruction defined
-- Dependency files copied before source code for layer caching
-- Instructions ordered from least to most frequently changing
-- `.dockerignore` recommended alongside Dockerfile
+| Workload | Pattern |
+|----------|---------|
+| Rust or Go service | Runtime-only `scratch`; binary built in CI (cargo-zigbuild musl or `CGO_ENABLED=0`), copied in per `TARGETARCH` |
+| Needs a shell or OS packages | Pinned `alpine` minor (e.g. `alpine:3.23`) |
+| JVM, Python, Node | Official slim or vendor runtime image, multi-stage |
 
-## Base Image Selection
+- No in-image Rust compilation (cargo-chef or builder stages) and no distroless for Rust or Go
+- scratch images copy `ca-certificates.crt` (and zoneinfo when time zones matter) from a pinned alpine stage
+- Base images are pulled through the internal proxy registry when the repo already does so
 
-| Priority | Image | Size | Use Case |
-|----------|-------|------|----------|
-| 1 | `alpine` | ~5MB | Default choice |
-| 2 | `distroless` | ~2MB | Apps without shell needs |
-| 3 | `slim` | ~80MB | Apps needing specific system packages |
-| 4 | `scratch` | 0MB | Static Go/Rust binaries |
+## Required Content
 
-## Security Constraints
-
-- Non-root user required (`USER` instruction)
-- No secrets in Dockerfile (no `COPY` of credentials, no `ARG` for secrets)
-- Minimal base image preferred
-- `--no-install-recommends` for apt-get
-- Read-only filesystem compatible when possible
-
-## Layer Optimization
-
-```dockerfile
-# Combined install + cleanup in single layer
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl && \
-    rm -rf /var/lib/apt/lists/*
-```
+- `USER 65532:65532` in scratch images; non-root user in others
+- OCI labels including `org.opencontainers.image.version`; release workflows key off this label, so it equals the release version
+- Multi-arch: `linux/amd64` and `linux/arm64` binaries selected by `ARG TARGETARCH`
+- No `HEALTHCHECK`; Kubernetes probes cover it
+- Comments follow the global Code Comments rule
 
 ## Validation
 
-- `hadolint Dockerfile` for linting
-- `docker scout cves` or `trivy image` for vulnerability scanning
+- `hadolint Dockerfile`
+- `docker buildx build --platform linux/amd64,linux/arm64` succeeds
+- `trivy image` reports no fixable HIGH or CRITICAL

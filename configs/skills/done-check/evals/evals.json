@@ -1,0 +1,26 @@
+{
+  "skill_name": "done-check",
+  "evals": [
+    {
+      "id": 1,
+      "name": "go-done",
+      "prompt": "구현 완료인가?",
+      "expected_output": "Runs repo Makefile lint/test targets plus gofmt, go fix until clean, go vet; reports each check as passed, failed, or not run; verdict line with remaining items.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "release-ready",
+      "prompt": "1.5.0 릴리즈 준비된건가?",
+      "expected_output": "Flags uncommitted file and appVersion mismatch; confirms tag absence; lists fmt, clippy, test, coverage; verdict not ready with numbered items.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "toolchain-bump",
+      "prompt": "rust 1.97.0 bump 후 재릴리즈",
+      "expected_output": "Skips the local lint loop for a toolchain-only bump and keeps the artifact version unchanged.",
+      "files": []
+    }
+  ]
+}

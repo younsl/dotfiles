@@ -1,0 +1,26 @@
+{
+  "skill_name": "jira-issue",
+  "evals": [
+    {
+      "id": 1,
+      "name": "create-patch-issue",
+      "prompt": "이 작업 Jira 이슈 발행",
+      "expected_output": "Reads site values from env; `acli jira workitem create --from-json` with ADF; title without brackets and with purpose in parentheses (CVE response); four bracket sections in order with empty [결과]; SP estimated from effort with SP 1 = 8 hours (2 hours = 0.25); patch issue type; assignee email; epic via parentIssueId; no github.com or personal registry references.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "fill-result-close",
+      "prompt": "<KEY>에 [결과] 섹션 작성후 완료처리",
+      "expected_output": "Edits with `--from-json --yes`, fills only [결과] with real measured numbers, preserves other sections, transitions with exact status name and `--yes`.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "explicit-sp",
+      "prompt": "이 작업에 대한 이슈 만들고 SP 0.5 할당",
+      "expected_output": "Uses SP 0.5 exactly as requested instead of estimating.",
+      "files": []
+    }
+  ]
+}

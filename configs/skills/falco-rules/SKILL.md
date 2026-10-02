@@ -1,6 +1,17 @@
 ---
 name: falco-rules
-description: Generate and tune Falco custom rules, exceptions, and macros. Use when adding Falco exception tuning, writing custom detection rules, or troubleshooting rule loading errors.
+description: Generate and tune Falco custom rules, exceptions, macros, and override syntax.
+when_to_use: Adding Falco exception tuning, writing custom detection rules, or troubleshooting rule loading errors, e.g. "falco 오탐 예외 추가", "falco 룰 작성".
+argument-hint: "[rule name or alert output]"
+license: Apache-2.0
+compatibility: falco binary for --validate; kubectl for reading Falco pod logs
+metadata:
+  version: "1.1.0"
+  category: generator
+  related: k8s-manifest helm-chart
+allowed-tools: Bash(falco *) Bash(kubectl logs *) Read Write Edit Grep Glob
+user-invocable: true
+disable-model-invocation: false
 ---
 
 # Falco Rules Generator
@@ -10,8 +21,11 @@ Generate and tune Falco custom rules, exceptions, and macros for runtime securit
 ## Output Requirements
 
 - Use `override` syntax, never deprecated `append: true`
-- Exceptions must be applied identically across all environments
-- Exception scope must be minimal (prefer specific field combos over broad exclusions)
+- Exception scope is minimal: specific field combinations over broad exclusions
+- Environment scope follows where the workload runs: add the same exception to every environment by default, but a workload that runs only in some clusters gets its exception only there; never sync those to other environments
+- Extend the existing `falco` namespace and DaemonSet (extra sources, extra rules) instead of creating a new namespace or Falco instance
+- Native buildkit builds on runners report `container.id=host`, so buildkit exceptions cannot rely on the `buildkit/` prefix alone
+- Comments follow the global Code Comments rule
 
 ## Override Syntax (Falco 0.35+)
 
@@ -47,17 +61,6 @@ exceptions:
       - [value1_alt, value2_alt] # row 2 (OR between rows)
 ```
 
-### Supported Comparators
-
-| Comp | Use case |
-|------|----------|
-| `=` | Exact match |
-| `in` | Match list of values |
-| `contains` | Substring match |
-| `startswith` | Prefix match |
-| `endswith` | Suffix match |
-| `pmatch` | Path prefix match |
-
 ### Field Selection Guide
 
 | Context | Recommended fields |
@@ -81,9 +84,7 @@ Full rule definition replaces the built-in rule entirely (no `override` needed):
     and not package_mgmt_ancestor_procs
   output: >
     Package management process launched
-    (hostname=%evt.hostname container_id=%container.id
-    user=%user.name command=%proc.cmdline pid=%proc.pid
-    k8s_ns=%k8s.ns.name k8s_pod=%k8s.pod.name)
+    (container_id=%container.id command=%proc.cmdline k8s_ns=%k8s.ns.name k8s_pod=%k8s.pod.name)
   priority: WARNING
   tags: [host, container, process, mitre_persistence]
   exceptions:

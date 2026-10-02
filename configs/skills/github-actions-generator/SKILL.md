@@ -1,59 +1,36 @@
 ---
 name: github-actions-generator
-description: Generate GitHub Actions workflow files. Use when creating or modifying CI/CD pipelines, .github/workflows/ YAML files, or GitHub Actions configurations.
+description: Write GitHub Actions workflows, especially release pipelines for multi-arch binaries, containers, and Helm charts, following the user's release mechanics.
+when_to_use: Creating or modifying .github/workflows/ files, release or CI pipelines, e.g. "릴리즈 워크플로우 작성", "CI 추가", "QEMU 대신 크로스 컴파일", "hcl validate 스텝 추가". Runner and target rules come from the global AGENTS.md.
+argument-hint: "[workflow purpose]"
+license: Apache-2.0
+compatibility: actionlint and zizmor optional for validation
+metadata:
+  version: "2.0.0"
+  category: generator
+  related: dockerfile-generator release-retrigger rust-bump-rerelease
+allowed-tools: Bash(actionlint *) Bash(zizmor *) Read Write Edit Grep Glob
+user-invocable: true
+disable-model-invocation: false
 ---
 
-# GitHub Actions Workflow Generator
+# GitHub Actions
 
-Generate GitHub Actions workflows following best practices.
+Pinned runner labels and the four binary targets are global policy (AGENTS.md); generic hardening (least-privilege `permissions`, untrusted input through `env`, pinned action versions) applies without restating it. Comments follow the global Code Comments rule.
 
-## Output Requirements
+## Release Pipeline Conventions
 
-- Runner labels use explicit OS versions (never `-latest` suffix)
-- Action versions pinned to major version tags (e.g., `actions/checkout@v6`)
-- Job-level `permissions` declared with least privilege
-- Untrusted input (`github.event.*`) passed via `env:` block, never directly interpolated in `run:`
-- Multi-line commit messages use HEREDOC format
+- A `detect` job reads the version from the artifact itself (Dockerfile `org.opencontainers.image.version`, `Chart.yaml` `version`) and skips versions already published
+- `workflow_dispatch` inputs: `project` (or `chart`) as a `choice` list that is the source of truth, plus `force` (boolean) to rebuild and overwrite an existing version
+- Re-releases use `force`, never package deletion
+- Gate order: fmt, lint, test, coverage threshold, then build and push; a failed gate skips the push
+- Native arm64 runners build arm64; no QEMU emulation for compilation
+- Rust cross builds use cargo-zigbuild pinned to 0.23.0 or later (rustc 1.98+ passes an aarch64 linker flag older versions reject)
+- Images and OCI charts publish to GHCR under the repo owner; multi-arch manifest list for containers
+- One shared reusable workflow per artifact type (`_release-<type>.yml`) instead of a workflow per project
 
-## Runner Version Convention
+## Validation
 
-```yaml
-# Correct
-runs-on: ubuntu-24.04
-runs-on: macos-26
-
-# Incorrect (silently changes OS, breaks reproducibility)
-runs-on: ubuntu-latest
-```
-
-## Multi-Platform Build Requirements
-
-**Binary releases** include all four target combinations:
-
-| OS | Target | Platform/Arch |
-|----|--------|---------------|
-| ubuntu-24.04 | x86_64-unknown-linux-gnu | linux/amd64 |
-| ubuntu-24.04 | aarch64-unknown-linux-gnu | linux/arm64 |
-| macos-26 | x86_64-apple-darwin | darwin/amd64 |
-| macos-26 | aarch64-apple-darwin | darwin/arm64 |
-
-**Container images** support `linux/amd64` and `linux/arm64` via `docker/build-push-action`.
-
-## Security Constraints
-
-```yaml
-# Untrusted input must use env indirection
-env:
-  PR_TITLE: ${{ github.event.pull_request.title }}
-run: echo "$PR_TITLE"
-```
-
-## HEREDOC Commit Messages
-
-```yaml
-run: |
-  git commit -m "$(cat <<'EOF'
-  Commit message here.
-  EOF
-  )"
-```
+- `actionlint` passes
+- `zizmor` reports no high findings when available
+- Dispatch inputs in the workflow match the projects that actually exist in the repo
