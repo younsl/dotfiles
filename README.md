@@ -4,3 +4,7 @@ My personal dotfiles optimized for [macOS Tahoe](https://www.apple.com/kr/os/mac
 
 > [!NOTE]
 > This repository has [pull requests disabled](https://github.blog/changelog/2026-02-13-new-repository-settings-for-configuring-pull-request-access/) and does not accept external contributions.
+
+## License
+
+Licensed under the [Apache License 2.0](./LICENSE). See [NOTICE](./NOTICE) for attribution.
