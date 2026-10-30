@@ -4,8 +4,8 @@
     {
       "id": 1,
       "name": "irsa-secret-read",
-      "prompt": "payments 서비스용 IRSA role이랑 Secrets Manager 읽기 정책 테라폼으로 추가해줘 (terragrunt 레포)",
-      "expected_output": "Follows the repo layout with one terragrunt.hcl per environment and resource; policy owned by the payments directory; Sid names the feature; policy description is a complete English sentence without slash or parentheses; issue key and description tags, with the unknown issue key asked for instead of invented; plan and apply not run; terragrunt hcl fmt --check and terragrunt hcl validate listed, never hclfmt.",
+      "prompt": "orders 서비스용 IRSA role이랑 Secrets Manager 읽기 정책 테라폼으로 추가해줘 (terragrunt 레포)",
+      "expected_output": "Follows the repo layout with one terragrunt.hcl per environment and resource; policy owned by the orders directory; Sid names the feature; policy description is a complete English sentence without slash or parentheses; issue key and description tags, with the unknown issue key asked for instead of invented; plan and apply not run; terragrunt hcl fmt --check and terragrunt hcl validate listed, never hclfmt.",
       "files": []
     },
     {
