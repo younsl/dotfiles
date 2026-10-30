@@ -1,0 +1,7 @@
+#---------------------------------
+# Backup completed on 2026-10-11 
+# Krew version is v0.5.0   
+#---------------------------------
+node-shell
+stern
+tree

@@ -1,0 +1,12 @@
+[tools]
+"aqua:grafana/alloy" = "1.20.0"
+argo-rollouts = "1.9.0"
+"http:ij" = { version = "0.1.0", url = "https://raw.githubusercontent.com/younsl/addons/main/box/cli/ij/dist/{{ version }}/ij-{{ os(macos='darwin') }}-{{ arch(x64='amd64') }}.tar.gz" }
+istioctl = "1.30.3"
+node = "24"
+packer = "1.16.0"
+terragrunt = "1.1.3"
+
+[settings]
+minimum_release_age = "7d"
+idiomatic_version_file_enable_tools = ["node"]

@@ -1,0 +1,26 @@
+{
+  "skill_name": "terraform-generator",
+  "evals": [
+    {
+      "id": 1,
+      "name": "irsa-secret-read",
+      "prompt": "payments 서비스용 IRSA role이랑 Secrets Manager 읽기 정책 테라폼으로 추가해줘 (terragrunt 레포)",
+      "expected_output": "Follows the repo layout with one terragrunt.hcl per environment and resource; policy owned by the payments directory; Sid names the feature; policy description is a complete English sentence without slash or parentheses; issue key and description tags, with the unknown issue key asked for instead of invented; plan and apply not run; terragrunt hcl fmt --check and terragrunt hcl validate listed, never hclfmt.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "karpenter-interruption",
+      "prompt": "EKS에 Karpenter 붙이면서 spot interruption 처리까지 테라폼으로 구성해줘",
+      "expected_output": "Uses the terraform-aws-modules eks karpenter submodule with enable_spot_termination; queue_name output feeds settings.interruptionQueue; eks-pod-identity-agent add-on present; karpenter.sh/discovery only on subnet and security group tags; no Node Termination Handler; AL2023 or Bottlerocket AMI; NodePool and EC2NodeClass YAML left to k8s-manifest; plan and apply left to the user.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "remove-unused-role",
+      "prompt": "settlement 서비스 IRSA role 이제 안 쓰니까 테라폼에서 리소스 정리해줘 (terragrunt 레포)",
+      "expected_output": "Does not run destroy without an explicit request; hands the exact terragrunt destroy command for each environment's unit to the user first; deletes the terragrunt.hcl files only after destroy is confirmed, never before; dependents that reference the role are checked.",
+      "files": []
+    }
+  ]
+}

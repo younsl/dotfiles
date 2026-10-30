@@ -1,0 +1,8 @@
+.DS_Store
+target/
+lcov.info
+
+git/config-*
+git/*.key
+zsh/.zshrc.local
+claude/scripts/statusbar-rs

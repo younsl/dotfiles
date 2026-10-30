@@ -1,0 +1,26 @@
+{
+  "skill_name": "bash-generator",
+  "evals": [
+    {
+      "id": 1,
+      "name": "s3-cleanup-portable",
+      "prompt": "30일 지난 S3 오브젝트 정리하는 쉘 스크립트 작성해줘. 맥이랑 리눅스 CI 둘 다에서 돌아야 함",
+      "expected_output": "Runs on BSD and GNU userland (no bare date -d, sed -i, readlink -f, grep -P without a branch); supports --dry-run for the destructive delete; checks required tools with command -v; logs to stderr and data to stdout; passes bash -n and shellcheck; runs under /bin/bash 3.2.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "pod-restart-top10",
+      "prompt": "네임스페이스별 파드 재시작 횟수 top 10 뽑는 스크립트 만들어줘",
+      "expected_output": "No bash 4+ features; no for x in $(...), and any line loop uses while IFS= read -r; logs to stderr; checks kubectl and jq with command -v; shellcheck clean; runs under /bin/bash 3.2.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "version-replace-inplace",
+      "prompt": "설정 파일들의 버전 문자열을 인자로 받은 값으로 일괄 치환하는 스크립트 만들어줘. 맥이랑 리눅스 CI 공용이고 대상 파일 목록은 옵션으로 받게",
+      "expected_output": "In-place edit works on BSD and GNU sed (backup-suffix shim, temp file plus mv, or a non-sed rewrite, never bare sed -i); the optional file list array expands as ${arr[@]+\"${arr[@]}\"} or is guaranteed non-empty, so running with no file option does not abort under set -u on /bin/bash 3.2; supports --dry-run that lists affected files on stdout without writing; passes bash -n and shellcheck; runs under /bin/bash 3.2.",
+      "files": []
+    }
+  ]
+}

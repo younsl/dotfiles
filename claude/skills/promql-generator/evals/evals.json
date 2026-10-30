@@ -1,0 +1,26 @@
+{
+  "skill_name": "promql-generator",
+  "evals": [
+    {
+      "id": 1,
+      "name": "payment-api-alerts",
+      "prompt": "payment-api 서비스 알람 룰 추가해줘. 메트릭은 http_server_request_duration_seconds 히스토그램이고 PrometheusRule로 만들어줘",
+      "expected_output": "p99 via histogram_quantile and 5xx ratio of total requests; status label name taken from the live API, not assumed; for and severity on every rule, pages as severity: critical; summary is a short Korean sentence without cluster name; description starts with [{{ $externalLabels.cluster }}]; asks for PROMETHEUS_URL once and, without it, states queries were not live-verified and passes promtool test rules on synthetic series; promtool check rules passes on the extracted .spec.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "node-cpu-80",
+      "prompt": "노드 CPU 80% 넘으면 알람 걸어둬",
+      "expected_output": "Treats CPU as a cause metric: severity: warning with for set, not a page, and the response says so; alert copy rules applied; overlap check reads defined rules from /api/v1/rules or repo rule files, not only firing ALERTS; live verification requested.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "cronjob-staleness",
+      "prompt": "settlement-batch CronJob 실패하거나 제때 안 돌면 알람 오게 해줘",
+      "expected_output": "Pages on the job's own outcome, not CPU or memory: a job failure alert and a staleness alert on time since the last successful run (kube_cronjob_status_last_successful_time or equivalent from the live API); severity: critical with for set; alert copy rules applied; promtool check rules passes on the extracted .spec.",
+      "files": []
+    }
+  ]
+}

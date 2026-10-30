@@ -1,0 +1,19 @@
+{
+  "skill_name": "airflow-dag-generator",
+  "evals": [
+    {
+      "id": 1,
+      "name": "s3-to-postgres-daily",
+      "prompt": "S3에 매일 떨어지는 주문 parquet 파일을 Postgres orders_daily 테이블에 적재하는 Airflow DAG 작성해줘. 스케줄은 매일 KST 기준이고 s3://<bucket>/orders/dt=YYYY-MM-DD/ 파티션으로 들어와",
+      "expected_output": "No top-level Variable.get, Connection.get, or API calls; reads the partition keyed on the data interval, never latest; the KST schedule renders dt= as the KST business date (data_interval_start converted to Asia/Seoul), not the UTC ds; the S3 wait is a deferrable or reschedule sensor; writes are idempotent via UPSERT or MERGE, either staged and swapped or upsert plus delete-missing in one transaction; bucket from a Variable or template and credentials only via Connection ids; no datetime.now in output-affecting code.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "slow-parse-refactor",
+      "prompt": "이 DAG 파싱이 너무 느려. 리팩토링해줘\n\n```python\nimport json\nfrom datetime import datetime, timedelta\n\nimport pandas as pd\nimport requests\nfrom airflow import DAG\nfrom airflow.models import Variable\nfrom airflow.operators.python import PythonOperator\nfrom airflow.providers.postgres.hooks.postgres import PostgresHook\n\nAPI_TOKEN = Variable.get(\"partner_api_token\")\nCONFIG = json.loads(Variable.get(\"partner_sync_config\"))\nHEADERS = {\"Authorization\": f\"Bearer {API_TOKEN}\"}\n\nPARTNERS = requests.get(f\"{CONFIG['api_base']}/partners\", headers=HEADERS, timeout=30).json()\nTODAY = datetime.now().strftime(\"%Y-%m-%d\")\n\n\ndef fetch_settlements(partner_id, **context):\n    resp = requests.get(\n        f\"{CONFIG['api_base']}/partners/{partner_id}/settlements\",\n        params={\"date\": TODAY},\n        headers=HEADERS,\n        timeout=60,\n    )\n    resp.raise_for_status()\n    df = pd.DataFrame(resp.json()[\"items\"])\n    df[\"synced_at\"] = datetime.now()\n    df.to_csv(f\"/tmp/settlement_{partner_id}_{TODAY}.csv\", index=False)\n\n\ndef load_settlements(partner_id, **context):\n    df = pd.read_csv(f\"/tmp/settlement_{partner_id}_{TODAY}.csv\")\n    hook = PostgresHook(postgres_conn_id=\"dw\")\n    hook.insert_rows(\n        table=\"partner_settlements\",\n        rows=df.values.tolist(),\n        target_fields=list(df.columns),\n    )\n\n\nwith DAG(\n    dag_id=\"partner_settlement_sync\",\n    schedule_interval=\"@daily\",\n    start_date=datetime(2024, 1, 1),\n    default_args={\"owner\": \"data\", \"retries\": 1, \"retry_delay\": timedelta(minutes=5)},\n) as dag:\n    for partner in PARTNERS:\n        pid = partner[\"id\"]\n        fetch = PythonOperator(\n            task_id=f\"fetch_{pid}\",\n            python_callable=fetch_settlements,\n            op_kwargs={\"partner_id\": pid},\n        )\n        load = PythonOperator(\n            task_id=f\"load_{pid}\",\n            python_callable=load_settlements,\n            op_kwargs={\"partner_id\": pid},\n        )\n        fetch >> load\n```",
+      "expected_output": "Moves Variable.get, HTTP calls, and heavy imports into task callables or templated fields; replaces the per-partner top-level loop with dynamic task mapping so task ids no longer depend on the partner list; replaces datetime.now with data interval dates; moves the token out of Variables into a Connection; replaces the /tmp handoff with object storage or XCom keys and bare insert_rows with an idempotent write; keeps one DAG per file; ruff --select AIR is clean or the Airflow major version change is called out; explains parse cost impact.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "skill_name": "rust-generator",
+  "evals": [
+    {
+      "id": 1,
+      "name": "ebs-controller-scaffold",
+      "prompt": "EBS 볼륨 사용률 보고 자동 확장하는 쿠버네티스 컨트롤러를 Rust로 스캐폴딩해줘",
+      "expected_output": "Crate in box/addons/<name>/ with edition 2024 and full-semver rust-version matching sibling crates; unsafe_code forbidden and clippy all, pedantic, nursery; SRP directories aws/, k8s/, observability/ with sibling-file modules (no mod.rs); SDK error wrappers inside their layer, root error.rs has no kube or AWS SDK types; thiserror per layer and anyhow only in main and the orchestration loop; tokio and tracing with select on ctrl_c and SIGTERM; build.rs injects BUILD_COMMIT and BUILD_DATE without a literal .git/HEAD rerun path, so a second cargo build -v is Fresh; Makefile zigbuild musl amd64 and arm64, scratch Dockerfile, chart at box/addons/<name>/charts/<name>/, registered in the release workflow; cargo fmt, clippy -D warnings, and test pass.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "s3-size-cli",
+      "prompt": "S3 버킷 목록이랑 각 버킷 크기 출력하는 Rust CLI 만들어줘",
+      "expected_output": "clap derive with env fallbacks; anyhow only in main; thiserror enum in the aws layer and AWS calls confined to aws/; rustls only, no openssl-sys or native-tls in Cargo.lock; module layout without mod.rs; no Dockerfile or chart; reply states the assumed location; cargo fmt, clippy -D warnings, and test pass.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "addons-cli-placement",
+      "prompt": "younsl/addons 레포에 EC2 인스턴스 목록을 태그로 필터링해서 보여주는 Rust CLI 추가해줘",
+      "expected_output": "Crate in box/cli/<name>/, not box/addons/; no Dockerfile or chart; registered in _release-rust-cli.yml as a dispatch option and push path; edition 2024 and rust-version matching sibling crates; sibling-file modules with AWS calls in aws/; build.rs rerun paths resolved via git rev-parse; cargo fmt, clippy -D warnings, and test pass.",
+      "files": []
+    }
+  ]
+}

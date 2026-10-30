@@ -1,0 +1,26 @@
+{
+  "skill_name": "dockerfile-generator",
+  "evals": [
+    {
+      "id": 1,
+      "name": "go-webhook-multiarch",
+      "prompt": "Go로 만든 admission webhook 서버 Dockerfile 작성해줘. amd64, arm64 멀티아치로 릴리즈할거야",
+      "expected_output": "Runtime-only scratch image; ARG TARGETARCH then COPY --chmod=755 <name>-linux-${TARGETARCH} /app/<name>; no golang stage, no in-image go build, no distroless; ca-certificates from a pinned alpine stage whose apk line carries # hadolint ignore=DL3018; USER 65532:65532; OCI labels title, description, version, licenses, base.name, deprecated with version 0.1.0; no HEALTHCHECK; hadolint exits 0.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "python-api-shrink",
+      "prompt": "이 FastAPI 서비스 Dockerfile 이미지 용량 최적화해줘 (python:3.12 풀 이미지, root 실행, pip 캐시 남김)",
+      "expected_output": "Multi-stage with an official slim runtime image; numeric USER 65532:65532, not a user name; no pip cache in the final layer; OCI labels title, description, version, base.name, deprecated; no HEALTHCHECK; hadolint clean; no TARGETARCH binary copy.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "rust-no-cargo-chef",
+      "prompt": "Rust로 만든 컨트롤러 Dockerfile 작성해줘. cargo-chef 써서 빌드 캐시 최적화하고 멀티아치로 릴리즈하고 싶어",
+      "expected_output": "Declines the in-image cargo-chef builder and explains the binary is built in CI with cargo-zigbuild musl; runtime-only scratch image with ARG TARGETARCH and COPY --chmod=755 <name>-linux-${TARGETARCH} /app/<name>; ca-certificates from a pinned alpine stage; USER 65532:65532; org.opencontainers.image.version equals Cargo.toml version; no rust, cargo-chef, or distroless stage; no HEALTHCHECK.",
+      "files": []
+    }
+  ]
+}
