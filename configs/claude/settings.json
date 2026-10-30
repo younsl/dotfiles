@@ -109,9 +109,9 @@
       "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
       "### User-specific",
       "**Primary use of Claude Code**: software development (Kubernetes/AWS infra tooling — external-ebs-autoresizer)",
-      "**Trusted repo**: ~/github/younsl/addons (younsl/addons, github.com/younsl/addons) — PUBLIC repo: only this repo's own work is safe to commit/push here; secrets and sensitive data are never cleared into it by visibility alone",
+      "**Trusted repos**: ~/github/younsl/addons (younsl/addons, github.com/younsl/addons) and ~/github/younsl/dotfiles (younsl/dotfiles, github.com/younsl/dotfiles) — both PUBLIC repos: only this repo's own work is safe to commit/push here; secrets and sensitive data are never cleared into it by visibility alone",
       "**Org-specific CLIs**: None configured (project uses kubectl, crane, aws, helm, gofmt, perl, rsvg-convert, xmllint per usage — general-purpose, not org-specific)",
-      "routine under younsl/addons prefix: git push to origin (github.com/younsl/addons) for this repo only"
+      "routine under younsl/addons and younsl/dotfiles prefixes: git push to origin (github.com/younsl/addons, github.com/younsl/dotfiles) for these repos only"
     ]
   },
   "voiceEnabled": true,

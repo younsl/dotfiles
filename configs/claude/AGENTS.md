@@ -30,7 +30,7 @@ Always-on ground rule for every file Claude writes or edits: application code, H
 
 ## Skills Security Policy
 
-These dotfiles live in the public younsl/addons repo on GitHub (box/addons/tether/configs/). Follow these rules when creating or modifying skills files.
+These dotfiles live in the public younsl/dotfiles repo on GitHub. Follow these rules when creating or modifying skills files.
 
 ### Prohibited Items
 
