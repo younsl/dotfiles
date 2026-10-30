@@ -3,6 +3,7 @@
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CONFIGS_DIR="$DOTFILES_DIR/configs"
 BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 DRY_RUN=false
 
@@ -36,7 +37,7 @@ usage() {
     cat <<EOF
 Usage: $(basename "$0") [-n|--dry-run] [-h|--help]
 
-Symlink dotfiles from $DOTFILES_DIR into $HOME.
+Symlink dotfiles from $CONFIGS_DIR into $HOME.
 Real files in the way are moved to $HOME/.dotfiles-backup/TIMESTAMP/.
 EOF
 }
@@ -107,7 +108,7 @@ main() {
     for pair in "${LINKS[@]}"; do
         source="${pair%%:*}"
         target="${pair#*:}"
-        link "$DOTFILES_DIR/$source" "$HOME/$target"
+        link "$CONFIGS_DIR/$source" "$HOME/$target"
     done
 
     for pair in "${PER_ENTRY_LINKS[@]}"; do
@@ -117,7 +118,7 @@ main() {
             run rm "$HOME/$target"
         fi
         run mkdir -p "$HOME/$target"
-        for entry in "$DOTFILES_DIR/$source"/*/; do
+        for entry in "$CONFIGS_DIR/$source"/*/; do
             entry="${entry%/}"
             link "$entry" "$HOME/$target/$(basename "$entry")"
         done

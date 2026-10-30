@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-BREW_DIR="$HOME/github/younsl/dotfiles/package-managers/brew"
-KREW_DIR="$HOME/github/younsl/dotfiles/package-managers/krew"
+BREW_DIR="$HOME/github/younsl/dotfiles/configs/package-managers/brew"
+KREW_DIR="$HOME/github/younsl/dotfiles/configs/package-managers/krew"
 BACKUP_FILE="$KREW_DIR/Krewfile"
 
 GREEN='\033[0;32m'

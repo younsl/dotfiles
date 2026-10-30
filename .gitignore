@@ -2,7 +2,7 @@
 target/
 lcov.info
 
-git/config-*
-git/*.key
-zsh/.zshrc.local
-claude/scripts/statusbar-rs
+configs/git/config-*
+configs/git/*.key
+configs/zsh/.zshrc.local
+configs/claude/scripts/statusbar-rs

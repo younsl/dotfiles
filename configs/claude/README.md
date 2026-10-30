@@ -16,7 +16,7 @@ claude/
 └── skills/              # Custom skills in the Agent Skills format
 ```
 
-Skills live in [`skills/`](./skills). [install.sh](../install.sh) links each one into `~/.claude/skills/`.
+Skills live in [`skills/`](./skills). [install.sh](../../install.sh) links each one into `~/.claude/skills/`.
 
 ## Scripts
 
