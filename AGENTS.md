@@ -10,6 +10,8 @@ This repository is public, including commit messages. Work-specific git includes
 
 Commit directly to main with a DCO sign-off (git commit -s). GPG signing is on globally.
 
+Run pre-commit install once per clone. It installs both the pre-commit and commit-msg hooks, which enforce the commit format and sign-off below. Fix hook failures instead of bypassing them with --no-verify.
+
 Format: TOOL TYPE(SCOPE): DETAIL, for example [nvim] feat(pack): add nvim-treesitter-textobjects via vim.pack. TOOL is the directory name under configs/, or [repo] for changes that span tools. Types: feat, fix, refactor, docs, test, chore.
 
 ## Dotfiles rules
