@@ -1,0 +1,83 @@
+minimum_pre_commit_version: "4.0.0"
+default_install_hook_types: [pre-commit, commit-msg]
+default_stages: [pre-commit]
+exclude: ^configs/package-managers/(brew/Brewfile|krew/krewfile)$
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # frozen: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-added-large-files
+        args: [--maxkb=500]
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+      - id: check-symlinks
+      - id: detect-private-key
+      - id: forbid-submodules
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: 2ca41cc1372d1e939a6a879f18cdc19fc1cac1ce  # frozen: v8.30.0
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: a6564f5d57444e123433a5c9af733e3975c77229  # frozen: v0.11.0.1-1
+    hooks:
+      - id: shellcheck
+        exclude_types: [zsh]
+        exclude: ^scripts/bootstrap/bootstrap-dotfiles\.sh$
+
+  - repo: local
+    hooks:
+      - id: forbid-private-files
+        name: forbid untracked-by-design private files
+        language: fail
+        entry: private file must stay local, see .gitignore
+        files: ^configs/git/(config-work.*|.*\.key)$|\.zshrc\.local$
+
+      - id: script-strict-mode
+        name: scripts start with set -euo pipefail
+        language: pygrep
+        entry: ^set -euo pipefail$
+        args: [--negate]
+        types: [shell]
+        exclude_types: [zsh]
+        exclude: ^configs/claude/hooks/herdr-agent-state\.sh$
+
+      - id: cargo-fmt
+        name: cargo fmt --check
+        language: system
+        entry: sh -c 'for m in configs/claude/scripts/statusbar configs/launchd/kavd-watchdog; do cargo fmt --manifest-path "$m/Cargo.toml" --check || exit 1; done'
+        files: \.rs$|Cargo\.(toml|lock)$
+        pass_filenames: false
+
+      - id: cargo-clippy
+        name: cargo clippy -D warnings
+        language: system
+        entry: sh -c 'for m in configs/claude/scripts/statusbar configs/launchd/kavd-watchdog; do cargo clippy --quiet --manifest-path "$m/Cargo.toml" --all-targets -- -D warnings || exit 1; done'
+        files: \.rs$|Cargo\.(toml|lock)$
+        pass_filenames: false
+
+      - id: commit-msg-format
+        name: commit subject matches [TOOL] type(scope) format
+        language: pygrep
+        entry: '\A\[[a-z0-9-]+\] (feat|fix|refactor|docs|test|chore)(\([a-z0-9._/-]+\))?!?: \S'
+        args: [--multiline, --negate]
+        stages: [commit-msg]
+
+      - id: commit-msg-signoff
+        name: commit has DCO Signed-off-by
+        language: pygrep
+        entry: '^Signed-off-by: .+ <.+>$'
+        args: [--negate]
+        stages: [commit-msg]
