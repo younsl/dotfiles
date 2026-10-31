@@ -57,15 +57,15 @@ repos:
       - id: cargo-fmt
         name: cargo fmt --check
         language: system
-        entry: sh -c 'for m in configs/claude/scripts/statusbar configs/launchd/kavd-watchdog; do cargo fmt --manifest-path "$m/Cargo.toml" --check || exit 1; done'
-        files: \.rs$|Cargo\.(toml|lock)$
+        entry: cargo fmt --manifest-path configs/launchd/kavd-watchdog/Cargo.toml --check
+        files: ^configs/launchd/kavd-watchdog/(.*\.rs|Cargo\.(toml|lock))$
         pass_filenames: false
 
       - id: cargo-clippy
         name: cargo clippy -D warnings
         language: system
-        entry: sh -c 'for m in configs/claude/scripts/statusbar configs/launchd/kavd-watchdog; do cargo clippy --quiet --manifest-path "$m/Cargo.toml" --all-targets -- -D warnings || exit 1; done'
-        files: \.rs$|Cargo\.(toml|lock)$
+        entry: cargo clippy --quiet --manifest-path configs/launchd/kavd-watchdog/Cargo.toml --all-targets -- -D warnings
+        files: ^configs/launchd/kavd-watchdog/(.*\.rs|Cargo\.(toml|lock))$
         pass_filenames: false
 
       - id: commit-msg-format

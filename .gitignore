@@ -5,4 +5,3 @@ lcov.info
 configs/git/config-*
 configs/git/*.key
 configs/zsh/.zshrc.local
-configs/claude/scripts/statusbar-rs

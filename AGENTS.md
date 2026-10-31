@@ -22,7 +22,7 @@ Format: TOOL TYPE(SCOPE): DETAIL, for example [nvim] feat(pack): add nvim-treesi
 - **Scripts carry no comments** and every script starts with set -euo pipefail.
 - scripts/git/commit-history-cleaner.sh and the chc alias are **destructive**: they wipe all history and force push. Never run them in this repository.
 - bootstrap-dotfiles.sh is #!/bin/zsh: prompts must use read "VAR?prompt". zsh's read -p reads from a coprocess and silently yields an empty value.
-- configs/claude/scripts/statusbar and configs/launchd/kavd-watchdog are local Rust tools, not released. They follow edition 2024, rust-version 1.99.1, cargo fmt --check, and cargo clippy -- -D warnings.
+- configs/launchd/kavd-watchdog is a local Rust tool, not released. It follows edition 2024, rust-version 1.99.1, cargo fmt --check, and cargo clippy -- -D warnings.
 
 ## Shell entry points
 

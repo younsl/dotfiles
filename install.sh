@@ -26,7 +26,6 @@ LINKS=(
     "claude/settings.json:.claude/settings.json"
     "claude/AGENTS.md:.claude/CLAUDE.md"
     "claude/hooks:.claude/hooks"
-    "claude/scripts:.claude/scripts"
 )
 
 PER_ENTRY_LINKS=(

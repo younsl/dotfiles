@@ -7,7 +7,7 @@
   "permissions": {
     "defaultMode": "auto"
   },
-  "model": "opus[1m]",
+  "model": "opus",
   "hooks": {
     "PostToolUse": [
       {
@@ -51,7 +51,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/scripts/statusbar-rs"
+    "command": "sh -c 'i=$(cat); d=$(printf \"%s\" \"$i\" | jq -r .workspace.current_dir); w=$(printf \"%s\" \"$i\" | jq -r \".rate_limits.seven_day.used_percentage // empty | round\"); b=$(git -C \"$d\" branch --show-current 2>/dev/null); B=$(printf \"\\033[1m\"); R=$(printf \"\\033[0m\"); printf \"%s%s%s\" \"$B${d##*/}$R\" \"${b:+ on $B$b$R}\" \"${w:+ | ${B}week $w%$R}\"'"
   },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true,
@@ -80,6 +80,7 @@
   },
   "tui": "fullscreen",
   "theme": "dark",
+  "switchModelsOnFlag": false,
   "skipAutoPermissionPrompt": true,
   "autoMode": {
     "soft_deny": [
@@ -114,6 +115,5 @@
       "routine under younsl/addons and younsl/dotfiles prefixes: git push to origin (github.com/younsl/addons, github.com/younsl/dotfiles) for these repos only"
     ]
   },
-  "voiceEnabled": true,
-  "switchModelsOnFlag": false
+  "voiceEnabled": true
 }

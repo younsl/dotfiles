@@ -71,7 +71,7 @@ The `detect` job skips any version already published, and a Rust bump leaves tha
 | Scratch containers | `gh workflow run _release-rust-scratch-containers.yml -f project=<project> -f force=true` |
 | `harbor` | `gh workflow run release-harbor-arm64.yml -f force=true` |
 | `ij` | `gh workflow run _release-rust-cli.yml -f project=ij -f force=true` |
-| `vlt`, `statusbar` | no release workflow: bump + commit only |
+| `vlt` | no release workflow: bump + commit only |
 
 Dispatch one command per project: a shell loop over `gh workflow run` may be denied where single dispatches pass.
 
