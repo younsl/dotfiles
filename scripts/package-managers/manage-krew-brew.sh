@@ -85,21 +85,22 @@ create_brewfile() {
 append_summary() {
     local sections=("tap" "brew" "cask" "mas" "vscode")
     local today
+    local section
+    local count
+    local counts=()
     today=$(date +%Y-%m-%d)
+
+    for section in "${sections[@]}"; do
+        count=$(grep -c "^$section " "$1" || true)
+        counts+=("# Installed $section count: $count")
+    done
 
     {
         echo "#-------------------------------"
         echo "# PACKAGE INSTALLATION SUMMARY"
         echo "# Date: $today"
         echo "#-------------------------------"
-
-        local section
-        local count
-        for section in "${sections[@]}"; do
-            count=$(grep -c "^$section " "$1" || true)
-            echo "# Installed $section count: $count"
-        done
-
+        printf '%s\n' "${counts[@]}"
         echo "#-------------------------------"
     } >> "$1"
 }

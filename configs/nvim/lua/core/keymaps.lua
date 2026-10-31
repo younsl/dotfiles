@@ -71,4 +71,3 @@ vim.keymap.set('n', '<leader>gac', function()
   vim.cmd('Git add .')
   vim.cmd('Git commit')
 end, { desc = 'Git add all and commit' })
-
