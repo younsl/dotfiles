@@ -6,7 +6,7 @@ argument-hint: "[project purpose]"
 license: Apache-2.0
 compatibility: cargo with rustfmt and clippy, plus cargo-zigbuild, zig 0.15.2, and the x86_64 and aarch64 musl targets for addon packaging
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
   category: generator
   related: dockerfile-generator helm-chart github-actions-generator done-check rust-bump-rerelease
 allowed-tools: Bash(cargo *) Bash(rustc --version) Read Write Edit Grep Glob
@@ -28,6 +28,7 @@ disable-model-invocation: false
 - CLI: `clap` derive API, config flags fall back to env vars via `env`
 - TLS: rustls only (`rustls-tls` features), no `openssl-sys` or `native-tls` in `Cargo.lock`
 - Module style: sibling file pattern (`parent.rs` + `parent/`), never `mod.rs`
+- CRDs validate with schema bounds and CEL (`KubeSchema`, `x_kube(validation)`), defaults declared in the schema; no validating webhook
 
 ## Project Structure (SRP)
 
