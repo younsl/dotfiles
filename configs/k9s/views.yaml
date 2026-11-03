@@ -128,3 +128,15 @@ views:
       - PARENT NS:.spec.parentRefs[0].namespace|S
       - HOSTNAMES:.spec.hostnames[0]|S
       - AGE
+
+  # Shows current volume usage against the scale-up threshold
+  autoscaling.gardener.cloud/v1alpha1/persistentvolumeclaimautoscalers:
+    sortColumn: AGE:asc
+    columns:
+      - NAMESPACE
+      - NAME
+      - TARGET
+      - AUTOSCALERNAME
+      - 'USED%:.status.volumeRecommendations[*].current.usedSpacePercent|R'
+      - 'THRESHOLD%:.spec.volumePolicies[0].scaleUp.utilizationThresholdPercent|R'
+      - 'AGE:.metadata.creationTimestamp|T'
