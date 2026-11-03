@@ -88,6 +88,8 @@ Every skill declares the same frontmatter keys:
 
 Keep the body under 500 lines, frontmatter excluded. Omit general knowledge the model already has and keep only your conventions and constraints.
 
+A SKILL.md over 100 lines, frontmatter included and the list itself excluded, carries a Contents section before its first section that links every H2 and H3. The skill-toc pre-commit hook writes and resyncs it, so stage the rewritten file and commit again when the hook fails. A list stays in sync once added, even if the file later drops under 100 lines.
+
 ## License
 
 This repository is licensed under the Apache License 2.0. See the [LICENSE](../../../LICENSE) file for details.

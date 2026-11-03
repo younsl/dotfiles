@@ -54,6 +54,12 @@ repos:
         exclude_types: [zsh]
         exclude: ^configs/claude/hooks/herdr-agent-state\.sh$
 
+      - id: skill-toc
+        name: skills over 100 lines carry a synced Contents list
+        language: python
+        entry: scripts/claude/skill-toc.py
+        files: ^configs/claude/skills/[^/]+/SKILL\.md$
+
       - id: cargo-fmt
         name: cargo fmt --check
         language: system

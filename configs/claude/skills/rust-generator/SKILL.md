@@ -6,7 +6,7 @@ argument-hint: "[project purpose]"
 license: Apache-2.0
 compatibility: cargo with rustfmt and clippy, plus cargo-zigbuild, zig 0.15.2, and the x86_64 and aarch64 musl targets for addon packaging
 metadata:
-  version: "1.3.0"
+  version: "1.3.1"
   category: generator
   related: dockerfile-generator helm-chart github-actions-generator done-check rust-bump-rerelease
 allowed-tools: Bash(cargo *) Bash(rustc --version) Read Write Edit Grep Glob
@@ -15,6 +15,16 @@ disable-model-invocation: false
 ---
 
 # Rust Code Generator
+
+## Contents
+
+- [Output Requirements](#output-requirements)
+- [Project Structure (SRP)](#project-structure-srp)
+- [Cargo.toml](#cargotoml)
+- [Build-Time Metadata](#build-time-metadata)
+- [Async Patterns](#async-patterns)
+- [Packaging](#packaging)
+- [Validation](#validation)
 
 ## Output Requirements
 

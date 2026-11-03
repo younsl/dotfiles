@@ -6,7 +6,7 @@ argument-hint: "[rule name or alert output]"
 license: Apache-2.0
 compatibility: falco binary or the falcosecurity/falco image (podman or docker) for --validate, helm for rendering customRules; kubectl for reading Falco pod logs
 metadata:
-  version: "1.3.0"
+  version: "1.3.1"
   category: generator
   related: k8s-manifest helm-chart helm-bump promql-generator
 allowed-tools: Bash(falco *) Bash(podman run *) Bash(docker run *) Bash(helm template *) Bash(kubectl logs *) Read Write Edit Grep Glob
@@ -17,6 +17,16 @@ disable-model-invocation: false
 # Falco Rules Generator
 
 Generate and tune Falco custom rules, exceptions, and macros for runtime security.
+
+## Contents
+
+- [Output Requirements](#output-requirements)
+- [Sensor And Response](#sensor-and-response)
+- [Override Syntax (Falco 0.35+)](#override-syntax-falco-035)
+  - [Field Selection Guide](#field-selection-guide)
+- [Custom Rule Structure](#custom-rule-structure)
+- [Validation](#validation)
+- [Common Errors](#common-errors)
 
 ## Output Requirements
 

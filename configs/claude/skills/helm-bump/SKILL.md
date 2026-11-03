@@ -6,7 +6,7 @@ argument-hint: "[chart] [version] [purpose]"
 license: Apache-2.0
 compatibility: helm and crane, or aws CLI for ECR; git plus glab (GitLab) or gh (GitHub) for shipping
 metadata:
-  version: "1.4.0"
+  version: "1.4.1"
   category: action
   related: helm-chart release-promote git-ship writing-style
 allowed-tools: Bash(helm *) Bash(crane *) Bash(aws ecr *) Bash(git *) Bash(glab *) Bash(gh *) Read Edit Glob Grep
@@ -17,6 +17,15 @@ disable-model-invocation: false
 # Helm Chart Version Bump
 
 One request runs end to end: verify the version, edit, validate, then ship as a commit and MR/PR whose description carries the upstream release notes.
+
+## Contents
+
+- [Bump Constraints](#bump-constraints)
+- [Ship Constraints](#ship-constraints)
+- [Release Notes](#release-notes)
+- [Commit Message](#commit-message)
+- [Version Verification Reference](#version-verification-reference)
+- [Validation](#validation)
 
 ## Bump Constraints
 
