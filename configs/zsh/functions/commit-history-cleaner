@@ -1,4 +1,4 @@
-local git_root new_branch="latest_branch" base_branch="main"
+local git_root branch old new base_branch="main"
 
 if ! command -v git &>/dev/null; then
   echo "Error: 'git' command is not installed."
@@ -13,25 +13,38 @@ fi
 
 echo "project=${git_root:t} root=$git_root"
 
-echo "This script will delete the '${base_branch}' branch and create the '${new_branch}' branch."
+branch=$(git -C "$git_root" branch --show-current)
+if [[ "$branch" != "$base_branch" ]]; then
+  echo "Error: Current branch is '${branch}', not '${base_branch}'."
+  return 1
+fi
+
+if [[ -n $(git -C "$git_root" status --porcelain --untracked-files=no) ]]; then
+  echo "Error: Uncommitted changes in tracked files. Commit or stash them first."
+  return 1
+fi
+
+git -C "$git_root" fetch -q origin "$base_branch" || return 1
+old=$(git -C "$git_root" rev-parse HEAD) || return 1
+if [[ "$old" != "$(git -C "$git_root" rev-parse "origin/${base_branch}")" ]]; then
+  echo "Error: Local '${base_branch}' differs from 'origin/${base_branch}'. Sync them first."
+  return 1
+fi
+
+echo "This script will replace the entire history of '${base_branch}' with a single commit of HEAD ${old:0:8} and force push it."
 read "REPLY?Do you want to continue? (Yes/n) "
 if [[ "$REPLY" != "Yes" ]]; then
   echo "Operation canceled by user."
   return 1
 fi
 
-(
-  cd "$git_root" || exit 1
-  git checkout --orphan "$new_branch"
-  git add -A
-  git commit \
-    -m "nuke(git): Regular commit history cleanup" \
-    -m "Initialize repository to clean all commit history using commit history cleaner script" \
-    -s
-  git branch -D "$base_branch" || true
-  git branch -m "$base_branch"
-  git push -f origin "$base_branch"
-  git branch --set-upstream-to=origin/"$base_branch"
-) || return 1
+new=$(git -C "$git_root" commit-tree -S "HEAD^{tree}" \
+  -m "nuke(git): Regular commit history cleanup" \
+  -m "Initialize repository to clean all commit history using commit history cleaner script" \
+  -m "Signed-off-by: $(git config user.name) <$(git config user.email)>") || return 1
 
-echo "Done."
+git -C "$git_root" push --force-with-lease="${base_branch}:${old}" origin "${new}:refs/heads/${base_branch}" || return 1
+git -C "$git_root" reset -q --soft "$new" || return 1
+git -C "$git_root" branch -q --set-upstream-to="origin/${base_branch}"
+
+echo "Done. Previous HEAD ${old} stays reachable from the reflog."
