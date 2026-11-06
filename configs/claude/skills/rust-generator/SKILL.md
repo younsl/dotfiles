@@ -6,7 +6,7 @@ argument-hint: "[project purpose]"
 license: Apache-2.0
 compatibility: cargo with rustfmt and clippy, plus cargo-zigbuild, zig 0.15.2, and the x86_64 and aarch64 musl targets for addon packaging
 metadata:
-  version: "1.3.1"
+  version: "1.4.0"
   category: generator
   related: dockerfile-generator helm-chart github-actions-generator done-check rust-bump-rerelease
 allowed-tools: Bash(cargo *) Bash(rustc --version) Read Write Edit Grep Glob
@@ -21,6 +21,7 @@ disable-model-invocation: false
 - [Output Requirements](#output-requirements)
 - [Project Structure (SRP)](#project-structure-srp)
 - [Cargo.toml](#cargotoml)
+- [CRD Generation](#crd-generation)
 - [Build-Time Metadata](#build-time-metadata)
 - [Async Patterns](#async-patterns)
 - [Packaging](#packaging)
@@ -89,6 +90,24 @@ strip = true
 panic = "abort"
 ```
 
+## CRD Generation
+
+Applies to crates that define a `#[derive(CustomResource)]` type. Priority order: generated from code, drift-checked, kept out of the runtime binary.
+
+- Chart CRD YAML is generated from the Rust types, never hand-written
+- Generation runs in a separate `crdgen` binary (`[[bin]] crdgen`, `src/bin/crdgen.rs`, `doc = false`) over a `[lib]`, following kube-rs `controller-rs`. The runtime binary has no `crd` subcommand
+- The release builds `--bin <name>` and the image copies only that binary, so `crdgen` never ships
+- `default-run = "<name>"` in `[package]`, so plain `cargo run` and Makefile targets still pick the controller
+- An integration test (`tests/crd_drift.rs`) compares each chart CRD `spec` with the generated one and fails with "run `make crd`". It runs in `cargo test`, so pre-commit and the release test job catch a stale chart without a workflow step
+- The lib exposes the modules the binaries and tests import. Public-API doc lints that fire crate-wide (`missing_errors_doc`, `missing_panics_doc`, `must_use_candidate`, `too_long_first_doc_paragraph`) are allowed in `Cargo.toml` with a one-line reason, the lint groups at `priority = -1`
+
+| File | Role |
+|------|------|
+| `src/lib.rs` | Module tree, crate-level `#![allow]` |
+| `src/main.rs` | Controller entry, imports the lib |
+| `src/bin/crdgen.rs` | Prints one CRD as JSON or YAML for the chart render step |
+| `tests/crd_drift.rs` | Chart CRD vs generated CRD, semantic compare |
+
 ## Build-Time Metadata
 
 - `build.rs` injects `BUILD_COMMIT` and `BUILD_DATE` via `cargo:rustc-env`
@@ -113,3 +132,4 @@ panic = "abort"
 - A second `cargo build -v` reports `Fresh` for the crate
 - `Cargo.lock` has no `openssl-sys` or `native-tls` package
 - Addons: `make zigbuild` produces both musl binaries
+- CRD crates: `--help` of the runtime binary lists no `crd` command, and editing a chart CRD field makes `cargo test --test crd_drift` fail
