@@ -25,12 +25,13 @@ Custom Claude Code skills for DevOps workflows, written to the [Agent Skills](ht
 | `release-retrigger` | Action | Re-publish a release at the same version |
 | `rust-bump-rerelease` | Action | Bump Rust toolchain and re-release container image |
 | `rust-generator` | Generator | Rust applications and CLI tools |
+| `superset-password-reset` | Action | Reset a Superset user's password after confirming the runtime auth mode |
 | `terraform-generator` | Generator | Terraform and Terragrunt for AWS |
 | `writing-style` | Style | Writing rules for docs, MR, Jira, Confluence, Slack |
 
 ## Site Values
 
-Action skills that touch company systems (`jira-issue`, `release-promote`) read site-specific values such as the Jira project key or internal registry host from environment variables set in `~/.zshrc.local`, which is not tracked. Each skill lists its variables.
+Action skills that touch company systems (`jira-issue`, `release-promote`, `superset-password-reset`) read site-specific values such as the Jira project key or internal registry host from environment variables set in `~/.zshrc.local`, which is not tracked. Each skill lists its variables.
 
 ## Usage
 
