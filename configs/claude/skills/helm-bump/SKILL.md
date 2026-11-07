@@ -6,7 +6,7 @@ argument-hint: "[chart] [version] [purpose]"
 license: Apache-2.0
 compatibility: helm and crane, or aws CLI for ECR; git plus glab (GitLab) or gh (GitHub) for shipping
 metadata:
-  version: "1.4.1"
+  version: "1.5.0"
   category: action
   related: helm-chart release-promote git-ship writing-style
 allowed-tools: Bash(helm *) Bash(crane *) Bash(aws ecr *) Bash(git *) Bash(glab *) Bash(gh *) Read Edit Glob Grep
@@ -22,6 +22,7 @@ One request runs end to end: verify the version, edit, validate, then ship as a 
 
 - [Bump Constraints](#bump-constraints)
 - [Ship Constraints](#ship-constraints)
+- [Version Table](#version-table)
 - [Release Notes](#release-notes)
 - [Commit Message](#commit-message)
 - [Version Verification Reference](#version-verification-reference)
@@ -50,8 +51,27 @@ Shipping follows the `git-ship` skill (load it) for branch policy, pathspec comm
 - The commit holds only the bumped chart paths and the inventory row; unrelated working tree changes stay uncommitted
 - Branch name `bump/<chart>-<new version>` for a plain update; `fix/<chart>-<topic>` when the bump is the means to a fix
 - Title and commit subject lead with the purpose when the bump is a means (`fix(<chart>): <envs> <goal>을 위해 <version> 적용`); plain updates keep `bump(<chart>): ...` or the repo's own convention from `git log`
-- MR/PR body stays short (`git-ship` length rules) and ends with exactly one release notes `<details>` block (see Release Notes)
+- MR/PR body stays short (`git-ship` length rules), carries the before/after version table under the changes section (see Version Table), and ends with exactly one release notes `<details>` block (see Release Notes)
 - Final report: branch, commit subject, full MR/PR URL, plus any part of the stated purpose the bump does not cover
+
+## Version Table
+
+- One English markdown table in the MR/PR changes section (`## 변경사항` / `## Changes`), placed before any bullets, replacing bullets that only restate versions
+- Columns in order: `Name`, `Chart Version`, `App Version`, `Environments`, `Notes`
+- Version cells show before and after as `<old> → <new>`; an unchanged value is written once
+- One row per bumped dependency; environments sharing the same before and after values merge into one row (`dev, stg, sb, prd`); unchanged dependencies are left out
+- `Chart Version` is the dependency version exactly as written in `Chart.yaml` (keep a `v` prefix if present)
+- `App Version` is the upstream chart's `appVersion` from `helm show chart`; when the chart has none, use the image tag `helm template` renders for the main component; `-` when neither applies (e.g. CRD-only charts)
+- `Notes` holds a short English remark that changes how a reviewer reads the row (no-op CRD diff, bundled subchart, base image change); `-` otherwise
+- Every value comes from `helm show chart` or the rendered output of the old and new versions, never from memory or the release title
+
+```markdown
+| Name | Chart Version | App Version | Environments | Notes |
+|------|---------------|-------------|--------------|-------|
+| kagent | v0.10.4 → 0.10.6 | 0.10.4 → 0.10.6 | shared | Python ADK image base moved to Wolfi |
+| kagent-crds | 0.10.1 → 0.10.6 | - | shared | Rendered CRDs identical, no-op |
+| kagent-tools | 0.3.0 → 0.3.1 | 0.3.0 → 0.3.1 | dev, stg, sb, prd, beta | - |
+```
 
 ## Release Notes
 
@@ -111,4 +131,4 @@ Subject follows the repo's `git log` convention (younsl/addons: `[<component>] c
 - Bumped version matches a real, published version in the upstream registry
 - `Chart.lock`, when tracked, lists the new dependency version
 - `git diff` shows only version-related line changes: no unrelated modifications
-- After shipping: `git rev-parse @{u}` equals `HEAD`, the MR/PR description contains exactly one release notes `<details>` block with a subheading for every release in the range
+- After shipping: `git rev-parse @{u}` equals `HEAD`, the MR/PR description contains the version table with a row for every bumped dependency and environment group, and exactly one release notes `<details>` block with a subheading for every release in the range
