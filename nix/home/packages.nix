@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   home.packages = with pkgs; [
     actionlint
@@ -47,7 +47,7 @@
     lua-language-server
     mas
     maven
-    minikube
+    (lib.lowPrio minikube)
     mise
     neovim
     nixfmt
