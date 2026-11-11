@@ -68,6 +68,7 @@ Omit general knowledge Claude already knows. Keep only **your conventions and co
 
 - State constraints ("image versions pinned"), not procedures ("Step 1: pin the image")
 - Keep the body under 500 lines; Claude generates boilerplate contextually
+- A SKILL.md over 100 lines carries a `## Contents` index of its `##` and `###` headings right before the first section, so an agent can find the part it needs without reading the whole file. Generate it with `scripts/skill-toc.py` in younsl/skills and keep it in sync on every heading change
 - Use tables for pattern references instead of repetitive code blocks
 - List validation criteria, not numbered step sequences
 
