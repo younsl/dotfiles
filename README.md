@@ -4,19 +4,22 @@ Personal macOS configuration as a [Nix](https://github.com/NixOS/nix) flake. [ni
 
 ## Layout
 
-| Path | Content |
-| --- | --- |
-| flake.nix | Inputs and the macbook darwin configuration |
-| nix/darwin | System defaults, [Homebrew](https://github.com/Homebrew/brew) taps and casks, kavd-watchdog daemon |
-| nix/home | CLI packages, wrapped scripts, config links, [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) and its plugins |
-| nix/pkgs | Local package builds |
-| nix/overlays.nix | Fixes applied on top of [nixpkgs](https://github.com/NixOS/nixpkgs) |
-| configs | Config files linked into $HOME |
-| scripts | Bootstrap and standalone scripts |
+```
+.
+├── flake.nix          # inputs and the macbook darwin configuration
+├── flake.lock
+├── nix/
+│   ├── darwin/        # system defaults, Homebrew taps and casks, kavd-watchdog daemon
+│   ├── home/          # CLI packages, wrapped scripts, config links, oh-my-zsh
+│   ├── pkgs/          # local package builds
+│   └── overlays.nix   # fixes applied on top of nixpkgs
+├── configs/           # config files linked into $HOME
+└── scripts/           # bootstrap and standalone scripts
+```
 
 ## Install
 
-Clone into the fixed path, then run the bootstrap. It installs [Determinate Nix](https://github.com/DeterminateSystems/nix-installer) and Homebrew when missing, moves the stock /etc shell files aside for nix-darwin, and runs the first switch.
+Clone into the fixed path, then run the bootstrap. It installs [Determinate Nix](https://github.com/DeterminateSystems/nix-installer) and [Homebrew](https://github.com/Homebrew/brew) when missing, moves the stock /etc shell files aside for nix-darwin, and runs the first switch.
 
 ```bash
 git clone https://github.com/younsl/nix ~/github/younsl/nix
@@ -53,14 +56,10 @@ nix shell nixpkgs#stern
 
 ## Packages
 
-| Source | Holds | Declared in |
-| --- | --- | --- |
-| nixpkgs | CLI tools and kubectl plugins | nix/home/packages.nix |
-| writeShellApplication | Scripts shipped as commands, such as clone-all | nix/home/commands.nix |
-| Homebrew | Casks and formulae nixpkgs lacks or cannot build on darwin | nix/darwin/homebrew.nix |
-| [mise](https://github.com/jdx/mise) | Version-coupled CLIs such as istioctl | configs/package-managers/mise/config.toml |
-
-Homebrew cleanup is set to uninstall, so a hand-run brew install disappears on the next switch.
+- **[nixpkgs](https://github.com/NixOS/nixpkgs)**: CLI tools and kubectl plugins, declared in nix/home/packages.nix.
+- **writeShellApplication**: scripts shipped as commands, such as clone-all, declared in nix/home/commands.nix.
+- **Homebrew**: casks and formulae that nixpkgs lacks or cannot build on darwin, declared in nix/darwin/homebrew.nix. Cleanup is set to uninstall, so a hand-run brew install disappears on the next switch.
+- **[mise](https://github.com/jdx/mise)**: version-coupled CLIs such as istioctl, pinned in configs/package-managers/mise/config.toml.
 
 ## Config links
 
