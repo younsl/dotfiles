@@ -1,13 +1,31 @@
 # nix
 
-Personal macOS configuration as a Nix flake. nix-darwin owns system settings, launchd daemons, and Homebrew casks. home-manager owns CLI packages and links each file under configs/ into $HOME outside the Nix store, so tools that rewrite their own config keep working.
+Personal macOS configuration as a [Nix](https://github.com/NixOS/nix) flake. [nix-darwin](https://github.com/nix-darwin/nix-darwin) owns the system, [home-manager](https://github.com/nix-community/home-manager) owns the user environment, and configs/ holds the files each tool reads.
+
+## Layout
+
+| Path | Content |
+| --- | --- |
+| flake.nix | Inputs and the macbook darwin configuration |
+| nix/darwin | System defaults, [Homebrew](https://github.com/Homebrew/brew) taps and casks, kavd-watchdog daemon |
+| nix/home | CLI packages, wrapped scripts, config links, [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) and its plugins |
+| nix/pkgs | Local package builds |
+| nix/overlays.nix | Fixes applied on top of [nixpkgs](https://github.com/NixOS/nixpkgs) |
+| configs | Config files linked into $HOME |
+| scripts | Bootstrap and standalone scripts |
+
+## Install
+
+Clone into the fixed path, then run the bootstrap. It installs [Determinate Nix](https://github.com/DeterminateSystems/nix-installer) and Homebrew when missing, moves the stock /etc shell files aside for nix-darwin, and runs the first switch.
 
 ```bash
 git clone https://github.com/younsl/nix ~/github/younsl/nix
 ~/github/younsl/nix/scripts/bootstrap/bootstrap.sh
 ```
 
-Apply changes after the first run:
+## Usage
+
+Nothing applies on its own. Edit a file, then switch:
 
 ```bash
 sudo darwin-rebuild switch --flake ~/github/younsl/nix#macbook --impure
@@ -15,14 +33,39 @@ sudo darwin-rebuild switch --flake ~/github/younsl/nix#macbook --impure
 
 The flake reads SUDO_USER, which needs --impure, so the login name never lands in this public repository.
 
-| Path | Content |
-| --- | --- |
-| flake.nix | Inputs and the macbook darwin configuration |
-| nix/darwin | System defaults, Homebrew taps and casks, kavd-watchdog daemon |
-| nix/home | CLI packages, config links, oh-my-zsh and its plugins |
-| nix/pkgs | Local package builds |
-| configs | Config files linked into $HOME |
+Update every pinned input, then switch and commit flake.lock:
 
-Version-sensitive CLIs such as istioctl stay in mise. Casks and the few formulae nixpkgs cannot build on macOS stay in Homebrew, declared in nix/darwin/homebrew.nix.
+```bash
+nix flake update --flake ~/github/younsl/nix
+```
+
+Roll back to the previous generation:
+
+```bash
+sudo darwin-rebuild --rollback
+```
+
+Try a package without installing it:
+
+```bash
+nix shell nixpkgs#stern
+```
+
+## Packages
+
+| Source | Holds | Declared in |
+| --- | --- | --- |
+| nixpkgs | CLI tools and kubectl plugins | nix/home/packages.nix |
+| writeShellApplication | Scripts shipped as commands, such as clone-all | nix/home/commands.nix |
+| Homebrew | Casks and formulae nixpkgs lacks or cannot build on darwin | nix/darwin/homebrew.nix |
+| [mise](https://github.com/jdx/mise) | Version-coupled CLIs such as istioctl | configs/package-managers/mise/config.toml |
+
+Homebrew cleanup is set to uninstall, so a hand-run brew install disappears on the next switch.
+
+## Config links
+
+home-manager links each path under configs/ into $HOME outside the Nix store. Edits apply immediately without a switch, and tools that rewrite their own files, such as the vim.pack lockfile and Claude Code settings, keep working. A new or moved config needs an entry in nix/home/links.nix.
+
+## Private files
 
 Work git settings, signing keys, and ~/.zshrc.local stay local and gitignored.
