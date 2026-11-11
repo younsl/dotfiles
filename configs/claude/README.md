@@ -10,10 +10,9 @@ claude/
 ├── settings.json        # User settings, plugins, and hooks
 ├── hooks/
 │   └── post-edit-rs.sh  # Auto-runs rustfmt on .rs file edits
-└── skills/              # Custom skills in the Agent Skills format
 ```
 
-Skills live in [`skills/`](./skills). [install.sh](../../install.sh) links each one into `~/.claude/skills/`.
+Skills moved to the [houston](https://github.com/younsl/skills) plugin in younsl/skills.
 
 ## AI Disclosure
 

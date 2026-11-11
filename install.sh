@@ -28,10 +28,6 @@ LINKS=(
     "claude/hooks:.claude/hooks"
 )
 
-PER_ENTRY_LINKS=(
-    "claude/skills:.claude/skills"
-)
-
 usage() {
     cat <<EOF
 Usage: $(basename "$0") [-n|--dry-run] [-h|--help]
@@ -110,19 +106,7 @@ main() {
         link "$CONFIGS_DIR/$source" "$HOME/$target"
     done
 
-    for pair in "${PER_ENTRY_LINKS[@]}"; do
-        source="${pair%%:*}"
-        target="${pair#*:}"
-        if [[ -L $HOME/$target ]]; then
-            run rm "$HOME/$target"
-        fi
-        run mkdir -p "$HOME/$target"
-        for entry in "$CONFIGS_DIR/$source"/*/; do
-            entry="${entry%/}"
-            link "$entry" "$HOME/$target/$(basename "$entry")"
-        done
-        prune_dangling "$HOME/$target"
-    done
+    prune_dangling "$HOME/.claude/skills"
 }
 
 main "$@"
