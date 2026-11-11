@@ -61,13 +61,20 @@
     "skill-creator@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
-    "caveman@caveman": true
+    "caveman@caveman": true,
+    "eli5@claude-community": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
       "source": {
         "source": "github",
         "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "claude-community": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-community"
       }
     }
   },
