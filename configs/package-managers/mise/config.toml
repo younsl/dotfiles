@@ -1,6 +1,8 @@
 [tools]
 "aqua:grafana/alloy" = "1.20.0"
 argo-rollouts = "1.9.0"
+"cargo:vlt" = "0.1.1"
+helm = "3.22.1"
 "http:ij" = { version = "0.1.0", url = "https://raw.githubusercontent.com/younsl/addons/main/box/cli/ij/dist/{{ version }}/ij-{{ os(macos='darwin') }}-{{ arch(x64='amd64') }}.tar.gz" }
 istioctl = "1.30.3"
 node = "24"

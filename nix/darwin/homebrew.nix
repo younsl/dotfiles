@@ -28,7 +28,5 @@
       "stats"
       "windows-app"
     ];
-    goPackages = [ "helm.sh/helm/v3/cmd/helm" ];
-    cargoPackages = [ "vlt" ];
   };
 }

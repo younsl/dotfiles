@@ -46,7 +46,7 @@ k and j come from oh-my-zsh plugins, so the plugins=() list in .zshrc is load-be
 ## Tool notes
 
 - **zsh**: fast-syntax-highlighting must stay **last** in plugins. It wraps ZLE widgets and only sees widgets registered before it. Never add zsh-syntax-highlighting alongside it: the buffer is re-parsed twice per keystroke and the later one overwrites the earlier one's region_highlight.
-- **mise**: owns every version-sensitive CLI. Add runtimes with mise use -g TOOL@VERSION so the pin lands in configs/package-managers/mise/config.toml.
+- **mise**: owns every version-sensitive CLI, plus go and cargo installs. Never list them in homebrew.nix goPackages or cargoPackages: brew bundle runs without the Nix PATH and installs its own go and rust toolchains, which then shadow the Nix ones. Add runtimes with mise use -g TOOL@VERSION so the pin lands in configs/package-managers/mise/config.toml.
 - **istioctl**: pinned in mise, never nixpkgs or brew. It is version-coupled to the control plane, and either one's upgrades would bump it past the mesh.
 - **nvim**: plugins are managed by built-in vim.pack (configs/nvim/lua/config/pack.lua) and pinned in nvim-pack-lock.json. Auto-update runs daily on VimEnter and rewrites the lockfile, so commit it after it changes. Prefer a native Neovim feature over a plugin.
 - **git**: per-org profiles selected by includeIf gitdir:. Work profiles go in the untracked config-work.
