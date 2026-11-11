@@ -59,7 +59,7 @@ nix shell nixpkgs#stern
 - **[nixpkgs](https://github.com/NixOS/nixpkgs)**: CLI tools and kubectl plugins, declared in nix/home/packages.nix.
 - **writeShellApplication**: scripts shipped as commands, such as clone-all, declared in nix/home/commands.nix.
 - **Homebrew**: casks and formulae that nixpkgs lacks or cannot build on darwin, declared in nix/darwin/homebrew.nix. Cleanup is set to uninstall, so a hand-run brew install disappears on the next switch.
-- **[mise](https://github.com/jdx/mise)**: version-coupled CLIs such as istioctl and helm v3, plus go and cargo installs such as vlt, pinned in configs/package-managers/mise/config.toml.
+- **[mise](https://github.com/jdx/mise)**: version-coupled CLIs such as istioctl and helm v3, pinned in configs/package-managers/mise/config.toml.
 
 ## Config links
 
