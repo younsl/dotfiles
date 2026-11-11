@@ -27,7 +27,10 @@
     }:
     let
       system = "aarch64-darwin";
-      overlays = [ rust-overlay.overlays.default ];
+      overlays = [
+        rust-overlay.overlays.default
+        (import ./nix/overlays.nix)
+      ];
       pkgs = import nixpkgs { inherit system overlays; };
 
       sudoUser = builtins.getEnv "SUDO_USER";
