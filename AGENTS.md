@@ -17,12 +17,14 @@ Format: TOOL TYPE(SCOPE): DETAIL, for example [nvim] feat(pack): add nvim-treesi
 ## Dotfiles rules
 
 - **Never edit symlinked targets** (~/.config/nvim, ~/.zshrc, ...). Edit the source here instead.
-- **Hard-coded path**: the bootstrap and package scripts expect this repository at $HOME/github/younsl/dotfiles. install.sh resolves its own location.
-- **Adding or moving a config needs a matching LINKS entry in install.sh**, then run install.sh again.
+- **Repository path**: repoDir in flake.nix expects this repository at $HOME/github/younsl/nix, and every config link resolves through it. Scripts resolve their own location.
+- **Adding or moving a config needs a matching home.file entry in nix/home/links.nix**, then run darwin-rebuild switch. Links use mkOutOfStoreSymlink so tools that rewrite their own files (vim.pack lockfile, Claude Code settings) keep working. Never switch them to store paths.
+- **darwin-rebuild runs as sudo darwin-rebuild switch --flake .#macbook --impure**. The flake reads SUDO_USER so the login name stays out of this public repository. Never hard-code the username or hostname.
+- **Flakes ignore untracked files**: git add -N a new .nix file before evaluating it. Format .nix files with nix fmt (nixfmt).
 - **Scripts carry no comments** and every script starts with set -euo pipefail.
 - scripts/git/commit-history-cleaner.sh and the chc alias are **destructive**: they wipe all history and force push. Never run them in this repository.
-- bootstrap-dotfiles.sh is #!/bin/zsh: prompts must use read "VAR?prompt". zsh's read -p reads from a coprocess and silently yields an empty value.
-- configs/launchd/kavd-watchdog is a local Rust tool, not released. It follows edition 2024, rust-version 1.99.1, cargo fmt --check, and cargo clippy -- -D warnings.
+- bootstrap.sh is #!/bin/zsh: prompts must use read "VAR?prompt". zsh's read -p reads from a coprocess and silently yields an empty value.
+- configs/launchd/kavd-watchdog is a local Rust tool, not released. It follows edition 2024, rust-version 1.99.1, cargo fmt --check, and cargo clippy -- -D warnings. nix/pkgs/kavd-watchdog.nix builds it with the toolchain named by rust-version, and nix-darwin runs it from the store as a launchd daemon.
 
 ## Shell entry points
 
@@ -45,7 +47,8 @@ k and j come from oh-my-zsh plugins, so the plugins=() list in .zshrc is load-be
 
 - **zsh**: fast-syntax-highlighting must stay **last** in plugins. It wraps ZLE widgets and only sees widgets registered before it. Never add zsh-syntax-highlighting alongside it: the buffer is re-parsed twice per keystroke and the later one overwrites the earlier one's region_highlight.
 - **mise**: owns every version-sensitive CLI. Add runtimes with mise use -g TOOL@VERSION so the pin lands in configs/package-managers/mise/config.toml.
-- **istioctl**: pinned in mise, never brew. It is version-coupled to the control plane and brew's daily --upgrade would bump it past the mesh.
+- **istioctl**: pinned in mise, never nixpkgs or brew. It is version-coupled to the control plane, and either one's upgrades would bump it past the mesh.
 - **nvim**: plugins are managed by built-in vim.pack (configs/nvim/lua/config/pack.lua) and pinned in nvim-pack-lock.json. Auto-update runs daily on VimEnter and rewrites the lockfile, so commit it after it changes. Prefer a native Neovim feature over a plugin.
 - **git**: per-org profiles selected by includeIf gitdir:. Work profiles go in the untracked config-work.
-- **Brewfile and krewfile**: snapshots refreshed by scripts/package-managers/manage-krew-brew.sh, never edited by hand.
+- **Packages**: CLI tools go in nix/home/packages.nix, kept sorted. Homebrew holds only casks and formulae that nixpkgs lacks or cannot build on darwin, in nix/darwin/homebrew.nix. Its cleanup is uninstall, so a hand-run brew install disappears on the next switch.
+- **krewfile**: snapshot refreshed by scripts/package-managers/manage-krew.sh, never edited by hand.

@@ -1,4 +1,4 @@
-.PHONY: build test lint install uninstall
+.PHONY: build test lint nix-build
 
 build:
 	cargo build --release
@@ -10,8 +10,5 @@ lint:
 	cargo fmt --check
 	cargo clippy --all-targets -- -D warnings
 
-install: build
-	osascript -e 'do shell script "/bin/bash $(CURDIR)/install.sh" with administrator privileges'
-
-uninstall:
-	osascript -e 'do shell script "/bin/bash $(CURDIR)/install.sh --uninstall" with administrator privileges'
+nix-build:
+	nix build ../../..#kavd-watchdog

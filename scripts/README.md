@@ -1,6 +1,6 @@
 # scripts
 
-This directory contains bootstrap scripts to setup dotfiles.
+This directory contains bootstrap scripts to set up this Nix configuration.
 
 ## AI Disclosure
 

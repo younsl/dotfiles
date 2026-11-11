@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="820" viewBox="0 0 1280 820" role="img" aria-labelledby="title desc">
   <title id="title">kavd-watchdog local architecture</title>
-  <desc id="desc">make build compiles the binary as the user, and make install copies it with the plist as root:wheel. launchd keeps kavd-watchdog running as root. Every 60 seconds the watchdog reads kavd CPU, and after 5 checks at or above 150 percent it asks launchd to kickstart kavd, at most once per hour.</desc>
+  <desc id="desc">nix builds the binary in its sandbox into the root-owned Nix store, and nix-darwin writes the plist that runs it from there. launchd keeps kavd-watchdog running as root. Every 60 seconds the watchdog reads kavd CPU, and after 5 checks at or above 150 percent it asks launchd to kickstart kavd, at most once per hour.</desc>
   <defs>
     <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
       <circle cx="1" cy="1" r="1" fill="#161616"/>
@@ -37,39 +37,39 @@
     <line x1="884" y1="60" x2="912" y2="60" class="req" marker-end="url(#arrow)"/>
     <text x="922" y="64" class="muted">run, read</text>
     <line x1="1000" y1="60" x2="1028" y2="60" class="copy"/>
-    <text x="1038" y="64" class="muted">copy</text>
+    <text x="1038" y="64" class="muted">write</text>
     <line x1="1086" y1="60" x2="1114" y2="60" class="restart" marker-end="url(#arrow-blue)"/>
     <text x="1124" y="64" class="muted">restart</text>
   </g>
 
   <rect x="56.5" y="140.5" width="300" height="200" rx="12" fill="#0a0a0a" stroke="#2e2e2e"/>
-  <text x="80" y="170" class="mono eyebrow">BUILD  AS YOU</text>
+  <text x="80" y="170" class="mono eyebrow">BUILD  IN SANDBOX</text>
   <text x="80" y="196" class="sans fg" font-size="16" font-weight="600">Repository</text>
   <circle cx="330" cy="191" r="10" class="badge"/>
   <text x="330" y="195" class="mono badge-num" text-anchor="middle">1</text>
   <line x1="57" y1="214.5" x2="356" y2="214.5" stroke="#2e2e2e"/>
   <text x="80" y="240" class="mono muted" font-size="12">configs/launchd/kavd-watchdog</text>
-  <text x="80" y="262" class="mono fg" font-size="12">make build</text>
-  <text x="80" y="280" class="mono dim" font-size="11">cargo build --release</text>
+  <text x="80" y="262" class="mono fg" font-size="12">nix build .#kavd-watchdog</text>
+  <text x="80" y="280" class="mono dim" font-size="11">rustPlatform.buildRustPackage</text>
   <rect x="80.5" y="296.5" width="252" height="30" rx="6" fill="#000" stroke="#2e2e2e"/>
-  <text x="92" y="316" class="mono fg" font-size="11">target/release/kavd-watchdog</text>
+  <text x="92" y="316" class="mono fg" font-size="11">/nix/store/…-kavd-watchdog</text>
 
   <line x1="206" y1="341" x2="206" y2="396" class="req" marker-end="url(#arrow)"/>
   <circle cx="230" cy="368" r="10" class="badge"/>
   <text x="230" y="372" class="mono badge-num" text-anchor="middle">2</text>
-  <text x="250" y="372" class="mono dim" font-size="10">make install</text>
+  <text x="250" y="372" class="mono dim" font-size="10">darwin-rebuild</text>
 
   <rect x="56.5" y="400.5" width="300" height="200" rx="12" fill="#0a0a0a" stroke="#2e2e2e"/>
-  <text x="80" y="430" class="mono eyebrow">INSTALL  AS ROOT</text>
-  <text x="80" y="456" class="sans fg" font-size="16" font-weight="600">install.sh</text>
+  <text x="80" y="430" class="mono eyebrow">ACTIVATE  AS ROOT</text>
+  <text x="80" y="456" class="sans fg" font-size="16" font-weight="600">nix-darwin</text>
   <line x1="57" y1="474.5" x2="356" y2="474.5" stroke="#2e2e2e"/>
-  <text x="80" y="500" class="mono muted" font-size="12">osascript admin prompt</text>
-  <text x="80" y="522" class="mono muted" font-size="12">install -o root -g wheel</text>
+  <text x="80" y="500" class="mono muted" font-size="12">sudo darwin-rebuild switch</text>
+  <text x="80" y="522" class="mono muted" font-size="12">launchd.daemons module</text>
   <text x="80" y="544" class="mono muted" font-size="12">launchctl bootout, bootstrap</text>
-  <text x="80" y="576" class="mono dim" font-size="11">never runs cargo as root</text>
+  <text x="80" y="576" class="mono dim" font-size="11">store paths are root-owned, read-only</text>
 
   <path d="M357 440 H398 V280 H436" class="copy"/>
-  <text x="366" y="432" class="mono dim" font-size="10">copy</text>
+  <text x="366" y="432" class="mono dim" font-size="10">write</text>
 
   <rect x="440.5" y="140.5" width="360" height="460" rx="12" fill="#0a0a0a" stroke="#2e2e2e"/>
   <circle cx="468" cy="181" r="4" fill="#50e3c2"/>
@@ -84,7 +84,7 @@
   <text x="522" y="301" class="mono muted" font-size="11" text-anchor="middle">RunAtLoad</text>
   <rect x="572.5" y="286.5" width="80" height="22" rx="11" fill="none" stroke="#2e2e2e"/>
   <text x="612" y="301" class="mono muted" font-size="11" text-anchor="middle">KeepAlive</text>
-  <text x="480" y="334" class="mono dim" font-size="11">/usr/local/libexec/kavd-watchdog</text>
+  <text x="480" y="334" class="mono dim" font-size="11">/nix/store/…/bin/kavd-watchdog</text>
   <text x="480" y="352" class="mono dim" font-size="11">/Library/LaunchDaemons/</text>
   <text x="480" y="368" class="mono dim" font-size="11">local.kavd-watchdog.plist</text>
 
@@ -150,10 +150,10 @@
   <g class="sans muted" font-size="13">
     <circle cx="90" cy="696" r="10" class="badge"/>
     <text x="90" y="700" class="mono badge-num" text-anchor="middle">1</text>
-    <text x="110" y="701">make build compiles a release binary as you</text>
+    <text x="110" y="701">nix builds a release binary in its sandbox</text>
     <circle cx="476" cy="696" r="10" class="badge"/>
     <text x="476" y="700" class="mono badge-num" text-anchor="middle">2</text>
-    <text x="496" y="701">make install copies it and the plist as root:wheel</text>
+    <text x="496" y="701">darwin-rebuild writes the plist and loads it as root</text>
     <circle cx="862" cy="696" r="10" class="badge"/>
     <text x="862" y="700" class="mono badge-num" text-anchor="middle">3</text>
     <text x="882" y="701">launchd keeps kavd-watchdog running</text>

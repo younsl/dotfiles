@@ -1,7 +1,7 @@
 minimum_pre_commit_version: "4.0.0"
 default_install_hook_types: [pre-commit, commit-msg]
 default_stages: [pre-commit]
-exclude: ^configs/package-managers/(brew/Brewfile|krew/krewfile)$
+exclude: ^configs/package-managers/krew/krewfile$
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -35,7 +35,7 @@ repos:
     hooks:
       - id: shellcheck
         exclude_types: [zsh]
-        exclude: ^scripts/bootstrap/bootstrap-dotfiles\.sh$
+        exclude: ^scripts/bootstrap/bootstrap\.sh$
 
   - repo: local
     hooks:
@@ -53,6 +53,12 @@ repos:
         types: [shell]
         exclude_types: [zsh]
         exclude: ^configs/claude/hooks/herdr-agent-state\.sh$
+
+      - id: nixfmt
+        name: nixfmt --check
+        language: system
+        entry: nixfmt --check
+        files: \.nix$
 
       - id: cargo-fmt
         name: cargo fmt --check

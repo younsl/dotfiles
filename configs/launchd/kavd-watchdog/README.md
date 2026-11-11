@@ -2,7 +2,7 @@
 
 A Rust LaunchDaemon that restarts the Kaspersky Anti-Virus for Mac daemon (kavd) when it stays pinned on CPU. It is a local tool and is not released.
 
-![kavd-watchdog local architecture: make build compiles the binary as you, make install copies it as root, launchd keeps the watchdog running, and the watchdog asks launchd to kickstart kavd after sustained high CPU](docs/assets/architecture.svg)
+![kavd-watchdog local architecture: nix builds the binary into the Nix store, nix-darwin writes the plist that runs it as root, launchd keeps the watchdog running, and the watchdog asks launchd to kickstart kavd after sustained high CPU](docs/assets/architecture.svg)
 
 It stays resident and reads kavd CPU every 60 seconds, averaged over that window. After 5 consecutive checks at or above 150%, it runs `launchctl kickstart -k system/com.kaspersky.kav.kavd`, at most once per hour. This only relieves the symptom. The lasting fix is a scan exclusion for the paths kavd is busy with.
 
@@ -10,17 +10,19 @@ The binary itself is generic: `--service` names the target, and the plist sets i
 
 ## Install
 
+nix-darwin installs it with the rest of the system configuration:
+
 ```bash
-make install
+sudo darwin-rebuild switch --flake ~/github/younsl/nix#macbook --impure
 ```
 
-This builds a release binary as you, then asks for an admin password and runs install.sh as root. install.sh copies the binary and plist as root:wheel instead of linking them, because a root job that runs a binary from a user-writable repository would let any user process run code as root. For the same reason this directory has no config.toml entry, and install.sh aborts if any directory above the binary or plist is not root-owned or is group or world writable.
+nix/pkgs/kavd-watchdog.nix builds the binary in the Nix sandbox with the toolchain named by rust-version in Cargo.toml, and nix/darwin/kavd-watchdog.nix declares the LaunchDaemon. The daemon runs the binary from the root-owned, read-only Nix store, never from this user-writable repository, because a root job running a user-writable binary would let any user process run code as root.
 
-Rerun `make install` after changing anything here. `make uninstall` removes the daemon and its binary.
+Rerun the switch after changing anything here. Removing the import from nix/darwin/default.nix removes the daemon.
 
 | Path | Content |
 | --- | --- |
-| /usr/local/libexec/kavd-watchdog | Binary |
+| /nix/store/...-kavd-watchdog-VERSION/bin/kavd-watchdog | Binary |
 | /Library/LaunchDaemons/local.kavd-watchdog.plist | LaunchDaemon, with RunAtLoad and KeepAlive |
 | /var/log/kavd-watchdog.log | Log of startup, high CPU checks, and restarts |
 
@@ -44,7 +46,7 @@ Each flag falls back to an environment variable, so either ProgramArguments or E
 Watch live readings as root without restarting anything:
 
 ```bash
-sudo RUST_LOG=debug /usr/local/libexec/kavd-watchdog \
+sudo RUST_LOG=debug "$(nix build ~/github/younsl/nix#kavd-watchdog --no-link --print-out-paths)/bin/kavd-watchdog" \
   --service system/com.kaspersky.kav.kavd --interval-seconds 2 --dry-run
 ```
 

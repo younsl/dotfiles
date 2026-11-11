@@ -1,6 +1,7 @@
 .DS_Store
 target/
 lcov.info
+result
 
 configs/git/config-*
 configs/git/*.key
