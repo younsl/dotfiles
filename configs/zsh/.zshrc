@@ -1,6 +1,5 @@
 # Existing PATH components
 path=(
-  $HOME/.krew/bin
   /usr/local/bin
   $path
 )

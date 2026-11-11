@@ -51,4 +51,5 @@ k and j come from oh-my-zsh plugins, so the plugins=() list in .zshrc is load-be
 - **nvim**: plugins are managed by built-in vim.pack (configs/nvim/lua/config/pack.lua) and pinned in nvim-pack-lock.json. Auto-update runs daily on VimEnter and rewrites the lockfile, so commit it after it changes. Prefer a native Neovim feature over a plugin.
 - **git**: per-org profiles selected by includeIf gitdir:. Work profiles go in the untracked config-work.
 - **Packages**: CLI tools go in nix/home/packages.nix, kept sorted. Homebrew holds only casks and formulae that nixpkgs lacks or cannot build on darwin, in nix/darwin/homebrew.nix. Its cleanup is uninstall, so a hand-run brew install disappears on the next switch.
-- **krewfile**: snapshot refreshed by scripts/package-managers/manage-krew.sh, never edited by hand.
+- **kubectl plugins**: nixpkgs packages in nix/home/packages.nix, not krew. kubectl finds kubectl-NAME binaries on PATH, and nix/home/commands.nix adds a kubectl-stern link so kubectl stern keeps working.
+- **scripts/git/clone-all.sh** ships as the clone-all command through writeShellApplication in nix/home/commands.nix, which pins its runtime tools and shellchecks it at build time.

@@ -1,5 +1,6 @@
 {
   imports = [
+    ./commands.nix
     ./packages.nix
     ./links.nix
     ./zsh.nix

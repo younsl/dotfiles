@@ -38,9 +38,10 @@
     jsonnet-bundler
     k9s
     kind
-    krew
     kubeconform
     kubectl
+    kubectl-node-shell
+    kubectl-tree
     kubernetes-controller-tools
     kubeswitch
     lua-language-server
@@ -60,6 +61,7 @@
     rustup
     skopeo
     sslscan
+    stern
     terraform-ls
     tmux
     tree
